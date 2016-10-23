@@ -6,6 +6,18 @@
 /* Imports */
 @import url("../resources/fonts/fonts.css");
 
+/* Body */
+body {
+    font-family: "Cyntho Medium", sans-serif;
+    text-align: center;
+}
+
+#main-block {
+    width: 980px;
+    text-align: left;
+    margin: 0 auto;
+}
+
 /* Buttons */
 button {
     width: 90px;
