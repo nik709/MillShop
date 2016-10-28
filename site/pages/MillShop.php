@@ -20,7 +20,7 @@ if ($conn){
  -->
 <?php
 error_reporting(E_ALL & ~E_DEPRECATED);
-$link = mysql_connect('localhost:3306/test', 'root', 'root');
+$link = mysql_connect('localhost:3306/millshop', 'root', 'root');
 if (!$link) {
     die('Ошибка соединения: ' . mysql_error());
 }

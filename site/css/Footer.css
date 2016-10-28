@@ -1,0 +1,25 @@
+/*
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
+*/
+
+/* Imports */
+@import url("../resources/fonts/fonts.css");
+
+/* Footer */
+#footer-block {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1em;
+    text-align: left;
+    background-color: #152b3c;
+    color: aliceblue;
+    height: 160px;
+}
+
+#footer-logo {
+    height: 50px;
+    width: 100px;
+}
