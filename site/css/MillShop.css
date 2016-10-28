@@ -10,6 +10,7 @@
 body {
     font-family: "Cyntho Medium", sans-serif;
     text-align: center;
+    margin: 0 auto;
 }
 
 #main-block {
@@ -62,4 +63,33 @@ button:active {
 
 button:focus {
     outline: 0;
+}
+
+#search-button {
+}
+
+#menu-bar {
+    background-color: #647891;
+    width: 100vW;
+}
+
+#logo-block {
+    text-align: center;
+}
+
+
+/* Footer */
+#footer-block {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#footer-bar {
+    padding: 1rem;
+    text-align: left;
+    background-color: #111128;
+    color: aliceblue;
+    height: 60px;
 }
