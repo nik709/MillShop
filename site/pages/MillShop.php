@@ -12,16 +12,30 @@
 </head>
 <body>
 
+<!-- 
+$conn = oci_connect('system', 'root', '//localhost:1521/XE');
+if ($conn){
+    echo 'connection is correct';
+}
+ -->
+
+<div id="menu-block">
+    <?php
+    include('menu.html');
+    ?>
+</div>
+
 <div id="main-block">
-    <div id="menu-block">This is menu...</div>
     <h1>Welcome to Mill Shop!</h1>
     <form>
         <button id="clickme">Click Me!</button>
     </form>
-    <div id="footer-block">
-        <img src="../resources/images/logo_vertical.svg" height="20%" width="20%">
-        This is footer...
-    </div>
+</div>
+
+<div id="footer-block">
+    <?php
+    include('footer.html');
+    ?>
 </div>
 
 </body>
