@@ -25,8 +25,8 @@ if (!$link) {
     die('Ошибка соединения: ' . mysql_error());
 }
 echo 'Соединение успешно установлено';
-mysql_select_db('test') or die('Не удалось выбрать базу данных');
-$query = 'SELECT * FROM TIME';
+mysql_select_db('MillShop') or die('Не удалось выбрать базу данных');
+$query = 'SELECT * FROM SIZES';
 $result = mysql_query($query) or die('Запрос не удался: ' . mysql_error());
 echo "<table>\n";
 while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
