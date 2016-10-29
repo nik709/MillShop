@@ -1,0 +1,79 @@
+/*
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
+*/
+
+/* Header */
+#menu-block {
+    text-align: center;
+}
+
+#logo-block {
+    margin: 0 auto;
+    width: 240px;
+}
+
+#menu-bar-outside {
+    background-color: #ddc9bc;
+    width: 100vw;
+    height: 37px;
+    text-align: center;
+}
+
+#menu-bar-inside {
+    width: 980px;
+    text-align: left;
+    margin: 0 auto;
+}
+
+#menu-bar-inside div {
+    display: inline-block;
+}
+
+#menu-bar-links {
+    padding-bottom: 7px;
+    padding-top: 7px;
+}
+
+.menu-links-item {
+    padding-right: 36px;
+}
+
+#menu-bar-links a {
+    color: black;
+    font-family: "Cyntho Bold", sans-serif;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    padding: 7px 0;
+    text-decoration: none;
+}
+
+#menu-bar-links a:hover {
+    color: #736868;
+}
+
+#menu-bar-tools {
+    float: right;
+    margin-top: 1px;
+    padding: 6px 0;
+}
+
+#menu-bar-search {
+    height: 20px;
+    width: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#menu-bar-currency {
+    height: 20px;
+    width: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#menu-bar-bag {
+    height: 20px;
+    width: 20px;
+    padding-left: 8px;
+}

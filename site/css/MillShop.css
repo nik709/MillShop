@@ -5,6 +5,8 @@
 
 /* Imports */
 @import url("../resources/fonts/fonts.css");
+@import "Footer.css";
+@import "Menu.css";
 
 /* Body */
 body {
@@ -26,8 +28,8 @@ button {
     display: flex;
     overflow: hidden;
 
-    margin: 10px;
-    padding: 5px 5px;
+    margin: 10px 0;
+    padding: 5px 0;
 
     cursor: pointer;
     user-select: none;
@@ -63,33 +65,4 @@ button:active {
 
 button:focus {
     outline: 0;
-}
-
-#search-button {
-}
-
-#menu-bar {
-    background-color: #647891;
-    width: 100vW;
-}
-
-#logo-block {
-    text-align: center;
-}
-
-
-/* Footer */
-#footer-block {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-#footer-bar {
-    padding: 1rem;
-    text-align: left;
-    background-color: #111128;
-    color: aliceblue;
-    height: 60px;
 }

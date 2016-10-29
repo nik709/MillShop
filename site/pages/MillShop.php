@@ -12,32 +12,6 @@
 </head>
 <body>
 
-<!-- 
-$conn = oci_connect('system', 'root', '//localhost:1521/XE');
-if ($conn){
-    echo 'connection is correct';
-}
- -->
-<?php
-error_reporting(E_ALL & ~E_DEPRECATED);
-$link = mysql_connect('localhost:3306/test', 'root', 'root');
-if (!$link) {
-    die('Ошибка соединения: ' . mysql_error());
-}
-echo 'Соединение успешно установлено';
-mysql_select_db('MillShop') or die('Не удалось выбрать базу данных');
-$query = 'SELECT * FROM SIZES';
-$result = mysql_query($query) or die('Запрос не удался: ' . mysql_error());
-echo "<table>\n";
-while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-    echo "\t<tr>\n";
-    foreach ($line as $col_value) {
-        echo "\t\t<td>$col_value</td>\n";
-    }
-    echo "\t</tr>\n";
-}
-echo "</table>\n";
-?>
 <div id="menu-block">
     <?php
     include('menu.html');
@@ -49,6 +23,28 @@ echo "</table>\n";
     <form>
         <button id="clickme">Click Me!</button>
     </form>
+
+    <?php
+        error_reporting(E_ALL & ~E_DEPRECATED);
+        $link = mysqli_connect('localhost:3306', 'root', 'root', 'millshop');
+        if (!$link) {
+            die('Ошибка соединения: ' . mysqli_error($link));
+        }
+        echo 'Соединение успешно установлено';
+        mysqli_select_db($link, 'MillShop') or die('Не удалось выбрать базу данных');
+        $query = 'SELECT * FROM SIZES';
+        $result = mysqli_query($link, $query) or die('Запрос не удался: ' .mysqli_error($link));
+        echo "<table>\n";
+        while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            echo "\t<tr>\n";
+            foreach ($line as $col_value) {
+                echo "\t\t<td>$col_value</td>\n";
+            }
+            echo "\t</tr>\n";
+        }
+        echo "</table>\n";
+    ?>
+
 </div>
 
 <div id="footer-block">
