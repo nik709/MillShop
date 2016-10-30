@@ -6,12 +6,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Kids</title>
+    <title>Mill Shop - Kids</title>
     <link rel="icon" href="../resources/images/icon.ico">
     <link rel="stylesheet" href="../css/Kids.css">
 </head>
 <body>
 
+<div id="wrapping-block">
 <div id="menu-block">
     <?php
     include('menu.html');
@@ -45,6 +46,7 @@
     echo "</table>\n";
     ?>
 
+</div>
 </div>
 
 <div id="footer-block">
