@@ -25,9 +25,6 @@ class DBConnection
         $this->result = mysqli_query($this->link, $this->query) or die('Запрос не удался: ' .mysqli_error($this->link));
     }
 
-    /**
-     * @param mixed $query
-     */
     public function setQuery($query)
     {
         $this->query = $query;
@@ -50,6 +47,11 @@ class DBConnection
         if ($isClose){
             echo "Соединение успешно прервано";
         }
+    }
+
+    public function selectSizes(){
+        $this->setQuery("select * from sizes");
+        $this->execueQuery();
     }
 }
 ?>
