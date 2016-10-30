@@ -48,5 +48,10 @@ class DBConnection
             echo "Соединение успешно прервано";
         }
     }
+
+    public function selectSizes(){
+        $this->setQuery("select * from sizes");
+        $this->execueQuery();
+    }
 }
 ?>
