@@ -12,6 +12,7 @@
 </head>
 <body>
 
+<div id="wrapping-block">
 <div id="menu-block">
     <?php
     include('menu.html');
@@ -35,12 +36,14 @@
     ?>
 
 </div>
+</div>
 
 <div id="footer-block">
     <?php
     include('footer.html');
     ?>
 </div>
+
 
 </body>
 </html>

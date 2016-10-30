@@ -15,7 +15,20 @@ body {
     margin: 0 auto;
 }
 
+#wrapping-block {
+    max-width: 100%;
+    height: 100vh;
+}
+
+body > #wrapping-block {
+    min-height: 100vh;
+    height: auto;
+}
+
 #main-block {
+    position: relative;
+    height: 100%;
+    padding-bottom: 100px;
     width: 980px;
     text-align: left;
     margin: 0 auto;
