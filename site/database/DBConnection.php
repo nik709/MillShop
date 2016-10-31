@@ -1,10 +1,8 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Никита
- * Date: 30.10.2016
- * Time: 20:50
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
 class DBConnection
 {
@@ -25,9 +23,6 @@ class DBConnection
         $this->result = mysqli_query($this->link, $this->query) or die('Запрос не удался: ' .mysqli_error($this->link));
     }
 
-    /**
-     * @param mixed $query
-     */
     public function setQuery($query)
     {
         $this->query = $query;
@@ -50,6 +45,11 @@ class DBConnection
         if ($isClose){
             echo "Соединение успешно прервано";
         }
+    }
+
+    public function selectSizes(){
+        $this->setQuery("select * from sizes");
+        $this->execueQuery();
     }
 }
 ?>
