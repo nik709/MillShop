@@ -47,8 +47,15 @@ class DBConnection
         }
     }
 
-    public function selectSizes(){
-        $this->setQuery("select * from sizes");
+    public function selectItemsBySize($size){
+        $query = "SELECT id, name FROM items WHERE size = '$size'";
+        $this->setQuery($query);
+        $this->execueQuery();
+    }
+
+    public function selectItemsByColor($color){
+        $query = "SELECT id, name FROM items WHERE color = '$color'";
+        $this->setQuery($query);
         $this->execueQuery();
     }
 
