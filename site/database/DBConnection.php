@@ -51,5 +51,9 @@ class DBConnection
         $this->setQuery("select * from sizes");
         $this->execueQuery();
     }
+
+    public function getResult(){
+        return $this->result;
+    }
 }
 ?>

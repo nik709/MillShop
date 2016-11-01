@@ -25,27 +25,6 @@
         <button id="clickme">Kids</button>
     </form>
 
-    <?php
-    error_reporting(E_ALL & ~E_DEPRECATED);
-    $link = mysqli_connect('localhost:3306', 'root', 'root', 'millshop');
-    if (!$link) {
-        die('Ошибка соединения: ' . mysqli_error($link));
-    }
-    echo 'Соединение успешно установлено';
-    mysqli_select_db($link, 'MillShop') or die('Не удалось выбрать базу данных');
-    $query = 'SELECT * FROM COLORS';
-    $result = mysqli_query($link, $query) or die('Запрос не удался: ' .mysqli_error($link));
-    echo "<table>\n";
-    while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-        echo "\t<tr>\n";
-        foreach ($line as $col_value) {
-            echo "\t\t<td>$col_value</td>\n";
-        }
-        echo "\t</tr>\n";
-    }
-    echo "</table>\n";
-    ?>
-
 </div>
 </div>
 
