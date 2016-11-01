@@ -12,19 +12,22 @@
 </head>
 <body>
 
-<div id="menu-block">
-    <?php
-    include('menu.html');
-    ?>
+<div id="wrapping-block">
+    <div id="menu-block">
+        <?php
+        include('menu.html');
+        ?>
+    </div>
+
+    <div id="main-block">
+        <div id = "error-title">500</div>
+        <div id = "error-text">INTERNAL SERVER ERROR</div>
+
+        <a onclick="history.back()"> <button id="clickme">Back</button></a>
+
+
+    </div>
 </div>
-
-<div id="main-block">
-    <font size="7"><b><h1>500</h1></b></font>
-    <font size="7">INTERNAL SERVER ERROR</font>
-
-    <a onclick="history.back()"> <button id="clickme">Back</button></a>
-</div>
-
 <div id="footer-block">
     <?php
     include('footer.html');
