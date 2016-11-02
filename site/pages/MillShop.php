@@ -30,7 +30,9 @@
     include_once("../database/DBConnection.php");
     $db = new DBConnection();
     $db->openConnection();
-    $db->selectItemsByColor(0);
+    $criteria[0] = "size = 102";
+    $criteria[1] = "color = 205";
+    $db->selectByCriteria($criteria);
     $db->showResult();
     $db->closeConnection();
     ?>

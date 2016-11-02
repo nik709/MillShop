@@ -4,6 +4,12 @@
     MILL SHOP COMPANY, 2016
     CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
+function swap(&$a, &$b){
+    $c = $a;
+    $a = $b;
+    $b = $c;
+}
+
 class DBConnection
 {
     private $link;
@@ -79,6 +85,21 @@ class DBConnection
 
     public function getResult(){
         return $this->result;
+    }
+
+    public function selectByCriteria($criteria){
+        $query = "SELECT * FROM ITEMS ";
+        for ($i=0; $i<count($criteria); $i++){
+            if ($i==0)
+                $query .= "WHERE ";
+            $query .= $criteria[$i];
+            $query .= " ";
+            if ($i!=count($criteria) - 1)
+                $query .= "AND ";
+        }
+        $query .= ";";
+        $this->setQuery($query);
+        $this->execueQuery();
     }
 }
 ?>
