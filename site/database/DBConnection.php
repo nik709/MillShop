@@ -10,6 +10,15 @@ function swap(&$a, &$b){
     $b = $c;
 }
 
+function bubbleSort(&$array){
+    for ($i=0; $i<count($array); $i++){
+        for ($j=0; $j<count($array); $j++){
+            if ($array[$i]>$array[$j])
+                swap($array[$i], $array[$j]);
+        }
+    }
+}
+
 class DBConnection
 {
     private $link;
@@ -100,6 +109,26 @@ class DBConnection
         $query .= ";";
         $this->setQuery($query);
         $this->execueQuery();
+        $this->sortResult();
+    }
+
+    public function sortResult(){
+        $array[0] = "test";
+        $i = 1;
+        while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)){
+            $array[$i] = $line;
+            $i++;
+        }
+        bubbleSort($array);
+        /*echo "<table>\n";
+        foreach ($array as $item) {
+            foreach ($item as $col_val)
+            echo "\t<tr>\n";
+            echo "\t\t<td>$col_val</td>\n";
+            echo "\t</tr>\n";
+        }
+        echo "</table>\n";*/
+        return $array;
     }
 }
 ?>
