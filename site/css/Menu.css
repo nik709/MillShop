@@ -55,14 +55,11 @@
 #menu-bar-tools {
     float: right;
     margin-top: 1px;
-    padding: 6px 0;
+    padding: 6px 0 5px 0;
 }
 
 #menu-bar-search {
     height: 20px;
-    width: 20px;
-    padding-left: 8px;
-    padding-right: 8px;
 }
 
 #menu-bar-currency {
@@ -76,4 +73,81 @@
     height: 20px;
     width: 20px;
     padding-left: 8px;
+}
+
+/* Search */
+
+.search-form {
+    position: absolute;
+    margin-top: -8px;
+}
+
+input[type="text"] {
+    height: 37px;
+    font-size: 1em;
+    display: inline-block;
+    font-family: "Cyntho Light", sans-serif;
+    border: none;
+    outline: none;
+    color: #000000;
+    padding: 0 2.3em 0 12px;
+    width: 0;
+    position: absolute;
+    background: none;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    transition: width 0.7s cubic-bezier(0.000, 0.795, 0.000, 1.000), background 0.7s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+    cursor: pointer;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+    color: black;
+}
+
+input[type="text"]:-ms-input-placeholder {
+    color: black;
+}
+
+input[type="text"]:-moz-placeholder {
+    color: black;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #fdeedf inset !important;
+}
+
+input[type="text"]:focus:hover {
+}
+
+input[type="text"]:focus {
+    background-color: #fdeedf;
+    width: 484px;
+    z-index: 1;
+    cursor: text;
+}
+
+input[type="submit"].search-button {
+    height: 37px;
+    width: 2em;
+    display: inline-block;
+    color:red;
+    float: right;
+    background: url("../resources/images/search.svg") center center no-repeat;
+    background-size: 1.5em;
+    text-indent: -10000px;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 6px;
+    z-index: 2;
+    cursor: pointer;
+    opacity: 1;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    outline: 0;
+}
+
+input[type="submit"]:hover {
+    opacity: 0.5;
 }
