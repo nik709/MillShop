@@ -20,7 +20,8 @@
 }
 
 #menu-bar-inside {
-    width: 980px;
+    max-width: 1000px;
+    width: 100vw;
     text-align: left;
     margin: 0 auto;
 }

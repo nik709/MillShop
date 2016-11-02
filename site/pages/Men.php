@@ -20,11 +20,22 @@
 </div>
 
 <div id="main-block">
-    <h1>Clothes for MEN</h1>
-    <form>
-        <button id="clickme">Men</button>
-    </form>
+    <div class="margin-wrapper">
+        <h1>Clothes for MEN</h1>
+        <form>
+            <button id="clickme">Men</button>
+        </form>
 
+        <?php
+        include_once("../database/DBConnection.php");
+        $db = new DBConnection();
+        $db->openConnection();
+        $db->selectItemsById(1000001);
+        $db->showResult();
+        $db->closeConnection();
+        ?>
+
+    </div>
 </div>
 </div>
 

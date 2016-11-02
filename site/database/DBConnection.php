@@ -28,12 +28,22 @@ class DBConnection
         $this->query = $query;
     }
 
+    private function showImage($image, $width, $height) {
+        echo "\t\t<td><img src=\"data:image/jpeg;base64," . base64_encode($image) .
+            "\" width=\"" . $width . "\" height=\"" . $height . "\" /></td>\n";
+    }
+
     public function showResult(){
         echo "<table>\n";
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
             echo "\t<tr>\n";
             foreach ($line as $col_value) {
-                echo "\t\t<td>$col_value</td>\n";
+                if($col_value == $line['image']) {
+                    $this->showImage($col_value, 175, 200);
+                }
+                else {
+                    echo "\t\t<td>$col_value</td>\n";
+                }
             }
             echo "\t</tr>\n";
         }
@@ -45,6 +55,12 @@ class DBConnection
         if ($isClose){
             echo "Соединение успешно прервано";
         }
+    }
+
+    public function selectItemsById($id){
+        $query = "SELECT id, name, image, price, size, color, description FROM items WHERE id = '$id'";
+        $this->setQuery($query);
+        $this->execueQuery();
     }
 
     public function selectItemsBySize($size){
