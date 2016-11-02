@@ -1,3 +1,9 @@
+DROP TABLE IF EXISTS 'millshop'.'items';
+DROP TABLE IF EXISTS 'millshop'.'sizes';
+DROP TABLE IF EXISTS 'millshop'.'colors';
+DROP TABLE IF EXISTS 'millshop'.'subcategory';
+DROP TABLE IF EXISTS 'millshop'.'globcategory';
+
 CREATE TABLE `millshop`.`colors` (
   `ID` INT NOT NULL ,
   `name` VARCHAR(45) NULL ,

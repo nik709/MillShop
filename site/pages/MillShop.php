@@ -30,7 +30,7 @@
     include_once("../database/DBConnection.php");
     $db = new DBConnection();
     $db->openConnection();
-    $db->selectItemsByColor(201);
+    $db->selectItemsByColor(0);
     $db->showResult();
     $db->closeConnection();
     ?>

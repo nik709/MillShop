@@ -13,7 +13,9 @@ class DBConnection
     public function openConnection(){
         $this->link = mysqli_connect('localhost:3306', 'root', 'root', 'millshop');
         if (!$this->link) {
-            die('Ошибка соединения: ' . mysqli_error($this->link));
+            echo '<script type="text/javascript">';
+            echo 'window.location.href = "../pages/500.php"';
+            echo '</script>';
         }
         echo 'Соединение успешно установлено';
         mysqli_select_db($this->link, 'MillShop') or die('Не удалось выбрать базу данных');
@@ -58,19 +60,19 @@ class DBConnection
     }
 
     public function selectItemsById($id){
-        $query = "SELECT id, name, image, price, size, color, description FROM items WHERE id = '$id'";
+        $query = "SELECT name, image, price, size, color, description FROM items WHERE id = '$id'";
         $this->setQuery($query);
         $this->execueQuery();
     }
 
     public function selectItemsBySize($size){
-        $query = "SELECT id, name FROM items WHERE size = '$size'";
+        $query = "SELECT name, image, price, size, color, description FROM items WHERE size = '$size'";
         $this->setQuery($query);
         $this->execueQuery();
     }
 
     public function selectItemsByColor($color){
-        $query = "SELECT id, name FROM items WHERE color = '$color'";
+        $query = "SELECT name, image, price, size, color, description FROM items WHERE color = '$color'";
         $this->setQuery($query);
         $this->execueQuery();
     }
