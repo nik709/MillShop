@@ -99,3 +99,33 @@ button:active {
 button:focus {
     outline: 0;
 }
+
+#banners-block {
+    max-width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#banners-block:after {
+    display: block;
+    clear: both;
+    content: ' ';
+}
+
+#main-banner {
+    padding-bottom: 5px;
+}
+
+#banner-shop-men, #banner-shop-women {
+    display: inline-block;
+    float: left;
+    padding-top: 10px;
+}
+
+#banner-shop-women {
+    padding-left: 10px;
+}
+
+#banner-shop-men {
+    padding-right: 10px;
+}
