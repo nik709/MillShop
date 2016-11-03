@@ -44,3 +44,13 @@
     position: relative;
     transform: translateY(-40%);
 }
+
+#feedback
+{
+    text-align: center;
+    padding-left: 30%;
+    font-size: 1em;
+    height: 46px;
+    position: relative;
+    transform: translateY(-40%);
+}

@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mill Shop - Men</title>
+    <title>Mill Shop - Women</title>
     <link rel="icon" href="../resources/images/icon.ico">
     <link rel="stylesheet" href="../css/Women.css">
 </head>
