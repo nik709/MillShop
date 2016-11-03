@@ -46,25 +46,36 @@ class DBConnection
     }
 
     private function showImage($image, $width, $height) {
-        echo "\t\t<td><img src=\"data:image/jpeg;base64," . base64_encode($image) .
-            "\" width=\"" . $width . "\" height=\"" . $height . "\" /></td>\n";
+        echo "<td><img src=\"data:image/jpeg;base64," . base64_encode($image) .
+            "\" width=\"" . $width . "\" height=\"" . $height . "\" /></td>";
     }
 
     public function showResult(){
-        echo "<table>\n";
+        echo "<div>";
+        echo "<table>";
+        $i = 0;
+        echo "<div>";
+        echo "<tr>";
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
-            echo "\t<tr>\n";
+            $i++;
             foreach ($line as $col_value) {
-                if($col_value == $line['image']) {
+                if ($col_value == $line['image']) {
                     $this->showImage($col_value, 175, 200);
-                }
-                else {
-                    echo "\t\t<td>$col_value</td>\n";
+                } else {
+                    /*echo "<div>";
+                    echo "\t\t<td>$col_value</td> ";
+                    echo "</div>";*/
                 }
             }
-            echo "\t</tr>\n";
+            if ($i == 4){
+                echo "</tr>";
+                echo "</div>";
+                $i = 0;
+            }
+
         }
-        echo "</table>\n";
+        echo "</table>";
+        echo "</div>";
     }
 
     public function closeConnection(){

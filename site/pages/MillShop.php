@@ -30,9 +30,8 @@
     include_once("../database/DBConnection.php");
     $db = new DBConnection();
     $db->openConnection();
-    //$criteria[0] = "color = 205";
-    $db->selectItemsByColor("205");
-    $db->selectItemsByColor(0);
+    $db->setQuery("select * from items");
+    $db->execueQuery();
     $db->showResult();
     $db->closeConnection();
     ?>
