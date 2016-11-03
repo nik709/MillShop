@@ -13,6 +13,7 @@
 <body>
 
 <div id="wrapping-block">
+<<<<<<< HEAD
 <div id="menu-block">
     <?php
     include('menu.html');
@@ -35,9 +36,25 @@
     $db->showResult();
     $db->closeConnection();
     ?>
-
+=======
+    <div id="menu-block">
+        <?php
+        include('menu.html');
+        ?>
     </div>
-</div>
+>>>>>>> 52597ef5e710657912216b498acf091bc77392fe
+
+    <div id="main-block">
+        <div class="margin-wrapper">
+            <div id="banners-block">
+                <div id="main-banner"><img src="../resources/images/banners/banner_40001.jpg"></div>
+                <div id="shop-banners-block">
+                    <div id="banner-shop-men"><a href="Men.php"><img src="../resources/images/banners/banner_40002.jpg"></a></div>
+                    <div id="banner-shop-women"><a href="Women.php"><img src="../resources/images/banners/banner_40003.jpg"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div id="footer-block">
