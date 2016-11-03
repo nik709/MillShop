@@ -13,7 +13,9 @@ class DBConnection
     public function openConnection(){
         $this->link = mysqli_connect('localhost:3306', 'root', 'root', 'millshop');
         if (!$this->link) {
-            die('Ошибка соединения: ' . mysqli_error($this->link));
+            echo '<script type="text/javascript">';
+            echo 'window.location.href = "../pages/500.php"';
+            echo '</script>';
         }
         echo 'Соединение успешно установлено';
         mysqli_select_db($this->link, 'MillShop') or die('Не удалось выбрать базу данных');
@@ -28,12 +30,22 @@ class DBConnection
         $this->query = $query;
     }
 
+    private function showImage($image, $width, $height) {
+        echo "\t\t<td><img src=\"data:image/jpeg;base64," . base64_encode($image) .
+            "\" width=\"" . $width . "\" height=\"" . $height . "\" /></td>\n";
+    }
+
     public function showResult(){
         echo "<table>\n";
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
             echo "\t<tr>\n";
             foreach ($line as $col_value) {
-                echo "\t\t<td>$col_value</td>\n";
+                if($col_value == $line['image']) {
+                    $this->showImage($col_value, 175, 200);
+                }
+                else {
+                    echo "\t\t<td>$col_value</td>\n";
+                }
             }
             echo "\t</tr>\n";
         }
@@ -47,9 +59,26 @@ class DBConnection
         }
     }
 
-    public function selectSizes(){
-        $this->setQuery("select * from sizes");
+    public function selectItemsById($id){
+        $query = "SELECT name, image, price, size, color, description FROM items WHERE id = '$id'";
+        $this->setQuery($query);
         $this->execueQuery();
+    }
+
+    public function selectItemsBySize($size){
+        $query = "SELECT name, image, price, size, color, description FROM items WHERE size = '$size'";
+        $this->setQuery($query);
+        $this->execueQuery();
+    }
+
+    public function selectItemsByColor($color){
+        $query = "SELECT name, image, price, size, color, description FROM items WHERE color = '$color'";
+        $this->setQuery($query);
+        $this->execueQuery();
+    }
+
+    public function getResult(){
+        return $this->result;
     }
 }
 ?>

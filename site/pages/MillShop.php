@@ -20,6 +20,7 @@
 </div>
 
 <div id="main-block">
+    <div class="margin-wrapper">
     <h1>Welcome to Mill Shop!</h1>
     <form>
         <button id="clickme">Click Me!</button>
@@ -29,12 +30,12 @@
     include_once("../database/DBConnection.php");
     $db = new DBConnection();
     $db->openConnection();
-    $db->setQuery("select * from colors");
-    $db->execueQuery();
+    $db->selectItemsByColor(0);
     $db->showResult();
     $db->closeConnection();
     ?>
 
+    </div>
 </div>
 </div>
 

@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mill Shop - Men</title>
+    <title>Mill Shop - Women</title>
     <link rel="icon" href="../resources/images/icon.ico">
     <link rel="stylesheet" href="../css/Women.css">
 </head>
@@ -19,14 +19,14 @@
         ?>
     </div>
 
-    <div id="main-block">
-        <h1>Clothes for WOMEN</h1>
-        <form>
-            <button id="clickme">Women</button>
-        </form>
-
-
+<div id="main-block">
+    <div class="margin-wrapper">
+    <h1>Clothes for WOMEN</h1>
+    <form>
+        <button id="clickme">Women</button>
+    </form>
     </div>
+</div>
 </div>
 
 <div id="footer-block">

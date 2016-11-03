@@ -20,13 +20,13 @@
 </div>
 
 <div id="main-block">
+    <div class="margin-wrapper">
     <h1>Clothes for KIDS</h1>
     <form>
         <button id="clickme">Kids</button>
     </form>
 
-   
-
+    </div>
 </div>
 </div>
 

@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>404</title>
+    <title>Page not found</title>
     <link rel="icon" href="../resources/images/icon.ico">
     <link rel="stylesheet" href="../css/MillShop.css">
 </head>
@@ -20,13 +20,13 @@
     </div>
 
     <div id="main-block">
-        <div id = "error-title">404</div>
-        <div id = "error-text">PAGE NOT FOUND</div>
-
-            <a onclick="history.back()"> <button id="clickme">Back</button></a>
-
-
+        <div class="margin-wrapper">
+        <div class="error-title">404</div>
+        <div class="error-text">PAGE NOT FOUND</div>
+        <a onclick="history.back()"><button id="clickme">Back</button></a>
+        </div>
     </div>
+
 </div>
 <div id="footer-block">
     <?php
