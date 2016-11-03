@@ -83,7 +83,6 @@ class DBConnection
     public function selectItemsBySize($size){
         $query = "SELECT name, image, price, size, color, description FROM items WHERE size = '$size'";
         $this->setQuery($query);
-<<<<<<< HEAD
         $this->execueQuery();
     }
 
@@ -109,8 +108,7 @@ class DBConnection
         }
         $query .= ";";
         $this->setQuery($query);
-=======
->>>>>>> 06bf0b3a60a2d5550f5640a3930b0d31dc39d284
+
         $this->execueQuery();
         $this->sortResult();
     }
@@ -132,16 +130,6 @@ class DBConnection
         }
         echo "</table>\n";*/
         return $array;
-    }
-
-    public function selectItemsByColor($color){
-        $query = "SELECT name, image, price, size, color, description FROM items WHERE color = '$color'";
-        $this->setQuery($query);
-        $this->execueQuery();
-    }
-
-    public function getResult(){
-        return $this->result;
     }
 }
 ?>

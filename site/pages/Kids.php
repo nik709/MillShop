@@ -25,10 +25,6 @@
     <form>
         <button id="clickme">Kids</button>
     </form>
-<<<<<<< HEAD
-=======
-
->>>>>>> 06bf0b3a60a2d5550f5640a3930b0d31dc39d284
     </div>
 </div>
 </div>
