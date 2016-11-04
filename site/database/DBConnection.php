@@ -20,14 +20,16 @@ class DBConnection
             echo 'window.location.href = "../pages/500.php"';
             echo '</script>';
         }
-        echo 'Соединение успешно установлено';
+        //echo 'Соединение успешно установлено';
         mysqli_select_db($this->link, 'MillShop') or die('Не удалось выбрать базу данных');
     }
 
     public function closeConnection(){
         $isClose = mysqli_close($this->link);
-        if ($isClose){
-            echo "Соединение успешно прервано";
+        if (!$isClose){
+            echo '<script type="text/javascript">';
+            echo 'window.location.href = "../pages/500.php"';
+            echo '</script>';
         }
     }
 
@@ -123,24 +125,42 @@ class DBConnection
         echo "<div>";
         echo "<table>";
         $i = 0;
+        $k = 1;
+        $arrayName = array();
+        $arrayPrice = array();
         echo "<tr>";
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
             $i++;
             foreach ($line as $col_value) {
                 if ($col_value == $line['image']) {
                     $this->showImage($col_value, 175, 200);
-                } else {
-                    /*echo "<div>";
-                    echo "\t\t<td>$col_value</td> ";
-                    echo "</div>";*/
                 }
+                if ($col_value == $line['name'])
+                    $arrayName[] = $col_value;
+                if ($col_value == $line['price'])
+                    $arrayPrice[] = $col_value;
             }
             if ($i == 4){
                 echo "</tr>";
                 echo "<tr>";
+                for ($j=0; $j<4; $j++){
+                    $name = $arrayName[$j*$k];
+                    $price = $arrayPrice[$j*$k];
+                    echo "<td>$name $price\$</td>";
+                }
+                echo "</tr>";
                 $i = 0;
+                $k++;
             }
-
+        }
+        if ($i!=4){
+            echo "<tr>";
+            for ($j=count($arrayName) - $i; $j < count($arrayName); $j++){
+                $name = $arrayName[$j];
+                $price = $arrayPrice[$j];
+                echo "<td>$name $price\$</td>";
+            }
+            echo "</tr>";
         }
         echo "</table>";
         echo "</div>";
