@@ -4,6 +4,21 @@
     MILL SHOP COMPANY, 2016
     CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
+function swap(&$a, &$b){
+    $c = $a;
+    $a = $b;
+    $b = $c;
+}
+
+function bubbleSort(&$array){
+    for ($i=0; $i<count($array); $i++){
+        for ($j=0; $j<count($array); $j++){
+            if ($array[$i]>$array[$j])
+                swap($array[$i], $array[$j]);
+        }
+    }
+}
+
 class DBConnection
 {
     private $link;
@@ -31,25 +46,35 @@ class DBConnection
     }
 
     private function showImage($image, $width, $height) {
-        echo "\t\t<td><img src=\"data:image/jpeg;base64," . base64_encode($image) .
-            "\" width=\"" . $width . "\" height=\"" . $height . "\" /></td>\n";
+        echo "<td><img src=\"data:image/jpeg;base64," . base64_encode($image) .
+            "\" width=\"" . $width . "\" height=\"" . $height . "\" /></td>";
     }
 
     public function showResult(){
-        echo "<table>\n";
+        echo "<div>";
+        echo "<table>";
+        $i = 0;
+        echo "<tr>";
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
-            echo "\t<tr>\n";
+            $i++;
             foreach ($line as $col_value) {
-                if($col_value == $line['image']) {
+                if ($col_value == $line['image']) {
                     $this->showImage($col_value, 175, 200);
-                }
-                else {
-                    echo "\t\t<td>$col_value</td>\n";
+                } else {
+                    /*echo "<div>";
+                    echo "\t\t<td>$col_value</td> ";
+                    echo "</div>";*/
                 }
             }
-            echo "\t</tr>\n";
+            if ($i == 4){
+                echo "</tr>";
+                echo "<tr>";
+                $i = 0;
+            }
+
         }
-        echo "</table>\n";
+        echo "</table>";
+        echo "</div>";
     }
 
     public function closeConnection(){
@@ -79,6 +104,42 @@ class DBConnection
 
     public function getResult(){
         return $this->result;
+    }
+
+    public function selectByCriteria($criteria){
+        $query = "SELECT * FROM ITEMS ";
+        for ($i=0; $i<count($criteria); $i++){
+            if ($i==0)
+                $query .= "WHERE ";
+            $query .= $criteria[$i];
+            $query .= " ";
+            if ($i!=count($criteria) - 1)
+                $query .= "AND ";
+        }
+        $query .= ";";
+        $this->setQuery($query);
+
+        $this->execueQuery();
+        $this->sortResult();
+    }
+
+    public function sortResult(){
+        $array[0] = "test";
+        $i = 1;
+        while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)){
+            $array[$i] = $line;
+            $i++;
+        }
+        bubbleSort($array);
+        /*echo "<table>\n";
+        foreach ($array as $item) {
+            foreach ($item as $col_val)
+            echo "\t<tr>\n";
+            echo "\t\t<td>$col_val</td>\n";
+            echo "\t</tr>\n";
+        }
+        echo "</table>\n";*/
+        return $array;
     }
 }
 ?>

@@ -55,7 +55,7 @@ body > #wrapping-block {
 }
 
 /* Buttons */
-button {
+.simple-button {
     width: 90px;
     height: 28px;
     display: flex;
@@ -86,16 +86,69 @@ button {
     flex: 0 0 160px;
 }
 
-button:hover {
+.simple-button:hover {
     transition: all 160ms ease;
     background-color: #f25b5f;
 }
 
-button:active {
+.simple-button:active {
     transition: all 160ms ease;
     background-color: #8e0b0f;
 }
 
-button:focus {
+.simple-button:focus {
     outline: 0;
+}
+
+/* Textboxes */
+.simple-textbox {
+    color: black;
+    margin: 4px 10px 10px 0;
+    padding: 2px 6px;
+    border: solid 1px #c3c3c3;
+    font-family: "Cyntho Light", sans-serif;
+    font-size: 12pt;
+    line-height: 22px;
+    outline: none;
+    transition: all 160ms ease;
+}
+
+.simple-textbox:hover {
+    transition: all 160ms ease;
+    border: solid 1px cornflowerblue;
+}
+
+.simple-textbox:focus {
+    border: solid 1px black;
+}
+
+/* Banners on the main page */
+#banners-block {
+    max-width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#banners-block:after {
+    display: block;
+    clear: both;
+    content: ' ';
+}
+
+#main-banner {
+    padding-bottom: 5px;
+}
+
+#banner-shop-men, #banner-shop-women {
+    display: inline-block;
+    float: left;
+    padding-top: 10px;
+}
+
+#banner-shop-women {
+    padding-left: 10px;
+}
+
+#banner-shop-men {
+    padding-right: 10px;
 }

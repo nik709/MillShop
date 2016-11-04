@@ -23,14 +23,16 @@
     <div class="margin-wrapper">
         <h1>Clothes for MEN</h1>
         <form>
-            <button id="clickme">Men</button>
+            <input type="text" class="simple-textbox" value="">
+            <button class="simple-button">Men</button>
         </form>
 
         <?php
         include_once("../database/DBConnection.php");
         $db = new DBConnection();
         $db->openConnection();
-        $db->selectItemsById(1000001);
+        $db->setQuery("select * from items");
+        $db->execueQuery();
         $db->showResult();
         $db->closeConnection();
         ?>

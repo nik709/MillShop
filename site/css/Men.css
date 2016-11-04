@@ -10,6 +10,6 @@
 @import "Menu.css";
 
 /* Buttons */
-button {
+.simple-button {
     background: green;
 }
