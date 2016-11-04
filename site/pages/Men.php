@@ -26,7 +26,7 @@
     $db = new DBConnection();
     $db->openConnection();
     $criteria[0] = "price < 500";
-    $db->selectByCriteria($criteria);
+    $db->selectByCriteria($criteria, null);
     $db->showResult();
     $db->closeConnection();
     ?>

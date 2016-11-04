@@ -52,7 +52,7 @@ class DBConnection
     /**
      * @param $criteria : ASC or DESC
      */
-    public function sortByPrice($criteria){
+    private function sortByPrice($criteria){
         if ($criteria == "ASC")
             $this->query .= " ORDER BY price ASC";
         if ($criteria == "DESC")
@@ -98,7 +98,7 @@ class DBConnection
         $this->execueQuery();
     }
 
-    public function selectByCriteria($criteria){
+    public function selectByCriteria($criteria, $sortMethod){
         $query = "SELECT * FROM ITEMS ";
         for ($i=0; $i<count($criteria); $i++){
             if ($i==0)
@@ -110,7 +110,7 @@ class DBConnection
         }
         $this->setQuery($query);
         if ($this->isIsSortedByPrice())
-            $this->sortByPrice("ASC");
+            $this->sortByPrice($sortMethod);
 
         $this->execueQuery();
     }
