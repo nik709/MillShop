@@ -23,7 +23,8 @@
     <div class="margin-wrapper">
         <h1>Clothes for MEN</h1>
         <form>
-            <button id="clickme">Men</button>
+            <input type="text" class="simple-textbox" value="">
+            <button class="simple-button">Men</button>
         </form>
 
         <?php
