@@ -4,20 +4,6 @@
     MILL SHOP COMPANY, 2016
     CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
-function swap(&$a, &$b){
-    $c = $a;
-    $a = $b;
-    $b = $c;
-}
-
-function bubbleSort(&$array){
-    for ($i=0; $i<count($array); $i++){
-        for ($j=0; $j<count($array); $j++){
-            if ($array[$i]>$array[$j])
-                swap($array[$i], $array[$j]);
-        }
-    }
-}
 
 class DBConnection
 {
@@ -67,7 +53,7 @@ class DBConnection
     public function sortByPrice($criteria){
         if ($criteria == "ASC")
             $this->query .= " ORDER BY price ASC";
-        else
+        if ($criteria == "DESC")
             $this->query .= " ORDER BY price DESC";
     }
 
