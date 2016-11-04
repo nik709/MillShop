@@ -30,7 +30,8 @@
         include_once("../database/DBConnection.php");
         $db = new DBConnection();
         $db->openConnection();
-        $db->selectItemsById(1000001);
+        $db->setQuery("select * from items");
+        $db->execueQuery();
         $db->showResult();
         $db->closeConnection();
         ?>
