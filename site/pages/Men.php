@@ -25,8 +25,8 @@
     include_once("../database/DBConnection.php");
     $db = new DBConnection();
     $db->openConnection();
-    $db->setQuery("select * from items");
-    $db->execueQuery();
+    $criteria[0] = "price < 50";
+    $db->selectByCriteria($criteria);
     $db->showResult();
     $db->closeConnection();
     ?>
