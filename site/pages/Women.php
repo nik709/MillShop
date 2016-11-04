@@ -23,7 +23,7 @@
     <div class="margin-wrapper">
     <h1>Clothes for WOMEN</h1>
     <form>
-        <button id="clickme">Women</button>
+        <button class="simple-button">Women</button>
     </form>
     </div>
 </div>
