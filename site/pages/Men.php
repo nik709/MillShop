@@ -11,41 +11,28 @@
     <link rel="stylesheet" href="../css/Men.css">
 </head>
 <body>
-
-<div id="wrapping-block">
-<div id="menu-block">
     <?php
     include('menu.html');
     ?>
-</div>
 
-<div id="main-block">
-    <div class="margin-wrapper">
-        <h1>Clothes for MEN</h1>
-        <form>
-            <input type="text" class="simple-textbox" value="">
-            <button class="simple-button">Men</button>
-        </form>
+    <h1>Clothes for MEN</h1>
+    <form>
+        <input type="text" class="simple-textbox" value="">
+        <button class="simple-button">Men</button>
+    </form>
 
-        <?php
-        include_once("../database/DBConnection.php");
-        $db = new DBConnection();
-        $db->openConnection();
-        $db->setQuery("select * from items");
-        $db->execueQuery();
-        $db->showResult();
-        $db->closeConnection();
-        ?>
+    <?php
+    include_once("../database/DBConnection.php");
+    $db = new DBConnection();
+    $db->openConnection();
+    $db->setQuery("select * from items");
+    $db->execueQuery();
+    $db->showResult();
+    $db->closeConnection();
+    ?>
 
-    </div>
-</div>
-</div>
-
-<div id="footer-block">
     <?php
     include('footer.html');
     ?>
-</div>
-
 </body>
 </html>
