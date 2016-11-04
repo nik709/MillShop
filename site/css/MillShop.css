@@ -100,8 +100,8 @@ body > #wrapping-block {
     outline: 0;
 }
 
-/* Textboxes */
-.simple-textbox {
+/* Textboxes and listboxes */
+.simple-textbox, .simple-select {
     color: black;
     margin: 4px 10px 10px 0;
     padding: 2px 6px;
@@ -113,12 +113,12 @@ body > #wrapping-block {
     transition: all 160ms ease;
 }
 
-.simple-textbox:hover {
+.simple-textbox:hover, .simple-select:hover {
     transition: all 160ms ease;
     border: solid 1px cornflowerblue;
 }
 
-.simple-textbox:focus {
+.simple-textbox:focus, .simple-select:focus {
     border: solid 1px black;
 }
 
