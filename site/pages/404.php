@@ -11,28 +11,20 @@
     <link rel="stylesheet" href="../css/MillShop.css">
 </head>
 <body>
+    <?php
+    include('menu.html');
+    ?>
 
-<div id="wrapping-block">
-    <div id="menu-block">
-        <?php
-        include('menu.html');
-        ?>
-    </div>
+    <!-- MAIN BLOCK START -->
 
-    <div id="main-block">
-        <div class="margin-wrapper">
-        <div class="error-title">404</div>
-        <div class="error-text">PAGE NOT FOUND</div>
-        <a onclick="history.back()"><button id="clickme">Back</button></a>
-        </div>
-    </div>
+    <div class="error-title">404</div>
+    <div class="error-text">PAGE NOT FOUND</div>
+    <a onclick="history.back()"><button class="simple-button">Back</button></a>
 
-</div>
-<div id="footer-block">
+    <!-- MAIN BLOCK END -->
+
     <?php
     include('footer.html');
     ?>
-</div>
-
 </body>
 </html>

@@ -11,29 +11,21 @@
     <link rel="stylesheet" href="../css/Kids.css">
 </head>
 <body>
-
-<div id="wrapping-block">
-<div id="menu-block">
     <?php
     include('menu.html');
     ?>
-</div>
 
-<div id="main-block">
-    <div class="margin-wrapper">
+    <!-- MAIN BLOCK START -->
+
     <h1>Clothes for KIDS</h1>
     <form>
         <button class="simple-button">Kids</button>
     </form>
-    </div>
-</div>
-</div>
 
-<div id="footer-block">
+    <!-- MAIN BLOCK END -->
+
     <?php
     include('footer.html');
     ?>
-</div>
-
 </body>
 </html>

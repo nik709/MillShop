@@ -11,29 +11,21 @@
     <link rel="stylesheet" href="../css/Women.css">
 </head>
 <body>
+    <?php
+    include('menu.html');
+    ?>
 
-<div id="wrapping-block">
-    <div id="menu-block">
-        <?php
-        include('menu.html');
-        ?>
-    </div>
+    <!-- MAIN BLOCK START -->
 
-<div id="main-block">
-    <div class="margin-wrapper">
     <h1>Clothes for WOMEN</h1>
     <form>
         <button class="simple-button">Women</button>
     </form>
-    </div>
-</div>
-</div>
 
-<div id="footer-block">
+    <!-- MAIN BLOCK END -->
+
     <?php
     include('footer.html');
     ?>
-</div>
-
 </body>
 </html>

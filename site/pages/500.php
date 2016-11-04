@@ -11,28 +11,20 @@
     <link rel="stylesheet" href="../css/MillShop.css">
 </head>
 <body>
+    <?php
+    include('menu.html');
+    ?>
 
-<div id="wrapping-block">
-    <div id="menu-block">
-        <?php
-        include('menu.html');
-        ?>
-    </div>
+    <!-- MAIN BLOCK START -->
 
-    <div id="main-block">
-        <div class="margin-wrapper">
-        <div class="error-title">500</div>
-        <div class="error-text">INTERNAL SERVER ERROR</div>
-        <a onclick="history.back()"><button id="clickme">Back</button></a>
-        </div>
-    </div>
-</div>
+    <div class="error-title">500</div>
+    <div class="error-text">INTERNAL SERVER ERROR</div>
+    <a onclick="history.back()"><button class="simple-button">Back</button></a>
 
-<div id="footer-block">
+    <!-- MAIN BLOCK END -->
+
     <?php
     include('footer.html');
     ?>
-</div>
-
 </body>
 </html>
