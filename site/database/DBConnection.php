@@ -54,7 +54,6 @@ class DBConnection
         echo "<div>";
         echo "<table>";
         $i = 0;
-        echo "<div>";
         echo "<tr>";
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
             $i++;
@@ -69,7 +68,7 @@ class DBConnection
             }
             if ($i == 4){
                 echo "</tr>";
-                echo "</div>";
+                echo "<tr>";
                 $i = 0;
             }
 
