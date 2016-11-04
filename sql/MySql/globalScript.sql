@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS 'millshop'.'items';
-DROP TABLE IF EXISTS 'millshop'.'sizes';
-DROP TABLE IF EXISTS 'millshop'.'colors';
-DROP TABLE IF EXISTS 'millshop'.'subcategory';
-DROP TABLE IF EXISTS 'millshop'.'globcategory';
+DROP TABLE IF EXISTS `millshop`.`items`;
+DROP TABLE IF EXISTS `millshop`.`sizes`;
+DROP TABLE IF EXISTS `millshop`.`colors`;
+DROP TABLE IF EXISTS `millshop`.`subcategory`;
+DROP TABLE IF EXISTS `millshop`.`globcategory`;
 
 CREATE TABLE `millshop`.`colors` (
   `ID` INT NOT NULL ,
@@ -30,7 +30,7 @@ CREATE  TABLE `millshop`.`items` (
   `price` VARCHAR(45) NOT NULL ,
   `size` INT NOT NULL ,
   `color` INT NOT NULL ,
-  `image` BLOB NULL ,
+  `image` MEDIUMBLOB NULL ,
   `Description` VARCHAR(45) NULL ,
   PRIMARY KEY (`ID`) ,
   INDEX `ID_idx` (`color` ASC) ,
