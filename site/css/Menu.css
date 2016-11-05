@@ -13,6 +13,10 @@
     width: 290px;
 }
 
+#logo-image {
+    content: url("../resources/images/logo_horizontal.svg");
+}
+
 #menu-bar-outside {
     background-color: #ddc9bc;
     height: 37px;

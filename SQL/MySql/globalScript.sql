@@ -27,11 +27,11 @@ CREATE  TABLE `millshop`.`globcategory` (
 CREATE  TABLE `millshop`.`items` (
   `ID` INT NOT NULL ,
   `name` VARCHAR(45) NOT NULL ,
-  `price` VARCHAR(45) NOT NULL ,
+  `price` FLOAT NOT NULL ,
   `size` INT NOT NULL ,
   `color` INT NOT NULL ,
   `image` MEDIUMBLOB NULL ,
-  `Description` VARCHAR(45) NULL ,
+  `Description` VARCHAR(200) NULL ,
   PRIMARY KEY (`ID`) ,
   INDEX `ID_idx` (`color` ASC) ,
   INDEX `ID_Size_idx` (`size` ASC) ,
