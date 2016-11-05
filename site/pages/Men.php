@@ -20,7 +20,6 @@
     <h1>Clothes for MEN</h1>
 
     <!-- SORTING -->
-
     <form name="sortingForm" method="get">
         <select name="sortOption" id="sortOption" class="simple-select" onchange="sortingForm.submit()">
             <option value="" selected disabled style="display:none;">Sort By</option>
@@ -34,22 +33,22 @@
         document.getElementById('sortOption').value = "<?php echo $_GET['sortOption'];?>";
     </script>
 
-    <?php
+    <!-- ?php
         $sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : false;
         if ($sortOption) {
             echo htmlentities($_GET['sortOption'], ENT_QUOTES, "UTF-8");
         } else {
             echo "option is required";
         }
-    ?>
+    ?> -->
 
     <?php
     include_once("../database/DBConnection.php");
+    $sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
     $db = new DBConnection();
     $db->openConnection();
-    $db->sortByPrice($sortOption);
     $criteria[0] = "price < 500";
-    $db->selectByCriteria($criteria, null);
+    $db->selectByCriteria($criteria, $sortOption);
     $db->showResult();
     $db->closeConnection();
     ?>
