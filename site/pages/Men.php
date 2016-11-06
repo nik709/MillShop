@@ -40,7 +40,8 @@
     $db = new DBConnection();
     $db->openConnection();
     $criteria[0] = "price < 500";
-    $db->selectByCriteria($criteria, $sortOption);
+    $db->setSortOption($sortOption);
+    $db->selectByCriteria($criteria);
     $db->showResult();
     $db->closeConnection();
     ?>
