@@ -19,10 +19,10 @@ $mes = "Сообщение с сайта.\n
     $from  = "From: $name <$email> \r\n Reply-To: $email \r\n";
     if (mail($address, $sub, $mes, $from)) {
         header('Refresh: 5; URL=MillShop.php');
-        echo 'Письмо отправлено, через 5 секунд вы вернетесь на сайт';}
+        echo 'The letter was sent, in 5 seconds you will return to the site';}
     else {
         header('Refresh: 5; URL=MillShop.php');
-        echo 'Письмо не отправлено, через 5 секунд вы вернетесь на страницу';}
+        echo 'The letter was not sent, in 5 seconds you will return to the site';}
 
 exit; /* Выход без сообщения, если поле bezspama чем-то заполнено */
 ?>

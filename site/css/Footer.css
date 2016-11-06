@@ -42,9 +42,15 @@
     font-family: "Cyntho Light", sans-serif;
     font-size: 0.8em;
     padding-bottom: 10px;
+    position: relative;
+    transform: translateY(-55%);
+
 }
 
 #footer-feedback
 {
-    font-size: 1em;
+    font-size: 0.9em;
+    transform: translateY(-55%);
+    padding-left: 60%;
+    color: white;
 }
