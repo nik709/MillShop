@@ -3,7 +3,7 @@
 
 /* === Шрифты для формы и общая ширина === */
 .contact_form h2, .contact_form label {
-    font-family:Georgia, Times, "Times New Roman", serif;
+    font-family:"Cyntho Medium", sans-serif;
 }
 .form_hint, .required_notification {
     font-size: 11px;
@@ -94,36 +94,49 @@
 /* === Оформление кнопки === */
 button.submit {
     background-color: #ec141a;
-    background: -webkit-gradient(linear, left top, left bottom, from(#8e0b0f), to(#ec141a));
-    background: -webkit-linear-gradient(top, #8e0b0f, #ec141a);
-    background: -moz-linear-gradient(top, #8e0b0f, #ec141a);
-    background: -ms-linear-gradient(top, #8e0b0f, #ec141a);
-    background: -o-linear-gradient(top, #8e0b0f, #ec141a);
-    background: linear-gradient(top, #8e0b0f, #ec141a);
-    border: 1px solid #ec141a;
-    border-bottom: 1px solid #ec141a;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ec141a), to(#c6000f));
+    background-image: -webkit-linear-gradient(top, #ec141a, #c6000f);
+    background-image: -moz-linear-gradient(top, #ec141a, #c6000f);
+    background-image: -ms-linear-gradient(top, #ec141a, #c6000f);
+    background-image: -o-linear-gradient(top, #ec141a, #c6000f);
+    background-image: linear-gradient(top, #ec141a, #c6000f);
+
     -moz-border-radius: 3px;
-    box-shadow: inset 0 1px 0 0 #ec141a;
-    -webkit-box-shadow: 0 1px 0 0 #ec141a inset ;
-    -moz-box-shadow: 0 1px 0 0 #ec141a inset;
-    -o-box-shadow: 0 1px 0 0 #ec141a inset;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+
+    -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ec141a #ec141a #ec141a #ec141a;
+
+    float: left;
+    height: 28px;
+    padding: 0;
+    width: 90px;
+    cursor: pointer;
+    font: 13px "Cyntho Bold", sans-serif;
     color: white;
-    font-weight: bold;
-    padding: 6px 20px;
-    text-align: center;
-    text-shadow: 0 -1px 0 #ec141a;
 }
 button.submit:hover {
-    opacity:.85;
-    cursor: pointer;
+    background-color: #ff3635;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ff3635), to(#ef0010));
+    background-image: -webkit-linear-gradient(top, #ff3635, #ef0010);
+    background-image: -moz-linear-gradient(top, #ff3635, #ef0010);
+    background-image: -ms-linear-gradient(top, #ff3635, #ef0010);
+    background-image: -o-linear-gradient(top, #ff3635, #ef0010);
+    background-image: linear-gradient(top, #ff3635, #ef0010);
 }
 button.submit:active {
-    border: 1px solid #8e0b0f;
-    box-shadow: 0 0 10px 5px #8e0b0f inset;
-    -webkit-box-shadow:0 0 10px 5px #8e0b0f inset ;
-    -moz-box-shadow: 0 0 10px 5px #8e0b0f inset;
-    -o-box-shadow: 0 0 10px 5px #8e0b0f inset;
+    outline: none;
+
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
 
 }
