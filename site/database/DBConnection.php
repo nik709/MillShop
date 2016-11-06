@@ -125,7 +125,7 @@ class DBConnection
         echo "<div>";
         echo "<table>";
         $i = 0;
-        $k = 1;
+        $k = 0;
         $arrayName = array();
         $arrayPrice = array();
         echo "<tr>";
@@ -144,13 +144,14 @@ class DBConnection
                 echo "</tr>";
                 echo "<tr>";
                 for ($j=0; $j<4; $j++){
-                    $name = $arrayName[$j*$k];
-                    $price = $arrayPrice[$j*$k];
-                    echo "<td>$name $price\$</td>";
+                    $name = $arrayName[$k];
+                    $price = $arrayPrice[$k];
+                    $k++;
+                    $price = number_format($price, 2, '.', '');
+                    echo "<td>$name \$$price</td>";
                 }
                 echo "</tr>";
                 $i = 0;
-                $k++;
             }
         }
         if ($i!=4){
@@ -158,7 +159,8 @@ class DBConnection
             for ($j=count($arrayName) - $i; $j < count($arrayName); $j++){
                 $name = $arrayName[$j];
                 $price = $arrayPrice[$j];
-                echo "<td>$name $price\$</td>";
+                $price = number_format($price, 2, '.', '');
+                echo "<td>$name \$$price</td>";
             }
             echo "</tr>";
         }
