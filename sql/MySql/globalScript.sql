@@ -31,7 +31,7 @@ CREATE  TABLE `millshop`.`items` (
   `size` INT NOT NULL ,
   `color` INT NOT NULL ,
   `image` MEDIUMBLOB NULL ,
-  `Description` VARCHAR(300) NULL ,
+  `Description` VARCHAR(200) NULL ,
   PRIMARY KEY (`ID`) ,
   INDEX `ID_idx` (`color` ASC) ,
   INDEX `ID_Size_idx` (`size` ASC) ,
