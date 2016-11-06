@@ -47,7 +47,6 @@
     include_once("../database/DBConnection.php");
     $db = new DBConnection();
     $db->openConnection();
-    $db->sortByPrice($sortOption);
     $criteria[0] = "price < 500";
     $db->selectByCriteria($criteria, null);
     $db->showResult();
