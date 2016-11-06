@@ -75,6 +75,15 @@
     background-size: 20px;
 }
 
+#menu-bar-user {
+    height: 20px;
+    width: 20px;
+    padding: 0 8px;
+    margin-top: 5px;
+    background: url("../resources/images/currency.svg") center center no-repeat;
+    background-size: 20px;
+}
+
 #menu-bar-bag {
     height: 23px;
     width: 23px;
