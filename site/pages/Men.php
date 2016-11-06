@@ -17,38 +17,31 @@
 
     <!-- MAIN BLOCK START -->
 
-    <h1>Clothes for MEN</h1>
+    <div class="page-title">Men</div>
 
     <!-- SORTING -->
-
     <form name="sortingForm" method="get">
-        <select name="sortOption" id="sortOption" class="simple-select" onchange="sortingForm.submit()">
+        <select name="sortOption" id="sortOption" class="simple-select" onchange="sortingForm.submit()" title="Sort By">
             <option value="" selected disabled style="display:none;">Sort By</option>
+            <option value="NEWEST">Newest</option>
             <option value="ASC">Price: Low to High</option>
             <option value="DESC">Price: High to Low</option>
         </select>
         <input type="text" class="simple-textbox" value="">
-        <button class="simple-button">Men</button>
     </form>
     <script type="text/javascript">
         document.getElementById('sortOption').value = "<?php echo $_GET['sortOption'];?>";
     </script>
 
-    <?php
-        $sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : false;
-        if ($sortOption) {
-            echo htmlentities($_GET['sortOption'], ENT_QUOTES, "UTF-8");
-        } else {
-            echo "option is required";
-        }
-    ?>
-
+    <!-- ITEMS -->
     <?php
     include_once("../database/DBConnection.php");
+    $sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
     $db = new DBConnection();
     $db->openConnection();
     $criteria[0] = "price < 500";
-    $db->selectByCriteria($criteria, null);
+    $db->setSortOption($sortOption);
+    $db->selectByCriteria($criteria);
     $db->showResult();
     $db->closeConnection();
     ?>

@@ -10,7 +10,7 @@ class DBConnection
     private $link;
     private $query;
     private $result;
-    private $isSortedByPrice = true;
+    private $sortOption = null;
 
     //--------------------CONNECTION--------------------
     public function openConnection(){
@@ -44,7 +44,7 @@ class DBConnection
     }
 
     //--------------------RESULT--------------------
-    public function getResult(){
+    private function getResult(){
         return $this->result;
     }
 
@@ -52,28 +52,26 @@ class DBConnection
     /**
      * @param $criteria : ASC or DESC
      */
-    private function sortByPrice($criteria){
+    private function sorting($criteria){
         if ($criteria == "ASC")
             $this->query .= " ORDER BY price ASC";
         if ($criteria == "DESC")
             $this->query .= " ORDER BY price DESC";
+        if ($criteria == "NEWEST")
+            $this->query .= " ORDER BY id DESC";
     }
 
-    /**
-     * @return boolean
-     */
-    public function isIsSortedByPrice()
+    public function getSortOption()
     {
-        return $this->isSortedByPrice;
+        return $this->sortOption;
     }
 
-    /**
-     * @param boolean $isSortedByPrice
-     */
-    public function setIsSortedByPrice($isSortedByPrice)
+    public function setSortOption($criteriaOfSort)
     {
-        $this->isSortedByPrice = $isSortedByPrice;
+        $this->sortOption = $criteriaOfSort;
     }
+
+
 
     //--------------------SELECTS--------------------
     public function selectItemsById($id){
@@ -98,7 +96,7 @@ class DBConnection
         $this->execueQuery();
     }
 
-    public function selectByCriteria($criteria, $sortMethod){
+    public function selectByCriteria($criteria){
         $query = "SELECT * FROM ITEMS ";
         for ($i=0; $i<count($criteria); $i++){
             if ($i==0)
@@ -109,8 +107,7 @@ class DBConnection
                 $query .= "AND ";
         }
         $this->setQuery($query);
-        if ($this->isIsSortedByPrice())
-            $this->sortByPrice($sortMethod);
+        $this->sorting($this->sortOption);
 
         $this->execueQuery();
     }
@@ -125,7 +122,7 @@ class DBConnection
         echo "<div>";
         echo "<table>";
         $i = 0;
-        $k = 1;
+        $k = 0;
         $arrayName = array();
         $arrayPrice = array();
         echo "<tr>";
@@ -144,13 +141,14 @@ class DBConnection
                 echo "</tr>";
                 echo "<tr>";
                 for ($j=0; $j<4; $j++){
-                    $name = $arrayName[$j*$k];
-                    $price = $arrayPrice[$j*$k];
-                    echo "<td>$name $price\$</td>";
+                    $name = $arrayName[$k];
+                    $price = $arrayPrice[$k];
+                    $k++;
+                    $price = number_format($price, 2, '.', '');
+                    echo "<td>$name \$$price</td>";
                 }
                 echo "</tr>";
                 $i = 0;
-                $k++;
             }
         }
         if ($i!=4){
@@ -158,7 +156,8 @@ class DBConnection
             for ($j=count($arrayName) - $i; $j < count($arrayName); $j++){
                 $name = $arrayName[$j];
                 $price = $arrayPrice[$j];
-                echo "<td>$name $price\$</td>";
+                $price = number_format($price, 2, '.', '');
+                echo "<td>$name \$$price</td>";
             }
             echo "</tr>";
         }

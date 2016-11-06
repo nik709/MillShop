@@ -54,6 +54,14 @@ body > #wrapping-block {
     margin-bottom: 30px;
 }
 
+.page-title {
+    padding-top: 18px;
+    padding-bottom: 10px;
+    font-family: "Cyntho Bold", sans-serif;
+    font-size: 1.3em;
+    text-transform: uppercase;
+}
+
 /* Buttons */
 .simple-button {
     width: 90px;
