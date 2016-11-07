@@ -1,11 +1,9 @@
-
 <?php
 /**
- * Created by PhpStorm.
- * User: Никита
- * Date: 07.11.2016
- * Time: 19:32
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
+
 $search = isset($_GET['search']) ? $_GET['search'] : null;
 if (($search)!=null){
     echo "$search";

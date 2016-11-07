@@ -1,4 +1,8 @@
 <?php
+/**
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
+ */
 
 /* Задаем переменные */
 $name = htmlspecialchars($_POST["name"]);

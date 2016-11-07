@@ -27,7 +27,7 @@
     margin: 0 auto;
 }
 
-#footer-inside div {
+#footer-inside div, #footer-inside a {
     display: inline-block;
     vertical-align: middle;
 }
@@ -41,17 +41,14 @@
 #footer-contacts {
     font-family: "Cyntho Light", sans-serif;
     font-size: 0.8em;
-    padding-bottom: 10px;
-    position: relative;
-    transform: translateY(10%);
-
 }
 
-#footer-feedback
-{
-    font-size: 0.9em;
-    position: relative;
-    transform: translateY(10%);
-    left: 60%;
+#footer-feedback {
+    float: right;
+}
+
+#footer-feedback a {
     color: white;
+    font-size: 0.9em;
+    text-decoration: none;
 }
