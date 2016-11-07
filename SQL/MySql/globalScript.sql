@@ -59,3 +59,5 @@ ALTER TABLE `millshop`.`items` ADD COLUMN `subcategory` INT NULL  AFTER `Descrip
   ON UPDATE CASCADE
 , ADD INDEX `ID_subcategory_idx` (`subcategory` ASC) 
 , ADD INDEX `ID_Globcategory_idx` (`globcategory` ASC) ;
+
+ALTER TABLE `millshop`.`items` ADD COLUMN `discount` FLOAT NULL DEFAULT 0.0  AFTER `globcategory` ;

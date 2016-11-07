@@ -122,26 +122,33 @@ class DBConnection
         echo "<div class='results-of-query'>";
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
             $k = false;
-            $Name = null;
-            $Price = null;
             echo "<div class=\"item\">";
             foreach ($line as $col_value) {
                 if ($col_value == $line['image']) {
                     $this->showImage($col_value, 175, 200);
                 }
                 if ($col_value == $line['name']) {
-                    $Name = $col_value;
+                    $name = $col_value;
                 }
                 if ($col_value == $line['price']) {
-                    $Price = $col_value;
+                    $price = $col_value;
                 }
+                if ($col_value == $line['discount'])
+                    $discount = $col_value;
             }
             if (!$k){
                 echo "<br>";
-                echo "$Name";
+                echo "$name";
                 echo "<br>";
-                $Price = number_format($Price, 2, '.', '');
-                echo "\$$Price";
+                $price = number_format($price, 2, '.', '');
+                echo "\$$price ";
+                if ($discount!=0){
+                    $discount *= 100;
+                    echo "    $discount% OFF";
+                    $newPrice = $price - $price*$discount/100;
+                    $newPrice = number_format($newPrice, 2, '.', '');
+                    echo "<div style=\"color: red\">NEW PRICE: \$$newPrice</div>";
+                }
                 $k = true;
             }
             echo "</div>";

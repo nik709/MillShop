@@ -15,6 +15,15 @@
     include('menu.html');
     ?>
 
+    <script type="text/javascript">
+        document.getElementsByName("search").value = "<?php echo $_GET['search'];?>";
+    </script>
+
+    <?php
+    $search = isset($_GET['search']) ? $_GET['search'] : "QWE";
+    echo "$search";
+    ?>
+
     <!-- MAIN BLOCK START -->
 
     <div id="banners-block">
