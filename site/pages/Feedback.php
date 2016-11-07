@@ -20,26 +20,19 @@
     <!-- MAIN BLOCK START -->
 
     <h2>FEEDBACK FORM</h2>
-
-    <form class="contact_form" action="contact_form.php" method="post">
+    <form action="contact_form.php" method="post">
         <p>
-            <label for="name">Name:</label>
-            <input type="text"  name="name" placeholder="Enter Your name" required />
+            <input type="text" class="simple-textbox" name="name" placeholder="Enter Your name" required />
         </p>
         <p>
-            <label for="email">Email:</label>
-            <input type="email" name="email" placeholder="Enter Your e-mail" required />
+            <input type="email" class="simple-textbox" name="email" placeholder="Enter Your e-mail" required />
             <span class="form_hint">Correct format "name@something.com"</span>
         </p>
         <p>
-            <label for="message">Message:</label>
-            <textarea name="message" cols="40" rows="6" required ></textarea>
+            <textarea type="text" class="simple-textbox" name="message"  placeholder="Message" cols="40" rows="6" ></textarea>
         </p>
-        <p>
-            <button class="submit">Send</button>
-        </p>
+        <button class="simple-button">SEND</button>
     </form>
-
     <!-- MAIN BLOCK END -->
 
     <?php

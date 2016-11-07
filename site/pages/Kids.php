@@ -12,6 +12,7 @@
 </head>
 <body>
     <?php
+    session_start();
     include('menu.html');
     ?>
 
@@ -19,6 +20,8 @@
 
     <h1>Clothes for KIDS</h1>
     <form>
+        <?php
+        ?>
         <button class="simple-button">Kids</button>
     </form>
 
