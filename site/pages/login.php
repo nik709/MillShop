@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <!--
     MILL SHOP COMPANY, 2016
@@ -17,26 +20,42 @@ include('menu.html');
 ?>
 
 <!-- MAIN BLOCK START -->
-    <img src='../resources/images/login-01.jpg'>
-    <fieldset id="inputs">
-       <p>
-           <input id="username" name="login" type="text" placeholder="Login">
-           <input id="username" name="reg-name1" type="text" placeholder="First Name">
-       </p>
-       <p>
-            <input id="password" name="password" type="password" placeholder="Password">
-            <input id="username" name="red-name2" type="text" placeholder="Last Name">
-       </p>
+    <div id="log-block">
+        <div>
+            <div style="font-size: 30px; margin-bottom: 15px;">SIGN IN</div>
+            <fieldset id="inputs">
+                <form method="post">
+                <p><input id="username" name="login" type="text" placeholder="Login"></p>
+                <p><input id="password" name="password" type="password" placeholder="Password"></p>
+                <?php
+                if(isset($_POST['log-but'])){
+                    $_SESSION['user-login']=$_POST['login'];
+                    $_SESSION['user-pass']=$_POST['password'];
 
-    </fieldset>
-    <fieldset id="inputs-right">
-        <button id = "submit">Login</button>
-        <input id="username" name="reg-login" type="text" placeholder="Login">
-    </fieldset>
-    <fieldset id="inputs-right2">
-        <p><input id="password" name="reg-password" type="text" placeholder="Password"></p>
-    </fieldset>
-    <button id = "submit" style = " margin-left: 456px;">Register</button>
+                //Тут должна быть проверка правильности ввода через БД
+                }
+                ?>
+                <button class = "simple-button" name="log-but">LOG IN</button>
+                </form>
+            </fieldset>
+        </div>
+
+        <div>
+            <div style="font-size: 30px; margin-bottom: 15px;">REGISTER</div>
+            <fieldset id="inputs">
+                <form method="post">
+                    <p><input id="username" name="reg-name1" type="text" placeholder="First Name"></p>
+                    <p><input id="username" name="red-name2" type="text" placeholder="Last Name"></p>
+                    <p><input id="username" name="reg-login" type="text" placeholder="Login"></p>
+                    <p><input id="password" name="reg-password" type="text" placeholder="Password"></p>
+                    <button class = "simple-button">REGISTER</button>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+
+
+
       <!--  <input type="submit" id="submit" value="ВОЙТИ">-->
 
 

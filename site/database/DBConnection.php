@@ -114,54 +114,46 @@ class DBConnection
 
     //--------------------SHOW--------------------
     private function showImage($image, $width, $height) {
-        echo "<td><img src=\"data:image/jpeg;base64," . base64_encode($image) .
-            "\" width=\"" . $width . "\" height=\"" . $height . "\" /></td>";
+        echo "<img src=\"data:image/jpeg;base64," . base64_encode($image) .
+            "\" width=\"" . $width . "\" height=\"" . $height . "\" />";
     }
 
     public function showResult(){
-        echo "<div>";
-        echo "<table>";
-        $i = 0;
-        $k = 0;
-        $arrayName = array();
-        $arrayPrice = array();
-        echo "<tr>";
+        echo "<div class='results-of-query'>";
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
-            $i++;
+            $k = false;
+            echo "<div class=\"item\">";
             foreach ($line as $col_value) {
                 if ($col_value == $line['image']) {
                     $this->showImage($col_value, 175, 200);
                 }
-                if ($col_value == $line['name'])
-                    $arrayName[] = $col_value;
-                if ($col_value == $line['price'])
-                    $arrayPrice[] = $col_value;
-            }
-            if ($i == 4){
-                echo "</tr>";
-                echo "<tr>";
-                for ($j=0; $j<4; $j++){
-                    $name = $arrayName[$k];
-                    $price = $arrayPrice[$k];
-                    $k++;
-                    $price = number_format($price, 2, '.', '');
-                    echo "<td>$name \$$price</td>";
+                if ($col_value == $line['name']) {
+                    $name = $col_value;
                 }
-                echo "</tr>";
-                $i = 0;
+                if ($col_value == $line['price']) {
+                    $price = $col_value;
+                }
+                if ($col_value == $line['discount'])
+                    $discount = $col_value;
             }
-        }
-        if ($i!=4){
-            echo "<tr>";
-            for ($j=count($arrayName) - $i; $j < count($arrayName); $j++){
-                $name = $arrayName[$j];
-                $price = $arrayPrice[$j];
+            if (!$k){
+                echo "<br>";
+                echo "$name";
+                echo "<br>";
                 $price = number_format($price, 2, '.', '');
-                echo "<td>$name \$$price</td>";
+                echo "\$$price ";
+                if ($discount!=0){
+                    $discount *= 100;
+                    echo "    $discount% OFF";
+                    $newPrice = $price - $price*$discount/100;
+                    $newPrice = number_format($newPrice, 2, '.', '');
+                    echo "<div style=\"color: red\">NEW PRICE: \$$newPrice</div>";
+                }
+                $k = true;
             }
-            echo "</tr>";
+            echo "</div>";
         }
-        echo "</table>";
+
         echo "</div>";
     }
 }

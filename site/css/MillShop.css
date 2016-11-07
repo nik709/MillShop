@@ -65,7 +65,7 @@ body > #wrapping-block {
 /* Buttons */
 .simple-button {
     width: 90px;
-    height: 28px;
+    height: 36px;
     display: flex;
     overflow: hidden;
 
@@ -80,7 +80,7 @@ body > #wrapping-block {
     text-decoration: none !important;
 
     color: white;
-    background: #ec141a;
+    background: #152b3c;
 
     border: 0 none;
 
@@ -94,14 +94,16 @@ body > #wrapping-block {
     flex: 0 0 160px;
 }
 
+
+
 .simple-button:hover {
     transition: all 160ms ease;
-    background-color: #f25b5f;
+    background-color: #1c4e63;
 }
 
 .simple-button:active {
     transition: all 160ms ease;
-    background-color: #8e0b0f;
+    background-color: #0c202b;
 }
 
 .simple-button:focus {
@@ -160,3 +162,13 @@ body > #wrapping-block {
 #banner-shop-men {
     padding-right: 10px;
 }
+
+.results-of-query > div {
+    display: inline-block;
+}
+
+.item {
+    background-color: #cccccc;
+    width: 225px;
+}
+
