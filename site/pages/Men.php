@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <title>Mill Shop - Men</title>
     <link rel="icon" href="../resources/images/icon.ico">
-    <link rel="stylesheet" href="../css/Men.css">
+    <link rel="stylesheet" href="../css/MillShop.css">
 </head>
 <body>
     <?php

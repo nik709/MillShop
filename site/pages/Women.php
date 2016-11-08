@@ -19,7 +19,7 @@ function plus($bag)
     <meta charset="UTF-8">
     <title>Mill Shop - Women</title>
     <link rel="icon" href="../resources/images/icon.ico">
-    <link rel="stylesheet" href="../css/Women.css">
+    <link rel="stylesheet" href="../css/MillShop.css">
 </head>
 <body>
 
