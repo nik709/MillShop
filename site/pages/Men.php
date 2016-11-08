@@ -19,6 +19,45 @@
 
     <div class="page-title">Men</div>
 
+    <!-- CRITERIA -->
+    <div id="criteria">
+        <div id="criteria-size-form">
+            <div class="criterion-header">Size</div>
+            <form name="sizeCriterion" method="get">
+                <?php
+                echo "<div id='criterion-sizes'>";
+                for ($i = 0; $i < 5; $i++) {
+                    echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='size-" . $i . "' name=\"Size-" . $i . "\" value=\"M\" 
+                        onchange=\"sizeCriterion.submit()\"";
+                    if (isset($_GET["Size-" . $i])) {
+                        echo "checked='checked'";
+                    }
+                    echo "/><label for='size-" . $i . "'>M</label></div><Br>";
+                }
+                echo "</div>";
+                ?>
+            </form>
+        </div>
+
+        <div id="criteria-color-form">
+            <div class="criterion-header">Color</div>
+            <form name="colorCriterion" method="get">
+                <?php
+                echo "<div id='criterion-colors'>";
+                for ($i = 0; $i < 8; $i++) {
+                    echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='color-" . $i . "' name=\"Color-" . $i . "\" value=\"102\" 
+                        onchange=\"colorCriterion.submit()\"";
+                    if(isset($_GET["Color-". $i])) {
+                        echo "checked='checked'";
+                    }
+                    echo "><label for='color-" . $i . "'>Navy " . $i . "</label></div><Br>";
+                }
+                echo "</div>";
+                ?>
+            </form>
+        </div>
+    </div>
+
     <!-- SORTING -->
     <form name="sortingForm" method="get">
         <select name="sortOption" id="sortOption" class="simple-select" onchange="sortingForm.submit()" title="Sort By">
@@ -27,7 +66,6 @@
             <option value="ASC">Price: Low to High</option>
             <option value="DESC">Price: High to Low</option>
         </select>
-        <input type="text" class="simple-textbox" value="">
     </form>
     <script type="text/javascript">
         document.getElementById('sortOption').value = "<?php echo $_GET['sortOption'];?>";
