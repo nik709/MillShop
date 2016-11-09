@@ -20,15 +20,15 @@
     <div class="page-title">Men</div>
 
     <!-- CRITERIA -->
-    <div id="criteria">
-        <div id="criteria-size-form">
-            <div class="criterion-header">Size</div>
-            <form name="sizeCriterion" method="get">
+    <form name="criteriaAndSortingForm" method="get">
+        <div id="criteria">
+            <div id="criteria-size-form">
+                <div class="criterion-header">Size</div>
                 <?php
                 echo "<div id='criterion-sizes'>";
                 for ($i = 0; $i < 5; $i++) {
                     echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='size-" . $i . "' name=\"Size-" . $i . "\" value=\"M\" 
-                        onchange=\"sizeCriterion.submit()\"";
+                        onchange=\"criteriaAndSortingForm.submit()\"";
                     if (isset($_GET["Size-" . $i])) {
                         echo "checked='checked'";
                     }
@@ -36,17 +36,14 @@
                 }
                 echo "</div>";
                 ?>
-            </form>
-        </div>
-
-        <div id="criteria-color-form">
-            <div class="criterion-header">Color</div>
-            <form name="colorCriterion" method="get">
+            </div>
+            <div id="criteria-color-form">
+                <div class="criterion-header">Color</div>
                 <?php
                 echo "<div id='criterion-colors'>";
                 for ($i = 0; $i < 8; $i++) {
                     echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='color-" . $i . "' name=\"Color-" . $i . "\" value=\"102\" 
-                        onchange=\"colorCriterion.submit()\"";
+                        onchange=\"criteriaAndSortingForm.submit()\"";
                     if(isset($_GET["Color-". $i])) {
                         echo "checked='checked'";
                     }
@@ -54,13 +51,10 @@
                 }
                 echo "</div>";
                 ?>
-            </form>
+            </div>
         </div>
-    </div>
-
-    <!-- SORTING -->
-    <form name="sortingForm" method="get">
-        <select name="sortOption" id="sortOption" class="simple-select" onchange="sortingForm.submit()" title="Sort By">
+        <!-- SORTING -->
+        <select name="sortOption" id="sortOption" class="simple-select" onchange="criteriaAndSortingForm.submit()" title="Sort By">
             <option value="" selected disabled style="display:none;">Sort By</option>
             <option value="NEWEST">Newest</option>
             <option value="ASC">Price: Low to High</option>
