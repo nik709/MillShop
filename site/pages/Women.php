@@ -25,7 +25,6 @@ function plus($bag)
 
     <?php
     include('menu.html');
-
     ?>
 
     <!-- MAIN BLOCK START -->
