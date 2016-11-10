@@ -156,5 +156,25 @@ class DBConnection
 
         echo "</div>";
     }
+
+    public function showColors(){
+        $query = "SELECT DISTINCT COLORS.NAME FROM ITEMS, COLORS WHERE ITEMS.COLOR = COLORS.ID";
+        $this->setQuery($query);
+        $this->execueQuery();
+        while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)){
+            $color = $line['NAME'];
+            echo "<input type=\"checkbox\" name=\"Size\" value=\"$color\" unchecked>$color<Br>";
+        }
+    }
+
+    public function showSizes(){
+        $query = "SELECT DISTINCT SIZES.NAME FROM ITEMS, SIZES WHERE ITEMS.SIZE = SIZES.ID";
+        $this->setQuery($query);
+        $this->execueQuery();
+        while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)){
+            $size = $line['NAME'];
+            echo "<input type=\"checkbox\" name=\"Size\" value=\"$size\" unchecked>$size<Br>";
+        }
+    }
 }
 ?>
