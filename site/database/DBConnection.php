@@ -112,6 +112,25 @@ class DBConnection
         $this->execueQuery();
     }
 
+    public function getMaxPrice(){
+        $query = "(SELECT MAX(price) AS MAX, discount FROM ITEMS WHERE discount = 0)
+                    UNION
+                  (SELECT MAX(PRICE) AS MAX, discount FROM items WHERE discount > 0);";
+        $this->setQuery($query);
+        $this->execueQuery();
+        $line = mysqli_fetch_array($this->result, MYSQLI_ASSOC);
+        $max = $line['MAX'];
+        $line = mysqli_fetch_array($this->result, MYSQLI_ASSOC);
+        if ($line != null) {
+            $price = $line['MAX'];
+            $discount = $line['discount'];
+            $price -= $price*$discount;
+            if ($max < $price)
+                $max = $price;
+        }
+        return $max;
+    }
+
     //--------------------SHOW--------------------
     private function showImage($image, $width, $height) {
         echo "<img src=\"data:image/jpeg;base64," . base64_encode($image) .
