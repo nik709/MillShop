@@ -128,6 +128,7 @@ class DBConnection
             if ($max < $price)
                 $max = $price;
         }
+        $max = number_format($max, 2, '.', '');
         return $max;
     }
 
