@@ -124,7 +124,7 @@ class DBConnection
         if ($line != null) {
             $price = $line['MAX'];
             $discount = $line['discount'];
-            $price -= $price*$discount;
+            $price -= $price * $discount;
             if ($max < $price)
                 $max = $price;
         }
