@@ -34,11 +34,11 @@ class DBConnection
     }
 
     //--------------------QUERY--------------------
-    public function execueQuery(){
+    private function execueQuery(){
         $this->result = mysqli_query($this->link, $this->query) or die('Запрос не удался: ' .mysqli_error($this->link));
     }
 
-    public function setQuery($query)
+    private function setQuery($query)
     {
         $this->query = $query;
     }
@@ -130,6 +130,26 @@ class DBConnection
         }
         $max = number_format($max, 2, '.', '');
         return $max;
+    }
+
+    public function getMinPrice(){
+        $query = "(SELECT MIN(price) AS MIN, discount FROM ITEMS WHERE discount = 0)
+                    UNION
+                    (SELECT MIN(PRICE) AS MIN, discount FROM items WHERE discount > 0);";
+        $this->setQuery($query);
+        $this->execueQuery();
+        $line = mysqli_fetch_array($this->result, MYSQLI_ASSOC);
+        $min = $line['MIN'];
+        $line = mysqli_fetch_array($this->result, MYSQLI_ASSOC);
+        if ($line != null) {
+            $price = $line['MIN'];
+            $discount = $line['discount'];
+            $price -= $price * $discount;
+            if ($min > $price)
+                $min = $price;
+        }
+        $min = number_format($min, 2, '.', '');
+        return $min;
     }
 
     //--------------------SHOW--------------------
