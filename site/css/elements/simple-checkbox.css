@@ -1,0 +1,55 @@
+/*
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
+*/
+
+/* Checkboxes */
+.simple-checkbox-wrapper {
+    margin-bottom: -18px;
+}
+
+.simple-checkbox {
+    float: left;
+    vertical-align: middle;
+    width: 13px;
+    height: 13px;
+}
+
+.simple-checkbox + label {
+    cursor: pointer;
+}
+
+.simple-checkbox:not(checked) {
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+}
+
+.simple-checkbox:not(checked) + label {
+    position: relative;
+    padding-left: 23px;
+    font-family: "Cyntho Light", sans-serif;
+    font-size: 0.9em;
+}
+
+.simple-checkbox:not(checked) + label:after,
+.simple-checkbox:not(checked) + label:before,
+.simple-checkbox:checked + label:after,
+.simple-checkbox:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 13px;
+    height: 13px;
+}
+
+.simple-checkbox:not(checked) + label:after,
+.simple-checkbox:not(checked) + label:before {
+    background-color: white;
+    border: solid 1px #0c202b;
+}
+
+.simple-checkbox:checked + label:after,
+.simple-checkbox:checked + label:before {
+    background-color: #0c202b;
+}

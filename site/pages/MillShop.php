@@ -18,7 +18,7 @@ if (!isset($_SESSION['count']))
 </head>
 <body>
     <?php
-    include('menuu.php');
+    include('menu.php');
     ?>
 
     <!-- MAIN BLOCK START -->

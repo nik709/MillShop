@@ -15,6 +15,7 @@
 <body>
     <?php
     include('menu.html');
+    include('menu.php');
     ?>
 
     <!-- MAIN BLOCK START -->

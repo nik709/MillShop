@@ -7,6 +7,11 @@
 @import url("../resources/fonts/fonts.css");
 @import "Footer.css";
 @import "Menu.css";
+@import "elements/items.css";
+@import "elements/criteria.css";
+@import "elements/simple-button.css";
+@import "elements/simple-checkbox.css";
+@import "elements/simple-textbox-select.css";
 
 /* Body */
 body {
@@ -62,76 +67,6 @@ body > #wrapping-block {
     text-transform: uppercase;
 }
 
-/* Buttons */
-.simple-button {
-    width: 90px;
-    height: 36px;
-    display: flex;
-    overflow: hidden;
-
-    margin: 10px 0px;
-    padding: 5px 0;
-
-    cursor: pointer;
-    user-select: none;
-    transition: all 160ms ease-in-out;
-    text-align: center;
-    white-space: nowrap;
-    text-decoration: none !important;
-
-    color: white;
-    background: #152b3c;
-
-    border: 0 none;
-
-    font-family: "Cyntho Bold", sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.3;
-
-    justify-content: center;
-    align-items: center;
-    flex: 0 0 160px;
-}
-
-
-
-.simple-button:hover {
-    transition: all 160ms ease;
-    background-color: #1c4e63;
-}
-
-.simple-button:active {
-    transition: all 160ms ease;
-    background-color: #0c202b;
-}
-
-.simple-button:focus {
-    outline: 0;
-}
-
-/* Textboxes and listboxes */
-.simple-textbox, .simple-select {
-    color: black;
-    margin: 4px 10px 10px 0;
-    padding: 2px 6px;
-    border: solid 1px #c3c3c3;
-    font-family: "Cyntho Light", sans-serif;
-    font-size: 12pt;
-    line-height: 22px;
-    outline: none;
-    transition: all 160ms ease;
-}
-
-.simple-textbox:hover, .simple-select:hover {
-    transition: all 160ms ease;
-    border: solid 1px cornflowerblue;
-}
-
-.simple-textbox:focus, .simple-select:focus {
-    border: solid 1px black;
-}
-
 /* Banners on the main page */
 #banners-block {
     max-width: 100%;
@@ -163,81 +98,3 @@ body > #wrapping-block {
     padding-right: 10px;
 }
 
-/* Items */
-.results-of-query > div {
-    display: inline-block;
-}
-
-.item {
-    background-color: #cccccc;
-    width: 225px;
-}
-
-/* Criteria */
-#criteria > div {
-    display: inline-block;
-}
-
-#criteria-color-form, #criteria-size-form {
-    margin-right: 20px;
-}
-
-#criterion-sizes, #criterion-colors {
-    padding-top: 10px;
-    height: 80px;
-    width: 120px;
-    overflow-y: scroll !important;
-    overflow-x: hidden !important;
-    display: block;
-}
-
-/* Checkboxes */
-.simple-checkbox-wrapper {
-    margin-bottom: -18px;
-}
-
-.simple-checkbox {
-    float: left;
-    vertical-align: middle;
-    width: 13px;
-    height: 13px;
-}
-
-.simple-checkbox + label {
-    cursor: pointer;
-}
-
-.simple-checkbox:not(checked) {
-    margin: 0;
-    opacity: 0;
-    position: absolute;
-}
-
-.simple-checkbox:not(checked) + label {
-    position: relative;
-    padding-left: 23px;
-    font-family: "Cyntho Light", sans-serif;
-    font-size: 0.9em;
-}
-
-.simple-checkbox:not(checked) + label:after,
-.simple-checkbox:not(checked) + label:before,
-.simple-checkbox:checked + label:after,
-.simple-checkbox:checked + label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 13px;
-    height: 13px;
-}
-
-.simple-checkbox:not(checked) + label:after,
-.simple-checkbox:not(checked) + label:before {
-    background-color: white;
-    border: solid 1px #0c202b;
-}
-
-.simple-checkbox:checked + label:after,
-.simple-checkbox:checked + label:before {
-    background-color: #0c202b;
-}

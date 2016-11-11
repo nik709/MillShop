@@ -1,0 +1,26 @@
+/*
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
+*/
+
+/* Textboxes and listboxes */
+.simple-textbox, .simple-select {
+    color: black;
+    margin: 4px 10px 10px 0;
+    padding: 2px 6px;
+    border: solid 1px #c3c3c3;
+    font-family: "Cyntho Light", sans-serif;
+    font-size: 12pt;
+    line-height: 22px;
+    outline: none;
+    transition: all 160ms ease;
+}
+
+.simple-textbox:hover, .simple-select:hover {
+    transition: all 160ms ease;
+    border: solid 1px cornflowerblue;
+}
+
+.simple-textbox:focus, .simple-select:focus {
+    border: solid 1px black;
+}
