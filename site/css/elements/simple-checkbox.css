@@ -11,8 +11,8 @@
 .simple-checkbox {
     float: left;
     vertical-align: middle;
-    width: 13px;
-    height: 13px;
+    width: 0;
+    height: 0;
 }
 
 .simple-checkbox + label {

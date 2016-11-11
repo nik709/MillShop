@@ -175,13 +175,11 @@ class DBConnection
             echo "<div class=\"item-holder\">";
             foreach ($line as $col_value) {
                 if ($col_value == $line['image']) {
-                    echo "<div class='item-holder-wrapper'>";
+                    echo "<a href='Men.php'>";
                     echo "<div class='item-holder-image'>";
                     $this->showImage($col_value, 215);
                     echo "</div>";
-                    echo "<div class=\"item-holder-form-layer\">";
-                    echo "</div>";
-                    echo "</div>";
+                    echo "</a>";
                 }
                 if ($col_value == $line['name']) {
                     $name = $col_value;
@@ -194,9 +192,11 @@ class DBConnection
                 }
             }
             if (!$k){
+                echo "<a href='Men.php' style='text-decoration: none; color: black'>";
                 echo "<div class='item-holder-name'>";
                 echo "$name";
                 echo "</div>";
+                echo "</a>";
                 if ($discount==0) {
                     echo "<div class='item-holder-price-holder'>";
                     $price = number_format($price, 2, '.', '');

@@ -18,7 +18,7 @@
 .item-holder-image {
     width: 215px;
     z-index: 1;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 .item-holder-wrapper > div {
@@ -26,7 +26,7 @@
 }
 
 .item-holder-name {
-    padding-top: 10px;
+    margin-top: 10px;
 }
 
 .item-holder-price-holder > div {
@@ -51,18 +51,19 @@
 
 .item-holder-wrapper {
     position: relative;
-    height: 290px;
+    height: 295px;
 }
 
 .item-holder-form-layer {
     z-index: 2;
     width: 215px;
-    height: 290px;
+    height: 295px;
     position: absolute;
+    opacity: 0;
 }
 
-.item-holder-form-layer:hover {
+/*.item-holder-form-layer:hover {
     transition: all 0.2s ease;
-    background-color: white;
-    opacity: 0.8;
-}
+    background-color: rgba(255, 255, 255, 0.8);
+    opacity: 1;
+}*/
