@@ -39,11 +39,11 @@ class DBConnection
     }
 
     //--------------------QUERY--------------------
-    private function execueQuery(){
+    private function execueQuery($reasonOfError){
         $this->result = mysqli_query($this->link, $this->query);
         if ($this->result == false){
             echo '<script type="text/javascript">';
-            echo 'window.location.href = "../pages/500.php"';
+            echo "window.location.href = \"../pages/500.php?message=$reasonOfError\"";
             echo '</script>';
         }
 }
@@ -87,15 +87,15 @@ class DBConnection
     public function selectItemsById($id){
         $query = "SELECT name, image, price, size, color, description FROM items WHERE id = '$id'";
         $this->setQuery($query);
-        $this->execueQuery();
+        $this->sorting($this->sortOption);
+        $this->execueQuery('select');
     }
 
     public function selectItemsBySize($size){
         $query = "SELECT name, image, price, size, color, description FROM items WHERE size = '$size'";
-        if ($this->isIsSortedByPrice())
-            $this->sortByPrice("ASC");
         $this->setQuery($query);
-        $this->execueQuery();
+        $this->sorting($this->sortOption);
+        $this->execueQuery('select');
     }
 
     public function selectItemsByColor($color){
@@ -103,7 +103,7 @@ class DBConnection
         if ($this->isIsSortedByPrice())
             $this->sortByPrice("ASC");
         $this->setQuery($query);
-        $this->execueQuery();
+        $this->execueQuery('select');
     }
 
     public function selectByCriteria($criteria){
@@ -119,7 +119,7 @@ class DBConnection
         $this->setQuery($query);
         $this->sorting($this->sortOption);
 
-        $this->execueQuery();
+        $this->execueQuery('criteria');
     }
 
     public function getMaxPrice(){
@@ -127,7 +127,7 @@ class DBConnection
                     UNION
                   (SELECT MAX(PRICE) AS MAX, discount FROM items WHERE discount > 0);";
         $this->setQuery($query);
-        $this->execueQuery();
+        $this->execueQuery('max');
         $line = mysqli_fetch_array($this->result, MYSQLI_ASSOC);
         $max = $line['MAX'];
         $line = mysqli_fetch_array($this->result, MYSQLI_ASSOC);
@@ -147,7 +147,7 @@ class DBConnection
                     UNION
                     (SELECT MIN(PRICE) AS MIN, discount FROM items WHERE discount > 0);";
         $this->setQuery($query);
-        $this->execueQuery();
+        $this->execueQuery('min');
         $line = mysqli_fetch_array($this->result, MYSQLI_ASSOC);
         $min = $line['MIN'];
         $line = mysqli_fetch_array($this->result, MYSQLI_ASSOC);
@@ -236,7 +236,7 @@ class DBConnection
     public function showColors(){
         $query = "SELECT DISTINCT COLORS.NAME FROM ITEMS, COLORS WHERE ITEMS.COLOR = COLORS.ID";
         $this->setQuery($query);
-        $this->execueQuery();
+        $this->execueQuery('colors');
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)){
             $color = $line['NAME'];
             echo "<input type=\"checkbox\" name=\"Size\" value=\"$color\" unchecked>$color<Br>";
@@ -246,7 +246,7 @@ class DBConnection
     public function showSizes(){
         $query = "SELECT DISTINCT SIZES.NAME FROM ITEMS, SIZES WHERE ITEMS.SIZE = SIZES.ID";
         $this->setQuery($query);
-        $this->execueQuery();
+        $this->execueQuery('sizes');
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)){
             $size = $line['NAME'];
             echo "<input type=\"checkbox\" name=\"Size\" value=\"$size\" unchecked>$size<Br>";
@@ -257,7 +257,7 @@ class DBConnection
     public function addUser($login, $password, $firstname, $lastname){
         $query = "INSERT INTO `millshop`.`users` (LOGIN, PASSWORD, FIRSTNAME, LASTNAME) VALUES ('$login', '$password', '$firstname', '$lastname');";
         $this->setQuery($query);
-        $this->execueQuery();
+        $this->execueQuery('addingUsers');
     }
 }
 ?>

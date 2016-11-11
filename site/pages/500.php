@@ -22,6 +22,12 @@ session_start();
 
     <div class="error-title">500</div>
     <div class="error-text">INTERNAL SERVER ERROR</div>
+    <div>
+        <?php
+        $message = isset($_GET['message']) ? $_GET['message'] : null;
+        echo "$message";
+        ?>
+    </div>
     <a onclick="history.back()"><button class="simple-button">Back</button></a>
 
     <!-- MAIN BLOCK END -->
