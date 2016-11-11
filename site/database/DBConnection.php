@@ -21,7 +21,12 @@ class DBConnection
             echo '</script>';
         }
         //echo 'Соединение успешно установлено';
-        mysqli_select_db($this->link, 'MillShop') or die('Не удалось выбрать базу данных');
+        $selected = mysqli_select_db($this->link, 'MillShop');
+        if (!$selected){
+            echo '<script type="text/javascript">';
+            echo 'window.location.href = "../pages/500.php"';
+            echo '</script>';
+        }
     }
 
     public function closeConnection(){
@@ -35,8 +40,13 @@ class DBConnection
 
     //--------------------QUERY--------------------
     private function execueQuery(){
-        $this->result = mysqli_query($this->link, $this->query) or die('Запрос не удался: ' .mysqli_error($this->link));
-    }
+        $this->result = mysqli_query($this->link, $this->query);
+        if ($this->result == false){
+            echo '<script type="text/javascript">';
+            echo 'window.location.href = "../pages/500.php"';
+            echo '</script>';
+        }
+}
 
     private function setQuery($query)
     {
@@ -215,6 +225,13 @@ class DBConnection
             $size = $line['NAME'];
             echo "<input type=\"checkbox\" name=\"Size\" value=\"$size\" unchecked>$size<Br>";
         }
+    }
+
+    //--------------------ADD USER--------------------
+    public function addUser($login, $password, $firstname, $lastname){
+        $query = "INSERT INTO `millshop`.`users` (LOGIN, PASSWORD, FIRSTNAME, LASTNAME) VALUES ('$login', '$password', '$firstname', '$lastname');";
+        $this->setQuery($query);
+        $this->execueQuery();
     }
 }
 ?>

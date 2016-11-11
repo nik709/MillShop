@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <!--
     MILL SHOP COMPANY, 2016
@@ -17,7 +14,7 @@ session_start();
 </head>
 <body>
     <?php
-    include('menuu.php');
+    include('menu.html');
     ?>
 
     <!-- MAIN BLOCK START -->

