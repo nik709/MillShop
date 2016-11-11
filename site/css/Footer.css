@@ -45,6 +45,7 @@
 
 #footer-feedback {
     float: right;
+    transform: translateY(90%);
 }
 
 #footer-feedback a {

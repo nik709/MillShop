@@ -15,7 +15,7 @@ session_start();
 </head>
 <body>
 <?php
-include('menu.html');
+include('menuu.php');
 ?>
 
 <!-- MAIN BLOCK START -->

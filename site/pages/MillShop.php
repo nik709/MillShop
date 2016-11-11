@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['count']))
+    $_SESSION['count'] = 0;
+
+?>
 <!DOCTYPE html>
 <!--
     MILL SHOP COMPANY, 2016
@@ -12,7 +18,7 @@
 </head>
 <body>
     <?php
-    include('menu.html');
+    include('menuu.php');
     ?>
 
     <!-- MAIN BLOCK START -->

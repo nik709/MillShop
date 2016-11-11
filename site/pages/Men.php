@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+function plus($bag)
+{
+    $bag++;
+    $_SESSION['count'] = $bag;
+}
+?>
 <!DOCTYPE html>
 <!--
     MILL SHOP COMPANY, 2016
@@ -12,7 +21,7 @@
 </head>
 <body>
     <?php
-    include('menu.html');
+    include('menuu.php');
     ?>
 
     <!-- MAIN BLOCK START -->
@@ -66,7 +75,9 @@
     </script>
 
     <!-- ITEMS -->
+
     <?php
+
     include_once("../database/DBConnection.php");
     $sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
     $db = new DBConnection();
@@ -76,6 +87,7 @@
     $db->selectByCriteria($criteria);
     $db->showResult();
     $db->closeConnection();
+
     ?>
 
     <!-- MAIN BLOCK END -->

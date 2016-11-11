@@ -24,7 +24,7 @@ function plus($bag)
 <body>
 
     <?php
-    include('menu.html');
+    include('menuu.php');
     ?>
 
     <!-- MAIN BLOCK START -->
@@ -34,6 +34,7 @@ function plus($bag)
         <?php
         if(isset($_POST['button'])) {
            plus($_SESSION['count']);
+           header("Location: Women.php") ;
         }
         printf($_SESSION['count'].'<br />');
 
