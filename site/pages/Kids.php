@@ -13,7 +13,7 @@
 <body>
     <?php
     session_start();
-    include('menuu.php');
+    include('menu.php');
     ?>
 
     <!-- MAIN BLOCK START -->
