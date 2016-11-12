@@ -78,16 +78,16 @@ function plus($bag)
 
     <?php
 
-    include_once("../database/DBConnection.php");
+    include_once("../database/QueryPresenterImpl.php");
     $sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
-    $db = new DBConnection();
-    $db->openConnection();
-    $criteria[0] = "price < 500";
+    $db = new QueryPresenterImpl();
     $db->setSortOption($sortOption);
-    $db->selectByCriteria($criteria);
-    $db->showResult();
-    $db->closeConnection();
-
+    $criteria[0] = "price > 15";
+    $criteria[1] = "price < 30";
+    $db->getItemsByCriteria($criteria);
+    $db->drawItemHolders();
+    $db->drawSizes();
+    $db = null;
     ?>
 
     <!-- MAIN BLOCK END -->

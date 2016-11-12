@@ -7,13 +7,23 @@
 
 class DBConnection
 {
-    private $link;
+    protected $link;
     private $query;
     private $result;
-    private $sortOption = null;
+
+    function __construct(){
+        //echo "construct db";
+        $this->openConnection();
+    }
+
+    function __destruct()
+    {
+        //echo "destruct db";
+        $this->closeConnection();
+    }
 
     //--------------------CONNECTION--------------------
-    public function openConnection(){
+    private function openConnection(){
         $this->link = mysqli_connect('localhost:3306', 'root', 'root', 'millshop');
         if (!$this->link) {
             echo '<script type="text/javascript">';
@@ -29,7 +39,7 @@ class DBConnection
         }
     }
 
-    public function closeConnection(){
+    private function closeConnection(){
         $isClose = mysqli_close($this->link);
         if (!$isClose){
             echo '<script type="text/javascript">';
@@ -39,7 +49,7 @@ class DBConnection
     }
 
     //--------------------QUERY--------------------
-    private function execueQuery($reasonOfError){
+    protected function executeQuery($reasonOfError){
         $this->result = mysqli_query($this->link, $this->query);
         if ($this->result == false){
             echo '<script type="text/javascript">';
@@ -48,21 +58,16 @@ class DBConnection
         }
 }
 
-    private function setQuery($query)
+    protected function setQuery($query)
     {
         $this->query = $query;
-    }
-
-    //--------------------RESULT--------------------
-    private function getResult(){
-        return $this->result;
     }
 
     //--------------------SORTING--------------------
     /**
      * @param $criteria : ASC or DESC
      */
-    private function sorting($criteria){
+    protected function sorting($criteria){
         if ($criteria == "ASC")
             $this->query .= " ORDER BY price ASC";
         if ($criteria == "DESC")
@@ -71,104 +76,13 @@ class DBConnection
             $this->query .= " ORDER BY id DESC";
     }
 
-    public function getSortOption()
-    {
-        return $this->sortOption;
-    }
-
-    public function setSortOption($criteriaOfSort)
-    {
-        $this->sortOption = $criteriaOfSort;
-    }
-
-
-
-    //--------------------SELECTS--------------------
-    public function selectItemsById($id){
-        $query = "SELECT name, image, price, size, color, description FROM items WHERE id = '$id'";
-        $this->setQuery($query);
-        $this->sorting($this->sortOption);
-        $this->execueQuery('select');
-    }
-
-    public function selectItemsBySize($size){
-        $query = "SELECT name, image, price, size, color, description FROM items WHERE size = '$size'";
-        $this->setQuery($query);
-        $this->sorting($this->sortOption);
-        $this->execueQuery('select');
-    }
-
-    public function selectItemsByColor($color){
-        $query = "SELECT name, image, price, size, color, description FROM items WHERE color = '$color'";
-        if ($this->isIsSortedByPrice())
-            $this->sortByPrice("ASC");
-        $this->setQuery($query);
-        $this->execueQuery('select');
-    }
-
-    public function selectByCriteria($criteria){
-        $query = "SELECT * FROM ITEMS ";
-        for ($i=0; $i<count($criteria); $i++){
-            if ($i==0)
-                $query .= "WHERE ";
-            $query .= $criteria[$i];
-            $query .= " ";
-            if ($i!=count($criteria) - 1)
-                $query .= "AND ";
-        }
-        $this->setQuery($query);
-        $this->sorting($this->sortOption);
-
-        $this->execueQuery('criteria');
-    }
-
-    public function getMaxPrice(){
-        $query = "(SELECT MAX(price) AS MAX, discount FROM ITEMS WHERE discount = 0)
-                    UNION
-                  (SELECT MAX(PRICE) AS MAX, discount FROM items WHERE discount > 0);";
-        $this->setQuery($query);
-        $this->execueQuery('max');
-        $line = mysqli_fetch_array($this->result, MYSQLI_ASSOC);
-        $max = $line['MAX'];
-        $line = mysqli_fetch_array($this->result, MYSQLI_ASSOC);
-        if ($line != null) {
-            $price = $line['MAX'];
-            $discount = $line['discount'];
-            $price -= $price * $discount;
-            if ($max < $price)
-                $max = $price;
-        }
-        $max = number_format($max, 2, '.', '');
-        return $max;
-    }
-
-    public function getMinPrice(){
-        $query = "(SELECT MIN(price) AS MIN, discount FROM ITEMS WHERE discount = 0)
-                    UNION
-                    (SELECT MIN(PRICE) AS MIN, discount FROM items WHERE discount > 0);";
-        $this->setQuery($query);
-        $this->execueQuery('min');
-        $line = mysqli_fetch_array($this->result, MYSQLI_ASSOC);
-        $min = $line['MIN'];
-        $line = mysqli_fetch_array($this->result, MYSQLI_ASSOC);
-        if ($line != null) {
-            $price = $line['MIN'];
-            $discount = $line['discount'];
-            $price -= $price * $discount;
-            if ($min > $price)
-                $min = $price;
-        }
-        $min = number_format($min, 2, '.', '');
-        return $min;
-    }
-
     //--------------------SHOW--------------------
-    private function showImage($image, $width) {
+    protected function showImage($image, $width) {
         echo "<img src=\"data:image/jpeg;base64," . base64_encode($image) .
             "\" width=\"" . $width . "\" height=\"auto\" />";
     }
 
-    public function showResult(){
+    protected function showResult(){
         echo "<div class='results-of-query'>";
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
             $k = false;
@@ -233,31 +147,11 @@ class DBConnection
         echo "</div>";
     }
 
-    public function showColors(){
-        $query = "SELECT DISTINCT COLORS.NAME FROM ITEMS, COLORS WHERE ITEMS.COLOR = COLORS.ID";
-        $this->setQuery($query);
-        $this->execueQuery('colors');
-        while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)){
-            $color = $line['NAME'];
-            echo "<input type=\"checkbox\" name=\"Size\" value=\"$color\" unchecked>$color<Br>";
-        }
+    protected function getResult()
+    {
+        return $this->result;
     }
 
-    public function showSizes(){
-        $query = "SELECT DISTINCT SIZES.NAME FROM ITEMS, SIZES WHERE ITEMS.SIZE = SIZES.ID";
-        $this->setQuery($query);
-        $this->execueQuery('sizes');
-        while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)){
-            $size = $line['NAME'];
-            echo "<input type=\"checkbox\" name=\"Size\" value=\"$size\" unchecked>$size<Br>";
-        }
-    }
 
-    //--------------------ADD USER--------------------
-    public function addUser($login, $password, $firstname, $lastname){
-        $query = "INSERT INTO `millshop`.`users` (LOGIN, PASSWORD, FIRSTNAME, LASTNAME) VALUES ('$login', '$password', '$firstname', '$lastname');";
-        $this->setQuery($query);
-        $this->execueQuery('addingUsers');
-    }
 }
 ?>
