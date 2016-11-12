@@ -26,6 +26,11 @@ function plus($bag)
 
     <!-- MAIN BLOCK START -->
 
+    <?php
+    include_once("../database/QueryPresenterImpl.php");
+    $db = new QueryPresenterImpl();
+    ?>
+
     <div class="page-title">Men</div>
 
     <!-- CRITERIA -->
@@ -35,14 +40,15 @@ function plus($bag)
                 <div class="criterion-header">Size</div>
                 <?php
                 echo "<div id='criterion-sizes'>";
-                for ($i = 0; $i < 5; $i++) {
+                $db->drawSizes();
+                /*for ($i = 0; $i < 5; $i++) {
                     echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='size-" . $i . "' name=\"Size-" . $i . "\" value=\"M\" 
                         onchange=\"criteriaAndSortingForm.submit()\"";
                     if (isset($_GET["Size-" . $i])) {
                         echo "checked='checked'";
                     }
                     echo "/><label for='size-" . $i . "'>M</label></div><Br>";
-                }
+                }*/
                 echo "</div>";
                 ?>
             </div>
@@ -50,14 +56,15 @@ function plus($bag)
                 <div class="criterion-header">Color</div>
                 <?php
                 echo "<div id='criterion-colors'>";
-                for ($i = 0; $i < 8; $i++) {
+                $db->drawColors();
+                /*for ($i = 0; $i < 8; $i++) {
                     echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='color-" . $i . "' name=\"Color-" . $i . "\" value=\"102\" 
                         onchange=\"criteriaAndSortingForm.submit()\"";
                     if(isset($_GET["Color-". $i])) {
                         echo "checked='checked'";
                     }
                     echo "><label for='color-" . $i . "'>Navy " . $i . "</label></div><Br>";
-                }
+                }*/
                 echo "</div>";
                 ?>
             </div>
@@ -69,24 +76,25 @@ function plus($bag)
             <option value="ASC">Price: Low to High</option>
             <option value="DESC">Price: High to Low</option>
         </select>
+        <script type="text/javascript">
+            document.getElementById('sortOption').value = "<?php echo $_GET['sortOption'];?>";
+        </script>
     </form>
-    <script type="text/javascript">
-        document.getElementById('sortOption').value = "<?php echo $_GET['sortOption'];?>";
-    </script>
+
+
+
 
     <!-- ITEMS -->
 
     <?php
-
-    include_once("../database/QueryPresenterImpl.php");
     $sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
-    $db = new QueryPresenterImpl();
+
     $db->setSortOption($sortOption);
-    $criteria[0] = "price > 15";
-    $criteria[1] = "price < 30";
-    $db->getItemsByCriteria($criteria);
+    //$criteria[0] = "price > 15";
+    //$criteria[1] = "price < 30";
+    $db->getItemsByCriteria(null);
     $db->drawItemHolders();
-    $db->drawSizes();
+
     $db = null;
     ?>
 
