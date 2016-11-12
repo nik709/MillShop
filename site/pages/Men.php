@@ -36,35 +36,27 @@ function plus($bag)
     <!-- CRITERIA -->
     <form name="criteriaAndSortingForm" method="get">
         <div id="criteria">
-            <div id="criteria-size-form">
-                <div class="criterion-header">Size</div>
+            <div id="criteria-subcategory-form" class="criteria-form">
+                <div class="criterion-header">Category</div>
                 <?php
-                echo "<div id='criterion-sizes'>";
-                $db->drawSizes();
-                /*for ($i = 0; $i < 5; $i++) {
-                    echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='size-" . $i . "' name=\"Size-" . $i . "\" value=\"M\" 
-                        onchange=\"criteriaAndSortingForm.submit()\"";
-                    if (isset($_GET["Size-" . $i])) {
-                        echo "checked='checked'";
-                    }
-                    echo "/><label for='size-" . $i . "'>M</label></div><Br>";
-                }*/
+                echo "<div id='criterion-subcategories' class='criterion'>";
+                $db->drawColors();
                 echo "</div>";
                 ?>
             </div>
-            <div id="criteria-color-form">
+            <div id="criteria-size-form" class="criteria-form">
+                <div class="criterion-header">Size</div>
+                <?php
+                echo "<div id='criterion-sizes' class='criterion'>";
+                $db->drawSizes();
+                echo "</div>";
+                ?>
+            </div>
+            <div id="criteria-color-form" class="criteria-form">
                 <div class="criterion-header">Color</div>
                 <?php
-                echo "<div id='criterion-colors'>";
+                echo "<div id='criterion-colors' class='criterion'>";
                 $db->drawColors();
-                /*for ($i = 0; $i < 8; $i++) {
-                    echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='color-" . $i . "' name=\"Color-" . $i . "\" value=\"102\" 
-                        onchange=\"criteriaAndSortingForm.submit()\"";
-                    if(isset($_GET["Color-". $i])) {
-                        echo "checked='checked'";
-                    }
-                    echo "><label for='color-" . $i . "'>Navy " . $i . "</label></div><Br>";
-                }*/
                 echo "</div>";
                 ?>
             </div>
