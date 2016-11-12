@@ -18,6 +18,27 @@ function plus($bag)
     <title>Mill Shop - Men</title>
     <link rel="icon" href="../resources/images/icon.ico">
     <link rel="stylesheet" href="../css/MillShop.css">
+    <script>
+        function process(str) {
+            if(str == "") {
+                document.getElementById("results-of-query").innerHTML = "";
+            } else {
+                if (window.XMLHttpRequest) {
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("results-of-query").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "SortingAJAX.php?sortOption=" + str, true);
+                xmlhttp.send();
+            }
+        }
+    </script>
 </head>
 <body>
     <?php
@@ -33,8 +54,9 @@ function plus($bag)
 
     <div class="page-title">Men</div>
 
-    <!-- CRITERIA -->
+    <!-- CRITERIA AND SORTING FORM -->
     <form name="criteriaAndSortingForm" method="get">
+        <!-- CRITERIA -->
         <div id="criteria">
             <div id="criteria-subcategory-form" class="criteria-form">
                 <div class="criterion-header">Category</div>
@@ -62,7 +84,7 @@ function plus($bag)
             </div>
         </div>
         <!-- SORTING -->
-        <select name="sortOption" id="sortOption" class="simple-select" onchange="criteriaAndSortingForm.submit()" title="Sort By">
+        <select name="sortOption" id="sortOption" class="simple-select" onchange="process(this.value)" title="Sort By">
             <option value="" selected disabled style="display:none;">Sort By</option>
             <option value="NEWEST">Newest</option>
             <option value="ASC">Price: Low to High</option>
@@ -73,21 +95,21 @@ function plus($bag)
         </script>
     </form>
 
-
-
-
     <!-- ITEMS -->
 
     <?php
-    $sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
+    echo "<div class='results-of-query' id='results-of-query'>";
+    include_once("SortingAJAX.php");
+    /*$sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
 
     $db->setSortOption($sortOption);
     //$criteria[0] = "price > 15";
     //$criteria[1] = "price < 30";
     $db->getItemsByCriteria(null);
-    $db->drawItemHolders();
 
-    $db = null;
+    $db->drawItemHolders();
+    $db = null;*/
+    echo "</div>";
     ?>
 
     <!-- MAIN BLOCK END -->

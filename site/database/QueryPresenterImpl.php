@@ -1,11 +1,9 @@
 <?php
-
 /**
- * Created by PhpStorm.
- * User: Никита
- * Date: 11.11.2016
- * Time: 23:51
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
+
 include_once ("../database/DBConnection.php");
 include_once("../database/QueryPresenter.php");
 class QueryPresenterImpl extends DBConnection implements QueryPresenter
