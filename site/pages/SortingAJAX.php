@@ -9,8 +9,9 @@ $db = new QueryPresenterImpl();
 
 $sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
 
+$criteria[0] = "color = red";
 $db->setSortOption($sortOption);
-$db->getItemsByCriteria(null);
+$db->getItemsByCriteria($criteria);
 $db->drawItemHolders();
 
 $db = null;
