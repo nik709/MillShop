@@ -9,18 +9,21 @@ $db = new QueryPresenterImpl();
 
 $sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
 
-
 $criteria = null;
 $k=0;
-for($i = 0; $i < 10; $i++) {
+for($i = 0; $i < 20; $i++) {
     $color = isset($_GET['Color-' . $i]) ? $_GET['Color-' . $i] : null;
     if($color != null) {
         $criteria[$k] = "color = $color";
         $k++;
     }
+    $size = isset($_GET['Size-' . $i]) ? $_GET['Size-' . $i] : null;
+    if($size != null) {
+        $criteria[$k] = "size = $size";
+        $k++;
+    }
 }
 
-//$criteria[0] = "color = white";
 $db->setSortOption($sortOption);
 $db->getItemsByCriteria($criteria);
 $db->drawItemHolders();

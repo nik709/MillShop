@@ -23,7 +23,8 @@
 
 #footer-inside {
     text-align: left;
-    width: 980px;
+    max-width: 1000px;
+    width: 100vw;
     margin: 0 auto;
 }
 

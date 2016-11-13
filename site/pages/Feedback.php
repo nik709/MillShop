@@ -14,7 +14,6 @@
 </head>
 <body>
     <?php
-    include('menu.html');
     include('menu.php');
     ?>
 
