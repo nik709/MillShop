@@ -38,14 +38,13 @@ function plus($bag)
                     if(startIndex != -1) {
                         var oldSize = criteriaAndSorting.substring(startIndex);
                         if (oldSize.indexOf("&") != -1) {
-                            //var searchEndIndex = preIndex + oldColor.indexOf("&");
                             string = "&" + string;
                         }
                     }
                     criteriaAndSorting = criteriaAndSorting.replace(string, "");
                 }
             }
-            document.getElementById("page-title").innerHTML = criteriaAndSorting;
+            //document.getElementById("page-title").innerHTML = criteriaAndSorting;
             process(criteriaAndSorting);
         }
 
@@ -66,14 +65,13 @@ function plus($bag)
                     if(startIndex != -1) {
                         var oldColor = criteriaAndSorting.substring(startIndex);
                         if (oldColor.indexOf("&") != -1) {
-                            //var searchEndIndex = preIndex + oldColor.indexOf("&");
                             string = "&" + string;
                         }
                     }
                     criteriaAndSorting = criteriaAndSorting.replace(string, "");
                 }
             }
-            document.getElementById("page-title").innerHTML = criteriaAndSorting;
+            //document.getElementById("page-title").innerHTML = criteriaAndSorting;
             process(criteriaAndSorting);
         }
 
@@ -98,28 +96,24 @@ function plus($bag)
             else {
                 criteriaAndSorting = "sortOption=" + sortOption;
             }
-            document.getElementById("page-title").innerHTML = criteriaAndSorting;
+            //document.getElementById("page-title").innerHTML = criteriaAndSorting;
             process(criteriaAndSorting);
         }
 
         function process(str) {
-            //if(str == "") {
-            //    document.getElementById("results-of-query").innerHTML = "";
-            //} else {
-                if (window.XMLHttpRequest) {
-                    xmlhttp = new XMLHttpRequest();
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("results-of-query").innerHTML = this.responseText;
                 }
-                else {
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                xmlhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("results-of-query").innerHTML = this.responseText;
-                    }
-                };
-                xmlhttp.open("GET", "SortingAJAX.php?" + str, true);
-                xmlhttp.send();
-            //}
+            };
+            xmlhttp.open("GET", "SortingAJAX.php?" + str, true);
+            xmlhttp.send();
         }
     </script>
 </head>
@@ -183,22 +177,6 @@ function plus($bag)
     <?php
     echo "<div class='results-of-query' id='results-of-query'>";
     include_once("SortingAJAX.php");
-
-    /*$sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
-    $criteria = null;
-    for($i = 0; $i < 10; $i++) {
-        $color = isset($_GET['Color-' . $i]) ? $_GET['Color-' . $i] : null;
-        if($color != null) {
-            $criteria[$i] = "color = $color";
-        }
-    }
-
-    $db->setSortOption($sortOption);
-    $db->getItemsByCriteria($criteria);
-    $db->drawItemHolders();
-
-    $db = null;*/
-
     echo "</div>";
     ?>
 
