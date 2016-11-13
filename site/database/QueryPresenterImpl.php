@@ -41,16 +41,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     {
         $query = "SELECT * FROM ITEMS ";
         for ($i=0; $i<count($criteria); $i++){
-            if ($i==0)
-                $query .= "WHERE ";
-            if (substr($criteria[$i], 0, 5) == "color"){
-                $name = substr($criteria[$i], 8, strlen($criteria[$i]));
-                $criteria[$i] = "color = (select id from colors where name = '$name')";
-            }
-            $query .= $criteria[$i];
-            $query .= " ";
-            if ($i!=count($criteria) - 1)
-                $query .= "AND ";
+
         }
         parent::setQuery($query);
         parent::sorting($this->sortOption);
