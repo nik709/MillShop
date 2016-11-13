@@ -168,7 +168,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         while ($line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC)){
             $size = $line['NAME'];
             echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='size-$i' name=\"Size-$i\" value=\"$size\" 
-                        onchange=\"criteriaAndSortingForm.submit()\"";
+                        onchange=\"setSize(this.name, this.value, this.checked)\"";
             if (isset($_GET["Size-$i"])) {
                 echo "checked='checked'";
             }

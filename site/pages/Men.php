@@ -21,6 +21,34 @@ function plus($bag)
     <script>
         var criteriaAndSorting = null;
 
+        function setSize(id, size, isChecked) {
+            if(isChecked) {
+                if (criteriaAndSorting != null && criteriaAndSorting != "") {
+                    criteriaAndSorting += "&" + id + "=" + size;
+                }
+                else {
+                    criteriaAndSorting = id + "=" + size;
+                }
+            }
+            else {
+                if (criteriaAndSorting.indexOf(id) != -1) {
+                    var string = id + "=" + size;
+                    var preIndex = criteriaAndSorting.indexOf(string);
+                    var startIndex = preIndex - 1; // Номер символа в строке, с которого начинается значение Color-i
+                    if(startIndex != -1) {
+                        var oldSize = criteriaAndSorting.substring(startIndex);
+                        if (oldSize.indexOf("&") != -1) {
+                            //var searchEndIndex = preIndex + oldColor.indexOf("&");
+                            string = "&" + string;
+                        }
+                    }
+                    criteriaAndSorting = criteriaAndSorting.replace(string, "");
+                }
+            }
+            document.getElementById("page-title").innerHTML = criteriaAndSorting;
+            process(criteriaAndSorting);
+        }
+
         function setColor(id, color, isChecked) {
             if(isChecked) {
                 if (criteriaAndSorting != null && criteriaAndSorting != "") {
