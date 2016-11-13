@@ -75,9 +75,9 @@ function plus($bag)
         }
 
         function process(str) {
-            if(str == "") {
-                document.getElementById("results-of-query").innerHTML = "";
-            } else {
+            //if(str == "") {
+            //    document.getElementById("results-of-query").innerHTML = "";
+            //} else {
                 if (window.XMLHttpRequest) {
                     xmlhttp = new XMLHttpRequest();
                 }
@@ -91,7 +91,7 @@ function plus($bag)
                 };
                 xmlhttp.open("GET", "SortingAJAX.php?" + str, true);
                 xmlhttp.send();
-            }
+            //}
         }
     </script>
 </head>
