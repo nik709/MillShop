@@ -4,6 +4,12 @@
     CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
 
+function startsWith($haystack, $needle)
+{
+    $length = strlen($needle);
+    return (substr($haystack, 0, $length) === $needle);
+}
+
 include_once ("../database/DBConnection.php");
 include_once("../database/QueryPresenter.php");
 class QueryPresenterImpl extends DBConnection implements QueryPresenter
@@ -40,8 +46,45 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     public function getItemsByCriteria($criteria)
     {
         $query = "SELECT * FROM ITEMS ";
+        $colors = array();
+        $sizes = array();
+        $quantityOfColors = 0;
+        $quantityOfSizes = 0;
         for ($i=0; $i<count($criteria); $i++){
+            if (startsWith($criteria[$i], "color")){
+                $nameOfColor = substr($criteria[$i],8, strlen($criteria[$i]));
+                $colors[$quantityOfColors] = " color = (SELECT id FROM colors WHERE colors.name = '$nameOfColor')";
+                $quantityOfColors++;
+            }
 
+            if (startsWith($criteria[$i], "size")){
+                $nameOfSize = substr($criteria[$i],7, strlen($criteria[$i]));
+                $sizes[$quantityOfSizes] = " size = (SELECT id FROM sizes WHERE sizes.name = '$nameOfSize')";
+                $quantityOfSizes++;
+            }
+        }
+        for ($i=0; $i<$quantityOfColors; $i++) {
+            if ($i == 0)
+                $query .= "WHERE (";
+            $query .= $colors[$i];
+            if ($i != $quantityOfColors-1)
+                $query .= " OR";
+            else
+                $query .= ")";
+        }
+
+        if ($quantityOfColors > 0){
+            $query .= "AND (";
+        }
+
+        for ($i=0; $i<$quantityOfSizes; $i++){
+            if ($quantityOfColors == 0 and $i==0)
+                $query .= "WHERE (";
+            $query .= $sizes[$i];
+            if ($i != $quantityOfSizes-1)
+                $query .= " OR";
+            else
+                $query .= ")";
         }
         parent::setQuery($query);
         parent::sorting($this->sortOption);
