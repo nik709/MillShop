@@ -54,6 +54,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
             if (startsWith($criteria[$i], "color")){
                 $nameOfColor = substr($criteria[$i],8, strlen($criteria[$i]));
                 $colors[$quantityOfColors] = " color = (SELECT id FROM colors WHERE colors.name = '$nameOfColor')";
+                //echo "$colors[$quantityOfColors]";
                 $quantityOfColors++;
             }
 
@@ -73,7 +74,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
                 $query .= ")";
         }
 
-        if ($quantityOfColors > 0){
+        if ($quantityOfSizes>0 and $quantityOfColors>0){
             $query .= "AND (";
         }
 
@@ -86,6 +87,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
             else
                 $query .= ")";
         }
+        //echo "$query";
         parent::setQuery($query);
         parent::sorting($this->sortOption);
         parent::executeQuery("$query");
