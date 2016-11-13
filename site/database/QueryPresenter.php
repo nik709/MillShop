@@ -1,10 +1,9 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Никита
- * Date: 12.11.2016
- * Time: 15:00
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
+
 interface QueryPresenter{
 
     public function getItemById($id);

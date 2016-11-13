@@ -1,11 +1,9 @@
 <?php
-
 /**
- * Created by PhpStorm.
- * User: Никита
- * Date: 11.11.2016
- * Time: 23:51
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
+
 include_once ("../database/DBConnection.php");
 include_once("../database/QueryPresenter.php");
 class QueryPresenterImpl extends DBConnection implements QueryPresenter
@@ -110,9 +108,16 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         $query = "SELECT DISTINCT COLORS.NAME FROM ITEMS, COLORS WHERE ITEMS.COLOR = COLORS.ID";
         parent::setQuery($query);
         parent::executeQuery("existing colors");
+        $i = 0;
         while ($line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC)){
             $color = $line['NAME'];
-            echo "<input type=\"checkbox\" name=\"Size\" value=\"$color\" unchecked>$color<Br>";
+            echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='color-$i' name=\"Color-$i\" value=\"$color\" 
+                        onchange=\"criteriaAndSortingForm.submit()\"";
+            if (isset($_GET["Color-$i"])) {
+                echo "checked='checked'";
+            }
+            echo "/><label for='color-$i'>$color</label></div><Br>";
+            $i++;
         }
     }
 
@@ -121,9 +126,16 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         $query = "SELECT DISTINCT SIZES.NAME FROM ITEMS, SIZES WHERE ITEMS.SIZE = SIZES.ID";
         parent::setQuery($query);
         parent::executeQuery("existing colors");
+        $i = 0;
         while ($line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC)){
             $size = $line['NAME'];
-            echo "<input type=\"checkbox\" name=\"Size\" value=\"$size\" unchecked>$size<Br>";
+            echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='size-$i' name=\"Size-$i\" value=\"$size\" 
+                        onchange=\"criteriaAndSortingForm.submit()\"";
+            if (isset($_GET["Size-$i"])) {
+                echo "checked='checked'";
+            }
+            echo "/><label for='size-$i'>$size</label></div><Br>";
+            $i++;
         }
     }
 

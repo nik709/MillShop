@@ -18,6 +18,27 @@ function plus($bag)
     <title>Mill Shop - Men</title>
     <link rel="icon" href="../resources/images/icon.ico">
     <link rel="stylesheet" href="../css/MillShop.css">
+    <script>
+        function process(str) {
+            if(str == "") {
+                document.getElementById("results-of-query").innerHTML = "";
+            } else {
+                if (window.XMLHttpRequest) {
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("results-of-query").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "SortingAJAX.php?sortOption=" + str, true);
+                xmlhttp.send();
+            }
+        }
+    </script>
 </head>
 <body>
     <?php
@@ -26,68 +47,69 @@ function plus($bag)
 
     <!-- MAIN BLOCK START -->
 
+    <?php
+    include_once("../database/QueryPresenterImpl.php");
+    $db = new QueryPresenterImpl();
+    ?>
+
     <div class="page-title">Men</div>
 
-    <!-- CRITERIA -->
+    <!-- CRITERIA AND SORTING FORM -->
     <form name="criteriaAndSortingForm" method="get">
+        <!-- CRITERIA -->
         <div id="criteria">
-            <div id="criteria-size-form">
-                <div class="criterion-header">Size</div>
+            <div id="criteria-subcategory-form" class="criteria-form">
+                <div class="criterion-header">Category</div>
                 <?php
-                echo "<div id='criterion-sizes'>";
-                for ($i = 0; $i < 5; $i++) {
-                    echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='size-" . $i . "' name=\"Size-" . $i . "\" value=\"M\" 
-                        onchange=\"criteriaAndSortingForm.submit()\"";
-                    if (isset($_GET["Size-" . $i])) {
-                        echo "checked='checked'";
-                    }
-                    echo "/><label for='size-" . $i . "'>M</label></div><Br>";
-                }
+                echo "<div id='criterion-subcategories' class='criterion'>";
+                $db->drawColors();
                 echo "</div>";
                 ?>
             </div>
-            <div id="criteria-color-form">
+            <div id="criteria-size-form" class="criteria-form">
+                <div class="criterion-header">Size</div>
+                <?php
+                echo "<div id='criterion-sizes' class='criterion'>";
+                $db->drawSizes();
+                echo "</div>";
+                ?>
+            </div>
+            <div id="criteria-color-form" class="criteria-form">
                 <div class="criterion-header">Color</div>
                 <?php
-                echo "<div id='criterion-colors'>";
-                for ($i = 0; $i < 8; $i++) {
-                    echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='color-" . $i . "' name=\"Color-" . $i . "\" value=\"102\" 
-                        onchange=\"criteriaAndSortingForm.submit()\"";
-                    if(isset($_GET["Color-". $i])) {
-                        echo "checked='checked'";
-                    }
-                    echo "><label for='color-" . $i . "'>Navy " . $i . "</label></div><Br>";
-                }
+                echo "<div id='criterion-colors' class='criterion'>";
+                $db->drawColors();
                 echo "</div>";
                 ?>
             </div>
         </div>
         <!-- SORTING -->
-        <select name="sortOption" id="sortOption" class="simple-select" onchange="criteriaAndSortingForm.submit()" title="Sort By">
+        <select name="sortOption" id="sortOption" class="simple-select" onchange="process(this.value)" title="Sort By">
             <option value="" selected disabled style="display:none;">Sort By</option>
             <option value="NEWEST">Newest</option>
             <option value="ASC">Price: Low to High</option>
             <option value="DESC">Price: High to Low</option>
         </select>
+        <script type="text/javascript">
+            document.getElementById('sortOption').value = "<?php echo $_GET['sortOption'];?>";
+        </script>
     </form>
-    <script type="text/javascript">
-        document.getElementById('sortOption').value = "<?php echo $_GET['sortOption'];?>";
-    </script>
 
     <!-- ITEMS -->
 
     <?php
+    echo "<div class='results-of-query' id='results-of-query'>";
+    include_once("SortingAJAX.php");
+    /*$sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
 
-    include_once("../database/QueryPresenterImpl.php");
-    $sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
-    $db = new QueryPresenterImpl();
     $db->setSortOption($sortOption);
-    $criteria[0] = "price > 15";
-    $criteria[1] = "price < 30";
-    $db->getItemsByCriteria($criteria);
+    //$criteria[0] = "price > 15";
+    //$criteria[1] = "price < 30";
+    $db->getItemsByCriteria(null);
+
     $db->drawItemHolders();
-    $db->drawSizes();
-    $db = null;
+    $db = null;*/
+    echo "</div>";
     ?>
 
     <!-- MAIN BLOCK END -->

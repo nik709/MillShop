@@ -1,11 +1,9 @@
 <?php
-
 /**
- * Created by PhpStorm.
- * User: Никита
- * Date: 11.11.2016
- * Time: 23:50
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
+
 class SessionControl
 {
 

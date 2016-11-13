@@ -83,7 +83,6 @@ class DBConnection
     }
 
     protected function showResult(){
-        echo "<div class='results-of-query'>";
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
             $k = false;
             echo "<div class=\"item-holder\">";
@@ -143,8 +142,6 @@ class DBConnection
             }
             echo "</div>";
         }
-
-        echo "</div>";
     }
 
     protected function getResult()
