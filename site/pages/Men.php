@@ -19,6 +19,61 @@ function plus($bag)
     <link rel="icon" href="../resources/images/icon.ico">
     <link rel="stylesheet" href="../css/MillShop.css">
     <script>
+        var criteriaAndSorting = null;
+
+        function setColor(id, color, isChecked) {
+            if(isChecked) {
+                if (criteriaAndSorting != null && criteriaAndSorting != "") {
+                    criteriaAndSorting += "&" + id + "=" + color;
+                }
+                else {
+                    criteriaAndSorting = id + "=" + color;
+                }
+            }
+            else {
+                if (criteriaAndSorting.indexOf(id) != -1) {
+                    var string = id + "=" + color;
+                    var preIndex = criteriaAndSorting.indexOf(string);
+                    var startIndex = preIndex - 1; // Номер символа в строке, с которого начинается значение Color-i
+                    if(startIndex != -1) {
+                        var oldColor = criteriaAndSorting.substring(startIndex);
+                        if (oldColor.indexOf("&") != -1) {
+                            //var searchEndIndex = preIndex + oldColor.indexOf("&");
+                            string = "&" + string;
+                        }
+                    }
+                    criteriaAndSorting = criteriaAndSorting.replace(string, "");
+                }
+            }
+            document.getElementById("page-title").innerHTML = criteriaAndSorting;
+            process(criteriaAndSorting);
+        }
+
+        function setSortOption(sortOption) {
+            if(criteriaAndSorting != null) {
+                if(criteriaAndSorting.indexOf("sortOption") != -1) {
+                    var preString = "sortOption=";
+                    var preIndex = criteriaAndSorting.indexOf(preString);
+                    var searchStartIndex = preIndex + criteriaAndSorting.substring(preIndex).indexOf("=") + 1; // Номер символа в строке, с которого начинается значение сортировки
+                    var oldSortOption = criteriaAndSorting.substring(searchStartIndex);
+                    preIndex = criteriaAndSorting.indexOf(oldSortOption);
+                    if(oldSortOption.indexOf("&") != -1) {
+                        var searchEndIndex = preIndex + oldSortOption.indexOf("&");
+                        oldSortOption = criteriaAndSorting.substring(searchStartIndex, searchEndIndex);
+                    }
+                    criteriaAndSorting = criteriaAndSorting.replace(oldSortOption, sortOption);
+                }
+                else {
+                    criteriaAndSorting += "&sortOption=" + sortOption;
+                }
+            }
+            else {
+                criteriaAndSorting = "sortOption=" + sortOption;
+            }
+            document.getElementById("page-title").innerHTML = criteriaAndSorting;
+            process(criteriaAndSorting);
+        }
+
         function process(str) {
             if(str == "") {
                 document.getElementById("results-of-query").innerHTML = "";
@@ -34,7 +89,7 @@ function plus($bag)
                         document.getElementById("results-of-query").innerHTML = this.responseText;
                     }
                 };
-                xmlhttp.open("GET", "SortingAJAX.php?sortOption=" + str, true);
+                xmlhttp.open("GET", "SortingAJAX.php?" + str, true);
                 xmlhttp.send();
             }
         }
@@ -52,7 +107,7 @@ function plus($bag)
     $db = new QueryPresenterImpl();
     ?>
 
-    <div class="page-title">Men</div>
+    <div class="page-title" id="page-title">Men</div>
 
     <!-- CRITERIA AND SORTING FORM -->
     <form name="criteriaAndSortingForm" method="get">
@@ -62,7 +117,7 @@ function plus($bag)
                 <div class="criterion-header">Category</div>
                 <?php
                 echo "<div id='criterion-subcategories' class='criterion'>";
-                $db->drawColors();
+                //$db->drawColors();
                 echo "</div>";
                 ?>
             </div>
@@ -84,7 +139,7 @@ function plus($bag)
             </div>
         </div>
         <!-- SORTING -->
-        <select name="sortOption" id="sortOption" class="simple-select" onchange="process(this.value)" title="Sort By">
+        <select name="sortOption" id="sortOption" class="simple-select" onchange="setSortOption(this.value)" title="Sort By">
             <option value="" selected disabled style="display:none;">Sort By</option>
             <option value="NEWEST">Newest</option>
             <option value="ASC">Price: Low to High</option>
@@ -100,15 +155,22 @@ function plus($bag)
     <?php
     echo "<div class='results-of-query' id='results-of-query'>";
     include_once("SortingAJAX.php");
+
     /*$sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
+    $criteria = null;
+    for($i = 0; $i < 10; $i++) {
+        $color = isset($_GET['Color-' . $i]) ? $_GET['Color-' . $i] : null;
+        if($color != null) {
+            $criteria[$i] = "color = $color";
+        }
+    }
 
     $db->setSortOption($sortOption);
-    //$criteria[0] = "price > 15";
-    //$criteria[1] = "price < 30";
-    $db->getItemsByCriteria(null);
-
+    $db->getItemsByCriteria($criteria);
     $db->drawItemHolders();
+
     $db = null;*/
+
     echo "</div>";
     ?>
 

@@ -116,7 +116,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         while ($line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC)){
             $color = $line['NAME'];
             echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='color-$i' name=\"Color-$i\" value=\"$color\" 
-                        onchange=\"criteriaAndSortingForm.submit()\"";
+                        onchange=\"setColor(this.name, this.value, this.checked)\"";
             if (isset($_GET["Color-$i"])) {
                 echo "checked='checked'";
             }

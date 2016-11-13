@@ -9,7 +9,14 @@ $db = new QueryPresenterImpl();
 
 $sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
 
-$criteria[0] = "color = red";
+$criteria = null;
+for($i = 0; $i < 10; $i++) {
+    $color = isset($_GET['Color-' . $i]) ? $_GET['Color-' . $i] : null;
+    if($color != null) {
+        $criteria[$i] = "color = $color";
+    }
+}
+
 $db->setSortOption($sortOption);
 $db->getItemsByCriteria($criteria);
 $db->drawItemHolders();
