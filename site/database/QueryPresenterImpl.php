@@ -45,7 +45,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
 
     public function getItemsByCriteria($criteria)
     {
-        $query = "SELECT * FROM ITEMS ";
+        $query = "SELECT DISTINCT name, price, discount, image FROM items, items_sizes WHERE items.ID = items_sizes.item_id ";
         $colors = array();
         $sizes = array();
         $quantityOfColors = 0;
@@ -60,13 +60,13 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
 
             if (startsWith($criteria[$i], "size")){
                 $nameOfSize = substr($criteria[$i],7, strlen($criteria[$i]));
-                $sizes[$quantityOfSizes] = " size = (SELECT id FROM sizes WHERE sizes.name = '$nameOfSize')";
+                $sizes[$quantityOfSizes] = " size_id = (SELECT ID FROM sizes WHERE name = '$nameOfSize')";
                 $quantityOfSizes++;
             }
         }
         for ($i=0; $i<$quantityOfColors; $i++) {
             if ($i == 0)
-                $query .= "WHERE (";
+                $query .= "AND (";
             $query .= $colors[$i];
             if ($i != $quantityOfColors-1)
                 $query .= " OR";
@@ -80,7 +80,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
 
         for ($i=0; $i<$quantityOfSizes; $i++){
             if ($quantityOfColors == 0 and $i==0)
-                $query .= "WHERE (";
+                $query .= "AND (";
             $query .= $sizes[$i];
             if ($i != $quantityOfSizes-1)
                 $query .= " OR";
@@ -163,9 +163,11 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
 
     public function drawSizes()
     {
-        $query = "SELECT DISTINCT SIZES.NAME FROM ITEMS, SIZES WHERE ITEMS.SIZE = SIZES.ID";
+        $query = "select DISTINCT sizes.name AS NAME
+                  from items_sizes, sizes
+                  where items_sizes.size_id = sizes.ID";
         parent::setQuery($query);
-        parent::executeQuery("existing colors");
+        parent::executeQuery("existing size");
         $i = 0;
         while ($line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC)){
             $size = $line['NAME'];
