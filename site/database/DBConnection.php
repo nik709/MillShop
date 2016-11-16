@@ -88,7 +88,7 @@ class DBConnection
             echo "<div class=\"item-holder\">";
             foreach ($line as $col_value) {
                 if ($col_value == $line['image']) {
-                    echo "<a href='Men.php'>";
+                    echo "<a href='itemPage.php?'>"; // TODO: input item's id here
                     echo "<div class='item-holder-image'>";
                     $this->showImage($col_value, 215);
                     echo "</div>";
@@ -105,7 +105,7 @@ class DBConnection
                 }
             }
             if (!$k){
-                echo "<a href='Men.php' style='text-decoration: none; color: black'>";
+                echo "<a href='itemPage.php?' style='text-decoration: none; color: black'>"; // TODO: input item's id here
                 echo "<div class='item-holder-name'>";
                 echo "$name";
                 echo "</div>";
