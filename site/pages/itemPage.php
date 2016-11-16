@@ -22,7 +22,14 @@ include('menu.php');
 
 <!-- MAIN BLOCK START -->
 
-Здеся будет товар :/
+<?php
+include_once ('../database/QueryPresenterImpl.php');
+
+$id = isset($_GET['ID']) ? $_GET['ID'] : null;
+$db = new QueryPresenterImpl();
+$db->getItemById($id);
+$db->drawItemHolders();
+?>
 
 <!-- MAIN BLOCK END -->
 
