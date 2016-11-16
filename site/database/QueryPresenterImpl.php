@@ -25,7 +25,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     }
 
     public function getItemById($id){
-        $query = "SELECT ID, name, image, price, color, discount FROM items WHERE id = '$id'";
+        $query = "SELECT ID, name, image, price, color, discount, description FROM items WHERE id = '$id'";
         parent::setQuery($query);
         parent::executeQuery("Get item by ID");
     }
@@ -181,5 +181,8 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         }
     }
 
-
+    public function printItemInformation()
+    {
+        parent::printItemInformation();
+    }
 }

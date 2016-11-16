@@ -28,7 +28,7 @@ include_once ('../database/QueryPresenterImpl.php');
 $id = isset($_GET['ID']) ? $_GET['ID'] : null;
 $db = new QueryPresenterImpl();
 $db->getItemById($id);
-$db->drawItemHolders();
+$db->printItemInformation();
 ?>
 
 <!-- MAIN BLOCK END -->
