@@ -25,7 +25,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     }
 
     public function getItemById($id){
-        $query = "SELECT name, image, price, size, color, discount FROM items WHERE id = '$id'";
+        $query = "SELECT ID, name, image, price, color, discount, description FROM items WHERE id = '$id'";
         parent::setQuery($query);
         parent::executeQuery("Get item by ID");
     }
@@ -37,7 +37,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
 
     public function getItemsByColor($color)
     {
-        $query = "SELECT name, image, price, size, color, discount FROM items WHERE color = '$color' ";
+        $query = "SELECT name, image, price, color, discount FROM items WHERE color = '$color' ";
         parent::setQuery($query);
         parent::sorting($this->sortOption);
         parent::executeQuery("Get items by ID");
@@ -45,7 +45,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
 
     public function getItemsByCriteria($criteria)
     {
-        $query = "SELECT DISTINCT name, price, discount, image FROM items, items_sizes WHERE items.ID = items_sizes.item_id ";
+        $query = "SELECT DISTINCT ID, name, price, discount, image FROM items, items_sizes WHERE items.ID = items_sizes.item_id ";
         $colors = array();
         $sizes = array();
         $quantityOfColors = 0;
@@ -181,5 +181,8 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         }
     }
 
-
+    public function printItemInformation()
+    {
+        parent::printItemInformation();
+    }
 }

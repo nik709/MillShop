@@ -87,8 +87,11 @@ class DBConnection
             $k = false;
             echo "<div class=\"item-holder\">";
             foreach ($line as $col_value) {
+                if ($col_value == $line['ID']){
+                    $ID = $col_value;
+                }
                 if ($col_value == $line['image']) {
-                    echo "<a href='itemPage.php?'>"; // TODO: input item's id here
+                    echo "<a href='../pages/itemPage.php?ID=$ID'>"; // TODO: input item's id here
                     echo "<div class='item-holder-image'>";
                     $this->showImage($col_value, 215);
                     echo "</div>";
@@ -105,7 +108,7 @@ class DBConnection
                 }
             }
             if (!$k){
-                echo "<a href='itemPage.php?' style='text-decoration: none; color: black'>"; // TODO: input item's id here
+                echo "<a href='../pages/itemPage.php?ID=$ID' style='text-decoration: none; color: black'>"; // TODO: input item's id here
                 echo "<div class='item-holder-name'>";
                 echo "$name";
                 echo "</div>";
@@ -144,6 +147,71 @@ class DBConnection
         }
     }
 
+    protected function printItemInformation(){
+        while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
+            $k = false;
+            echo "<div class=\"item-holder\">";
+            foreach ($line as $col_value) {
+                if ($col_value == $line['image']) {
+                    echo "<div class='item-holder-image'>";
+                    $this->showImage($col_value, 215);
+                    echo "</div>";
+                    echo "</a>";
+                }
+                if ($col_value == $line['name']) {
+                    $name = $col_value;
+                }
+                if ($col_value == $line['price']) {
+                    $price = $col_value;
+                }
+                if ($col_value == $line['discount']) {
+                    $discount = $col_value;
+                }
+                if ($col_value == $line['description']){
+                    $description = $line['description'];
+                }
+            }
+            if (!$k){
+                echo "<div class='item-holder-name'>";
+                echo "$name";
+                echo "</div>";
+                echo "</a>";
+                if ($discount==0) {
+                    echo "<div class='item-holder-price-holder'>";
+                    $price = number_format($price, 2, '.', '');
+                    echo "<div class='item-holder-price'>";
+                    echo "\$$price";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "<div class='item-holder-new-price'>";
+                    echo "&nbsp;";
+                    echo "</div>";
+                }
+                else {
+                    $price = number_format($price, 2, '.', '');
+                    echo "<div class='item-holder-old-price'>";
+                    echo "\$$price";
+                    echo "</div>";
+                    echo "<div class='item-holder-price-holder'>";
+                    $discount *= 100;
+                    $newPrice = $price - $price*$discount/100;
+                    $newPrice = number_format($newPrice, 2, '.', '');
+                    echo "<div class='item-holder-new-price'>";
+                    echo "\$$newPrice &nbsp;";
+                    echo "</div>";
+                    echo "<div class='item-holder-discount'>";
+                    echo " $discount% OFF";
+                    echo "</div>";
+                    echo "</div>";
+                }
+                $k = true;
+            }
+            echo "$description";
+            echo "</div>";
+        }
+    }
+
+    //--------------------GETTER--------------------
     protected function getResult()
     {
         return $this->result;

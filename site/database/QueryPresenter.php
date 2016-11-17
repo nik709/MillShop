@@ -23,5 +23,7 @@ interface QueryPresenter{
     public function drawColors();
 
     public function drawSizes();
+
+    public function printItemInformation();
 }
 ?>
