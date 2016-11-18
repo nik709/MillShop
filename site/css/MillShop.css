@@ -12,6 +12,7 @@
 @import "elements/simple-button.css";
 @import "elements/simple-checkbox.css";
 @import "elements/simple-textbox-select.css";
+@import "elements/item-presenter.css";
 
 /* Body */
 body {
@@ -61,7 +62,7 @@ body > #wrapping-block {
 
 .page-title {
     padding-top: 18px;
-    padding-bottom: 10px;
+    padding-bottom: 0;
     font-family: "Cyntho Bold", sans-serif;
     font-size: 1.3em;
     text-transform: uppercase;
@@ -98,3 +99,6 @@ body > #wrapping-block {
     padding-right: 10px;
 }
 
+.filler {
+    height: 20px;
+}

@@ -83,9 +83,17 @@ class DBConnection
     }
 
     protected function showResult(){
+        $divCounter = 0;
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
             $k = false;
-            echo "<div class=\"item-holder\">";
+            $divCounter++;
+            if($divCounter == 4) {
+                echo "<div class=\"item-holder\" style='margin-right: 0'>";
+                $divCounter = 0;
+            }
+            else {
+                echo "<div class=\"item-holder\">";
+            }
             foreach ($line as $col_value) {
                 if ($col_value == $line['ID']){
                     $ID = $col_value;
@@ -149,14 +157,13 @@ class DBConnection
 
     protected function printItemInformation(){
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
-            $k = false;
-            echo "<div class=\"item-holder\">";
+            echo "<div class=\"item-presenter\">";
+            echo "<div class='item-presenter-wrapper'>";
             foreach ($line as $col_value) {
                 if ($col_value == $line['image']) {
-                    echo "<div class='item-holder-image'>";
-                    $this->showImage($col_value, 215);
+                    echo "<div class='item-presenter-image'>";
+                    $this->showImage($col_value, 370);
                     echo "</div>";
-                    echo "</a>";
                 }
                 if ($col_value == $line['name']) {
                     $name = $col_value;
@@ -171,42 +178,55 @@ class DBConnection
                     $description = $line['description'];
                 }
             }
-            if (!$k){
-                echo "<div class='item-holder-name'>";
-                echo "$name";
+            echo "<div class='item-presenter-right-side'>";
+            echo "<div class='item-presenter-name'>";
+            echo "$name";
+            echo "</div>";
+            if ($discount==0) {
+                echo "<div class='item-presenter-price-holder'>";
+                $price = number_format($price, 2, '.', '');
+                echo "<div class='item-presenter-price'>";
+                echo "\$$price";
                 echo "</div>";
-                echo "</a>";
-                if ($discount==0) {
-                    echo "<div class='item-holder-price-holder'>";
-                    $price = number_format($price, 2, '.', '');
-                    echo "<div class='item-holder-price'>";
-                    echo "\$$price";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "<div class='item-holder-new-price'>";
-                    echo "&nbsp;";
-                    echo "</div>";
-                }
-                else {
-                    $price = number_format($price, 2, '.', '');
-                    echo "<div class='item-holder-old-price'>";
-                    echo "\$$price";
-                    echo "</div>";
-                    echo "<div class='item-holder-price-holder'>";
-                    $discount *= 100;
-                    $newPrice = $price - $price*$discount/100;
-                    $newPrice = number_format($newPrice, 2, '.', '');
-                    echo "<div class='item-holder-new-price'>";
-                    echo "\$$newPrice &nbsp;";
-                    echo "</div>";
-                    echo "<div class='item-holder-discount'>";
-                    echo " $discount% OFF";
-                    echo "</div>";
-                    echo "</div>";
-                }
-                $k = true;
+                echo "</div>";
             }
+            else {
+                $price = number_format($price, 2, '.', '');
+                echo "<div class='item-presenter-old-price'>";
+                echo "\$$price";
+                echo "</div>";
+                echo "<div class='item-presenter-price-holder'>";
+                $discount *= 100;
+                $newPrice = $price - $price*$discount/100;
+                $newPrice = number_format($newPrice, 2, '.', '');
+                echo "<div class='item-presenter-new-price'>";
+                echo "\$$newPrice &nbsp;";
+                echo "</div>";
+                echo "<div class='item-presenter-discount'>";
+                echo " $discount% OFF";
+                echo "</div>";
+                echo "</div>";
+            }
+            echo "<div id='item-presenter-size-selection' class='item-presenter-size-selection'>";
+            echo "</div>";
+
+            echo "<div class='item-presenter-buttons'>";
+            echo "<input type='button' id='add-to-bag' class='simple-button add-to-bag' name='Add' value='Add to bag'>";
+            echo "</div>";
+
+            echo "</div>";
+            echo "</div>";
+
+            echo "<div class='item-presenter-description-wrapper'>";
+            echo "<div class='item-presenter-description-header'>";
+            echo "Item's Description";
+            echo "<hr class='delimiter'>";
+            echo "</div>";
+            echo "<div class='item-presenter-description-description'>";
             echo "$description";
+            echo "</div>";
+            echo "</div>";
+
             echo "</div>";
         }
     }
