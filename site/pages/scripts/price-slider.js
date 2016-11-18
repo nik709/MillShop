@@ -44,7 +44,7 @@ function getMinPriceNumber()
 function getMaxPriceNumber()
 {
     var maxPrice = 0;
-    $.ajax({
+    /*$.ajax({
         async: false,
         url: 'scripts/getMaxPriceForSlider.php',
         dataType: 'JSON',
@@ -54,6 +54,6 @@ function getMaxPriceNumber()
         error: function() {
             alert("JQuery request failed!");
         }
-    });
+    });*/
     return maxPrice;
 }

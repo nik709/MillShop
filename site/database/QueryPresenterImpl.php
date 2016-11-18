@@ -185,4 +185,43 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     {
         parent::printItemInformation();
     }
+
+    public function getNameById($id){
+        $query = "SELECT name FROM items WHERE ID = $id";
+        parent::setQuery($query);
+        parent::executeQuery("Get name by ID");
+        $line = mysqli_fetch_array(parent::getResult(), MYSQL_ASSOC);
+        return $line['name'];
+    }
+
+    private function getSizesById($id){
+        $query = "SELECT sizes.name AS NAME
+                    FROM items, items_sizes, sizes
+                    WHERE items.id = items_sizes.item_id
+                    AND items_sizes.size_id = sizes.id
+                    AND items.id = $id";
+
+        parent::setQuery($query);
+        parent::executeQuery("Get sizes by ID");
+        $result = array();
+        $i = 0;
+        while ($line = mysqli_fetch_array(parent::getResult(), MYSQL_ASSOC)){
+            $result[$i] = $line['NAME'];
+            $i++;
+        }
+
+        return $result;
+    }
+
+    public function drawSizeSelector($id){
+        echo "<select name=\"sizeOfItem\" id=\"sizeOfItem\" class=\"simple-select\" onchange=\"\" title=\"Choose Size\">";
+        echo "    <option value=\"\" selected disabled style=\"display:none;\">Choose Size...</option>";
+        $sizes = $this->getSizesById($id);
+        foreach ($sizes as $size) {
+            echo "<option value=\"$size\">$size</option>\";";
+        }
+        echo "</select>";
+    }
+
+
 }

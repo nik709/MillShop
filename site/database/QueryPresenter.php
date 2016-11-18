@@ -25,5 +25,10 @@ interface QueryPresenter{
     public function drawSizes();
 
     public function printItemInformation();
+
+    public function getNameById($id);
+
+    public function drawSizeSelector($id);
+
 }
 ?>
