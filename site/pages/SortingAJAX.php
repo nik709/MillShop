@@ -27,7 +27,6 @@ for($i = 0; $i < 20; $i++) {
 $db->setSortOption($sortOption);
 $db->getItemsByCriteria($criteria);
 $db->drawItemHolders();
-
 $db = null;
 
 ?>

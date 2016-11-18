@@ -136,6 +136,7 @@ function plus($bag)
     ?>
 
     <div class="page-title" id="page-title">Men</div>
+    <hr class="delimiter">
 
     <!-- CRITERIA AND SORTING FORM -->
     <form name="criteriaAndSortingForm" method="get">
