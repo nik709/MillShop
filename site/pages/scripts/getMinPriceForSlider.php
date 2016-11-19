@@ -4,9 +4,8 @@
     CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
 
-require_once "../../database/QueryPresenterImpl.php";
-//$dataObj = new QueryPresenterImpl();
-//echo json_decode($dataObj->getMinPrice());
-//echo json_decode($dataObj->getMinPrice());
-echo "123";
+include_once "../../database/QueryPresenterImpl.php";
+$dataObj = new QueryPresenterImpl();
+echo json_encode(floor($dataObj->getMinPrice()));
+
 ?>

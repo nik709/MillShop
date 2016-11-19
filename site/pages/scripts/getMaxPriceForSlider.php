@@ -5,8 +5,7 @@
  */
 
 require_once "../../database/QueryPresenterImpl.php";
-//$dataObj = new QueryPresenterImpl();
-//echo json_decode($dataObj->getMaxPrice());
-//echo json_decode($dataObj->getMaxPrice());
-echo "196";
+$dataObj = new QueryPresenterImpl();
+echo json_decode(ceil($dataObj->getMaxPrice()));
+
 ?>
