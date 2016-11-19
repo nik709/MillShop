@@ -1,0 +1,1 @@
+INSERT INTO `millshop`.`users` (LOGIN, PASSWORD, FIRSTNAME, LASTNAME) VALUES ('ADMIN', 'admin', 'admin', 'admin');

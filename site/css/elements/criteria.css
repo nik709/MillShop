@@ -1,0 +1,38 @@
+/*
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
+*/
+
+/* Criteria */
+#criteria > div {
+    display: inline-block;
+}
+
+.criterion-header {
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+.criteria-form {
+    margin-right: 20px;
+}
+
+.criterion {
+    height: 80px;
+    width: 180px;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    display: block;
+}
+
+.criterion::-webkit-scrollbar {
+    width: 10px;
+}
+
+.criterion::-webkit-scrollbar-track {
+    background-color: #e7e7e7;
+}
+
+.criterion::-webkit-scrollbar-thumb {
+    background-color: #9b9b9b;
+}

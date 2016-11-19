@@ -5,61 +5,100 @@
 
 /* Imports */
 @import url("../resources/fonts/fonts.css");
+@import "Footer.css";
+@import "Menu.css";
+@import "elements/items.css";
+@import "elements/criteria.css";
+@import "elements/simple-button.css";
+@import "elements/simple-checkbox.css";
+@import "elements/simple-textbox-select.css";
+@import "elements/item-presenter.css";
 
 /* Body */
 body {
     font-family: "Cyntho Medium", sans-serif;
     text-align: center;
+    margin: 0 auto;
+}
+
+#wrapping-block {
+    max-width: 100%;
+    height: 100vh;
+}
+
+body > #wrapping-block {
+    min-height: 100vh;
+    height: auto;
 }
 
 #main-block {
-    width: 980px;
+    position: relative;
+    height: 100%;
+    padding-bottom: 100px;
+    max-width: 1000px;
+    width: 100vw;
     text-align: left;
     margin: 0 auto;
 }
 
-/* Buttons */
-button {
-    width: 90px;
-    height: 28px;
-    display: flex;
-    overflow: hidden;
+.margin-wrapper {
+    max-width: 960px;
+    width: 100vw;
+    margin-left: 20px;
+    margin-right: 20px;
+}
 
-    margin: 10px;
-    padding: 5px 5px;
+.error-title {
+    font-size: 130px;
+    margin-top: 30px;
+}
 
-    cursor: pointer;
-    user-select: none;
-    transition: all 160ms ease-in-out;
-    text-align: center;
-    white-space: nowrap;
-    text-decoration: none !important;
-
-    color: white;
-    background: #ec141a;
-
-    border: 0 none;
-
+.error-text {
     font-family: "Cyntho Bold", sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.3;
-
-    justify-content: center;
-    align-items: center;
-    flex: 0 0 160px;
+    text-transform: uppercase;
+    font-size: 50px;
+    margin-bottom: 30px;
 }
 
-button:hover {
-    transition: all 160ms ease;
-    background-color: #f25b5f;
+.page-title {
+    padding-top: 18px;
+    padding-bottom: 0;
+    font-family: "Cyntho Bold", sans-serif;
+    font-size: 1.3em;
+    text-transform: uppercase;
 }
 
-button:active {
-    transition: all 160ms ease;
-    background-color: #8e0b0f;
+/* Banners on the main page */
+#banners-block {
+    max-width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
-button:focus {
-    outline: 0;
+#banners-block:after {
+    display: block;
+    clear: both;
+    content: ' ';
+}
+
+#main-banner {
+    padding-bottom: 5px;
+}
+
+#banner-shop-men, #banner-shop-women {
+    display: inline-block;
+    float: left;
+    padding-top: 10px;
+}
+
+#banner-shop-women {
+    padding-left: 10px;
+}
+
+#banner-shop-men {
+    padding-right: 10px;
+}
+
+.filler {
+    height: 20px;
 }

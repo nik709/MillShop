@@ -1,0 +1,176 @@
+/*
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
+*/
+
+/* Header */
+#menu-block {
+    text-align: center;
+}
+
+#logo-block {
+    margin: 0 auto;
+    width: 290px;
+}
+
+#logo-image {
+    content: url("../resources/images/logo_horizontal.svg");
+}
+
+#menu-bar-outside {
+    background-color: #ddc9bc;
+    height: 37px;
+    text-align: center;
+}
+
+#menu-bar-inside {
+    max-width: 1000px;
+    width: 100vw;
+    text-align: left;
+    margin: 0 auto;
+}
+
+#menu-bar-inside div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#menu-bar-links {
+    padding-bottom: 7px;
+    padding-top: 7px;
+}
+
+.menu-links-item {
+    padding-right: 36px;
+}
+
+#menu-bar-links a {
+    color: black;
+    font-family: "Cyntho Bold", sans-serif;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    padding: 7px 0;
+    text-decoration: none;
+}
+
+#menu-bar-links a:hover {
+    color: #736868;
+}
+
+#menu-bar-tools {
+    float: right;
+}
+
+#menu-bar-search {
+    height: 20px;
+    padding: 6px 0 5px 0;
+}
+
+#menu-bar-currency {
+    height: 20px;
+    width: 20px;
+    padding: 0 8px;
+    margin-top: 5px;
+    background: url("../resources/images/currency.svg") center center no-repeat;
+    background-size: 20px;
+}
+
+#menu-bar-user {
+    height: 24px;
+    width: 20px;
+    padding: 0 8px;
+    margin-top: 5px;
+    background: url("../resources/images/user.svg") center center no-repeat;
+    background-size: 20px;
+}
+
+#menu-bar-bag {
+    height: 23px;
+    width: 23px;
+    margin: 4px 0 0 8px;
+    background: url("../resources/images/bag.svg") center center no-repeat;
+    background-size: 23px 23px;
+}
+
+#menu-bag-items-count {
+    width: 20px;
+    color: white;
+    font-family: "Cyntho Bold", sans-serif;
+    font-size: 1em;
+    margin: 3px 0 0 1px;
+    text-align: center;
+}
+
+/* Search */
+
+.search-form {
+    position: absolute;
+    margin-top: -6px;
+}
+
+.search-textbox {
+    height: 37px;
+    font-size: 1em;
+    display: inline-block;
+    font-family: "Cyntho Light", sans-serif;
+    border: none;
+    outline: none;
+    color: #000000;
+    padding: 0 2.3em 0 12px;
+    width: 0;
+    position: absolute;
+    background: none;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    transition: width 0.7s cubic-bezier(0.000, 0.795, 0.000, 1.000), background 0.7s cubic-bezier(0.000, 0.795, 0.000, 1.000), z-index 0.7s cubic-bezier(0.000, 0.000, 0.000, 1.000);
+    cursor: pointer;
+}
+
+.search-textbox::-webkit-input-placeholder {
+    color: black;
+}
+
+.search-textbox:-ms-input-placeholder {
+    color: black;
+}
+
+.search-textbox:-moz-placeholder {
+    color: black;
+}
+
+.search-textbox:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #fdeedf inset !important;
+}
+
+.search-textbox:focus {
+    background-color: #fdeedf;
+    width: 484px;
+    z-index: 1;
+    cursor: text;
+}
+
+.search-button {
+    height: 37px;
+    width: 2em;
+    display: inline-block;
+    color:red;
+    float: right;
+    background: url("../resources/images/search.svg") center center no-repeat;
+    background-size: 1.5em;
+    text-indent: -10000px;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 6px;
+    z-index: 2;
+    cursor: pointer;
+    opacity: 1;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    outline: 0;
+}
+
+.search-button:hover {
+    opacity: 0.5;
+}

@@ -1,0 +1,56 @@
+/*
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
+*/
+
+/* Imports */
+@import url("../resources/fonts/fonts.css");
+
+/* Footer */
+#footer-block {
+    position: relative;
+    margin-top: -92px;
+    top: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1em;
+    text-align: center;
+    background-color: #152b3c;
+    color: white;
+    height: 60px;
+}
+
+#footer-inside {
+    text-align: left;
+    max-width: 1000px;
+    width: 100vw;
+    margin: 0 auto;
+}
+
+#footer-inside div, #footer-inside a {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#footer-logo {
+    height: 42px;
+    width: 100px;
+    padding: 9px 0;
+}
+
+#footer-contacts {
+    font-family: "Cyntho Light", sans-serif;
+    font-size: 0.8em;
+}
+
+#footer-feedback {
+    float: right;
+    transform: translateY(90%);
+}
+
+#footer-feedback a {
+    color: white;
+    font-size: 0.9em;
+    text-decoration: none;
+}
