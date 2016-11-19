@@ -214,13 +214,17 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     }
 
     public function drawSizeSelector($id){
-        echo "<select name=\"sizeOfItem\" id=\"sizeOfItem\" class=\"simple-select\" onchange=\"\" title=\"Choose Size\">";
-        echo "    <option value=\"\" selected disabled style=\"display:none;\">Choose Size...</option>";
+        //echo "<select name=\"sizeOfItem\" id=\"sizeOfItem\" class=\"simple-select\" onchange=\"\" title=\"Choose Size\">";
+        //echo "    <option value=\"\" selected disabled style=\"display:none;\">Choose Size...</option>";
         $sizes = $this->getSizesById($id);
         foreach ($sizes as $size) {
-            echo "<option value=\"$size\">$size</option>\";";
+            //echo "<option value=\"$size\">$size</option>\";";
+            echo "<div class=\"simple-radio-wrapper\">";
+            echo "<input type=\"radio\" value=\"$size\" class=\"simple-radio\" name=\"sizeSelector\" id=\"$size\">";
+            echo "<label for=\"$size\">$size</label>";
+            echo "</div>";
         }
-        echo "</select>";
+        //echo "</select>";
     }
 
 

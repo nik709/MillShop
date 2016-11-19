@@ -183,30 +183,43 @@ class DBConnection
             echo "$name";
             echo "</div>";
             if ($discount==0) {
-                echo "<div class='item-presenter-price-holder'>";
+                echo "<div class='item-presenter-price-holder item-holder-price-holder'>";
                 $price = number_format($price, 2, '.', '');
-                echo "<div class='item-presenter-price'>";
+                echo "<div class='item-presenter-price item-holder-price'>";
                 echo "\$$price";
                 echo "</div>";
                 echo "</div>";
             }
             else {
                 $price = number_format($price, 2, '.', '');
-                echo "<div class='item-presenter-old-price'>";
+                echo "<div class='item-presenter-old-price item-holder-old-price'>";
                 echo "\$$price";
                 echo "</div>";
-                echo "<div class='item-presenter-price-holder'>";
+                echo "<div class='item-presenter-price-holder item-holder-price-holder'>";
                 $discount *= 100;
                 $newPrice = $price - $price*$discount/100;
                 $newPrice = number_format($newPrice, 2, '.', '');
-                echo "<div class='item-presenter-new-price'>";
+                echo "<div class='item-presenter-new-price item-holder-new-price'>";
                 echo "\$$newPrice &nbsp;";
                 echo "</div>";
-                echo "<div class='item-presenter-discount'>";
+                echo "<div class='item-presenter-discount item-holder-discount'>";
                 echo " $discount% OFF";
                 echo "</div>";
                 echo "</div>";
             }
+
+            echo "<div class='item-presenter-color-wrapper'>";
+            echo "<div class='item-presenter-color-header'>";
+            echo "Color: ";
+            echo "</div>";
+            echo "<div class='item-presenter-color-value'>";
+            echo "Name of color goes here";
+            echo "</div>";
+            echo "</div>";
+
+            echo "<div class='item-presenter-size-header'>";
+            echo "My Size: ";
+            echo "</div>";
             echo "<div id='item-presenter-size-selection' class='item-presenter-size-selection'>";
             echo "</div>";
 

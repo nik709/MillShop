@@ -10,6 +10,7 @@
 @import "elements/items.css";
 @import "elements/criteria.css";
 @import "elements/simple-button.css";
+@import "elements/simple-radio.css";
 @import "elements/simple-checkbox.css";
 @import "elements/simple-textbox-select.css";
 @import "elements/item-presenter.css";
@@ -34,7 +35,7 @@ body > #wrapping-block {
 #main-block {
     position: relative;
     height: 100%;
-    padding-bottom: 100px;
+    padding-bottom: 122px;
     max-width: 1000px;
     width: 100vw;
     text-align: left;
@@ -100,5 +101,12 @@ body > #wrapping-block {
 }
 
 .filler {
-    height: 20px;
+    padding-top: 100px;
+}
+
+.delimiter {
+    width: 100%;
+    border: 0;
+    height: 1px;
+    background-color: #d2d2d2;
 }

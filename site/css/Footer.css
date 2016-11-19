@@ -9,7 +9,7 @@
 /* Footer */
 #footer-block {
     position: relative;
-    margin-top: -92px;
+    margin-top: -122px;
     top: 100%;
     right: 0;
     bottom: 0;
@@ -18,7 +18,7 @@
     text-align: center;
     background-color: #152b3c;
     color: white;
-    height: 60px;
+    height: 90px;
 }
 
 #footer-inside {
