@@ -22,7 +22,7 @@
 }
 
 .item-presenter {
-    margin-top: 20px;
+    margin-top: 34px;
     width: 100%;
 }
 
@@ -32,20 +32,52 @@
 }
 
 .item-presenter-image {
-
 }
 
 .item-presenter-right-side {
-    margin-left: 25px;
+    margin-left: 34px;
+}
+
+.item-presenter-name {
+    font-family: "Cyntho Bold", sans-serif;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.item-presenter-color-wrapper {
+    margin-bottom: 10px;
+}
+
+.item-presenter-color-header {
+    font-family: "Cyntho Bold", sans-serif;
+    margin-right: 6px;
+}
+
+.item-presenter-size-selection > div,
+.item-presenter-color-wrapper > div {
+    display: inline-block;
+}
+
+.item-presenter-size-selection {
+    margin-bottom: 20px;
 }
 
 .add-to-bag {
-    width: 120px;
+    width: 190px;
+    text-transform: uppercase;
 }
 
-.delimiter {
-    width: 100%;
-    border: 0;
-    height: 1px;
-    background-color: #0c202b;
+/* Description block */
+.item-presenter-description-wrapper {
+    margin-top: 28px;
+}
+
+.item-presenter-description-header {
+    font-size: 0.9em;
+}
+
+.item-presenter-description-description {
+    margin-top: 20px;
+    font-family: "Cyntho Light", sans-serif;
 }

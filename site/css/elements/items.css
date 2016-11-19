@@ -4,6 +4,11 @@
 */
 
 /* Items */
+.results-of-query {
+    margin-top: 26px;
+    margin-bottom: 36px;
+}
+
 .results-of-query > div {
     display: inline-block;
 }
