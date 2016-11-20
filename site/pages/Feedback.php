@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <!--
     MILL SHOP COMPANY, 2016
     CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
@@ -14,6 +15,7 @@
 </head>
 <body>
     <?php
+    session_start();
     include('menu.php');
     ?>
 

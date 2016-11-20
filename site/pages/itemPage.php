@@ -3,6 +3,16 @@ session_start();
 if (!isset($_SESSION['count']))
     $_SESSION['count'] = 0;
 
+if (!isset($_SESSION['arr']))
+    $_SESSION['arr'] = array();
+
+function plus($bag)
+{
+    $bag++;
+    $_SESSION['count'] = $bag;
+}
+
+
 include_once ('../database/QueryPresenterImpl.php');
 $db = new QueryPresenterImpl();
 $id = isset($_GET['ID']) ? $_GET['ID'] : null;
@@ -32,10 +42,12 @@ include('menu.php');
     <div class="item-page-header">Subcategory</div>
 </div>
 <hr class="delimiter">
+
 <?php
 $db->getItemById($id);
 $db->printItemInformation();
 ?>
+
 <script type="text/javascript">
     document.getElementById('item-presenter-size-selection').innerHTML = '<?php $db->drawSizeSelector($id); ?>';
 </script>
