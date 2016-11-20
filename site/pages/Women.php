@@ -1,11 +1,15 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['arr']))
+    $_SESSION['arr'] = array();
+
 function plus($bag)
 {
     $bag++;
     $_SESSION['count'] = $bag;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -36,15 +40,17 @@ function plus($bag)
            plus($_SESSION['count']);
            header("Location: Women.php") ;
         }
-        printf($_SESSION['count'].'<br />');
 
         if(isset($_SESSION['user-login']) && isset($_SESSION['user-pass'])) {
             echo(" User's login: " . $_SESSION['user-login'].'<br />');
             echo(" User's password: " . $_SESSION['user-pass'].'<br />');
         }
+
+        foreach ($_SESSION['arr'] as $value) {
+            printf($value . '<br/>');
+        }
         ?>
         <button class="simple-button" name="button">Women</button>
-
     </form>
 
 
