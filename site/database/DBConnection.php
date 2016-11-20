@@ -218,7 +218,7 @@ class DBConnection
             echo "</div>";
 
             echo "<div class='item-presenter-size-header'>";
-            echo "My Size: ";
+            echo "Size: ";
             echo "</div>";
             echo "<div id='item-presenter-size-selection' class='item-presenter-size-selection'>";
             echo "</div>";
@@ -226,6 +226,8 @@ class DBConnection
 
 
             echo "<form method='post'>";
+            echo "Quantity: ";
+            echo "<input type='text' class='simple-textbox' id='item-presenter-quantity-textbox' value='' name='itemQuantity'>";
             echo "<div class='item-presenter-buttons'>";
                 $id = isset($_GET['ID']) ? $_GET['ID'] : null;
                 if(!in_array($id,$_SESSION['arr'])) {
