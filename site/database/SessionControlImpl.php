@@ -25,6 +25,12 @@ class SessionControlImpl extends DBConnection  implements SessionControl
         parent::executeQuery("ADD NEW USER");
     }
 
+    public function checkUser($login, $password)
+    {
+        $chech = false;
+
+        return $chech;
+    }
 
 
 }

@@ -222,5 +222,4 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         //echo "</select>";
     }
 
-
 }

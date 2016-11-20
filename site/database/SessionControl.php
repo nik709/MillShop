@@ -7,4 +7,7 @@
 interface SessionControl
 {
     public function addNewUser($login, $password, $firstName, $lastName);
+
+    public function checkUser($login, $password);
+
 }
