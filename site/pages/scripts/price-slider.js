@@ -13,8 +13,12 @@ $(document).ready(function()
         step: 1,
         values: [ minPrice, maxPrice ],
         slide: function( event, ui ) {
-            $( "#criteria-min-price" ).text(ui.values[0] + "$");
-            $( "#criteria-max-price" ).text(ui.values[1] + "$");
+            if(ui.values[1] - ui.values[0] < 2)
+                return false;
+            else {
+                $("#criteria-min-price").text(ui.values[0] + "$");
+                $("#criteria-max-price").text(ui.values[1] + "$");
+            }
         },
         stop: function( event, ui ) {
             //var nr_total = getMinPriceNumber();
@@ -28,6 +32,7 @@ function getMinPriceNumber()
 {
     var minPrice = 0;
     $.ajax({
+        type: "POST",
         async: false,
         url: 'scripts/getMinPriceForSlider.php',
         dataType: 'JSON',
@@ -44,7 +49,7 @@ function getMinPriceNumber()
 function getMaxPriceNumber()
 {
     var maxPrice = 0;
-    /*$.ajax({
+    $.ajax({
         async: false,
         url: 'scripts/getMaxPriceForSlider.php',
         dataType: 'JSON',
@@ -54,6 +59,6 @@ function getMaxPriceNumber()
         error: function() {
             alert("JQuery request failed!");
         }
-    });*/
+    });
     return maxPrice;
 }

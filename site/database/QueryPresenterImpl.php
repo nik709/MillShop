@@ -10,8 +10,8 @@ function startsWith($haystack, $needle)
     return (substr($haystack, 0, $length) === $needle);
 }
 
-include_once ("../database/DBConnection.php");
-include_once("../database/QueryPresenter.php");
+include_once ("DBConnection.php");
+include_once("QueryPresenter.php");
 class QueryPresenterImpl extends DBConnection implements QueryPresenter
 {
     private $sortOption;

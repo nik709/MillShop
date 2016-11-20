@@ -22,7 +22,7 @@ function plus($bag)
     <link href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" rel="stylesheet" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
-    <!-- <script type="text/javascript" src="scripts/price-slider.js"></script> -->
+    <script type="text/javascript" src="scripts/price-slider.js"></script>
 
     <script>
         var criteriaAndSorting = null;
@@ -165,6 +165,18 @@ function plus($bag)
                 $db->drawColors();
                 echo "</div>";
                 ?>
+            </div>
+            <div id="criteria-price-form" class="criteria-form">
+                <div class="criterion-header">Price</div>
+                <div id="criterion-price" class="criterion-price">
+                    <div class="criterion-price-wrapper">
+                        <div id="criteria-slider-price"></div>
+                        <div class="criterion-min-max-price-wrapper">
+                            <div id="criteria-min-price"></div>
+                            <div id="criteria-max-price"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- SORTING -->
