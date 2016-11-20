@@ -223,9 +223,19 @@ class DBConnection
             echo "<div id='item-presenter-size-selection' class='item-presenter-size-selection'>";
             echo "</div>";
 
+
+
+            echo "<form method='post'>";
             echo "<div class='item-presenter-buttons'>";
-            echo "<input type='button' id='add-to-bag' class='simple-button add-to-bag' name='Add' value='Add to bag'>";
+                $id = isset($_GET['ID']) ? $_GET['ID'] : null;
+                if(!in_array($id,$_SESSION['arr'])) {
+                array_push($_SESSION['arr'], $id);
+                plus($_SESSION['count']);
+                }
+            echo "<button id='add-to-bag' class='simple-button add-to-bag' name='Add' value='Add to bag'>ADD TO BAG</button>";
             echo "</div>";
+            echo "</form>";
+
 
             echo "</div>";
             echo "</div>";
