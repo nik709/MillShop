@@ -41,7 +41,7 @@
                             <div id="menu-bar-user" title="My profile"></div>
                         </a>
                         <a href="MillShop.php">
-                            <div id="menu-bar-bag" title="My bag"><div id="menu-bag-items-count"><?php echo $_SESSION['count'];?></div></div>
+                            <div id="menu-bar-bag" title="My bag"><div id="menu-bag-items-count"><?php if(isset($_SESSION['count'])) echo $_SESSION['count']; else echo 0;?></div></div>
                         </a>
                     </div>
                 </div>

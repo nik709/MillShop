@@ -4,12 +4,6 @@ session_start();
 if (!isset($_SESSION['arr']))
     $_SESSION['arr'] = array();
 
-function plus($bag)
-{
-    $bag++;
-    $_SESSION['count'] = $bag;
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +31,7 @@ function plus($bag)
     <form method="post">
         <?php
         if(isset($_POST['button'])) {
-           plus($_SESSION['count']);
+          session_destroy();
            header("Location: Women.php") ;
         }
 
@@ -50,7 +44,7 @@ function plus($bag)
             printf($value . '<br/>');
         }
         ?>
-        <button class="simple-button" name="button">Women</button>
+        <button class="simple-button" name="button">LOG OUT</button>
     </form>
 
 
