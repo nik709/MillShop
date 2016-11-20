@@ -30,17 +30,12 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         parent::executeQuery("Get item by ID");
     }
 
-    public function getItemsBySizes($sizes)
-    {
-        // TODO: Implement getItemsBySizes() method.
-    }
-
     public function getItemsByColor($color)
     {
         $query = "SELECT name, image, price, color, discount FROM items WHERE color = '$color' ";
         parent::setQuery($query);
         parent::sorting($this->sortOption);
-        parent::executeQuery("Get items by ID");
+        parent::executeQuery("Get items by COLOR");
     }
 
     public function getItemsByCriteria($criteria)
@@ -190,7 +185,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         $query = "SELECT name FROM items WHERE ID = $id";
         parent::setQuery($query);
         parent::executeQuery("Get name by ID");
-        $line = mysqli_fetch_array(parent::getResult(), MYSQL_ASSOC);
+        $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
         return $line['name'];
     }
 
@@ -205,7 +200,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         parent::executeQuery("Get sizes by ID");
         $result = array();
         $i = 0;
-        while ($line = mysqli_fetch_array(parent::getResult(), MYSQL_ASSOC)){
+        while ($line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC)){
             $result[$i] = $line['NAME'];
             $i++;
         }

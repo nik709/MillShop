@@ -260,6 +260,5 @@ class DBConnection
         return $this->result;
     }
 
-
 }
 ?>

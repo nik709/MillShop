@@ -4,7 +4,7 @@
     CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
 
-class SessionControl
+interface SessionControl
 {
-
+    public function addNewUser($login, $password, $firstName, $lastName);
 }
