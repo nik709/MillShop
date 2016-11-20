@@ -222,27 +222,21 @@ class DBConnection
             echo "</div>";
             echo "<div id='item-presenter-size-selection' class='item-presenter-size-selection'>";
             echo "</div>";
-?>
 
 
-<form method="post">
-            <div class='item-presenter-buttons'>
-                <?php
-                $db = new QueryPresenterImpl();
+
+            echo "<form method='post'>";
+            echo "<div class='item-presenter-buttons'>";
                 $id = isset($_GET['ID']) ? $_GET['ID'] : null;
-
                 if(!in_array($id,$_SESSION['arr'])) {
                 array_push($_SESSION['arr'], $id);
                 plus($_SESSION['count']);
                 }
-                ?>
-            <button id='add-to-bag' class='simple-button add-to-bag' name='Add' value='Add to bag'>ADD TO BAG</button>
-            </div>
-</form>
+            echo "<button id='add-to-bag' class='simple-button add-to-bag' name='Add' value='Add to bag'>ADD TO BAG</button>";
+            echo "</div>";
+            echo "</form>";
 
 
-            
-<?php
             echo "</div>";
             echo "</div>";
 
