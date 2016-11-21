@@ -1,8 +1,11 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['arr']))
-    $_SESSION['arr'] = array();
+if (!isset($_SESSION['item']))
+    $_SESSION['item'] = array();
+
+if (!isset($_SESSION['quant']))
+    $_SESSION['quant'] = array();
 
 ?>
 
@@ -40,8 +43,11 @@ if (!isset($_SESSION['arr']))
             echo(" User's password: " . $_SESSION['user-pass'].'<br />');
         }
 
-        foreach ($_SESSION['arr'] as $value) {
-            printf($value . '<br/>');
+        foreach ($_SESSION['item'] as $value) {
+            printf($value.'<br/>');
+        }
+        foreach ($_SESSION['quant'] as $value) {
+            printf($value.'<br/>');
         }
         ?>
         <button class="simple-button" name="button">LOG OUT</button>

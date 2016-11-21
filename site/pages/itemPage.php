@@ -6,9 +6,9 @@ if (!isset($_SESSION['count']))
 if (!isset($_SESSION['arr']))
     $_SESSION['arr'] = array();
 
-function plus($bag)
+function plus($bag,$quant)
 {
-    $bag++;
+    $bag+=$quant;
     $_SESSION['count'] = $bag;
 }
 
