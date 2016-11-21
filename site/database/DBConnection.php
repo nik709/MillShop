@@ -228,13 +228,17 @@ class DBConnection
             echo "<form method='post'>";
             echo "Quantity: ";
             echo "<input type='text' class='simple-textbox' id='item-presenter-quantity-textbox' value='' name='itemQuantity'>";
+
             echo "<div class='item-presenter-buttons'>";
+            if(isset($_POST['Add'])) {
                 $id = isset($_GET['ID']) ? $_GET['ID'] : null;
-                if(!in_array($id,$_SESSION['arr'])) {
-                array_push($_SESSION['arr'], $id);
-                plus($_SESSION['count']);
+                if (!in_array($id, $_SESSION['item'])) {
+                    array_push($_SESSION['item'], $id);
+                    array_push($_SESSION['quant'], $_POST['itemQuantity']);
+                    plus($_SESSION['count'], $_POST['itemQuantity']);
                 }
-            echo "<button id='add-to-bag' class='simple-button add-to-bag' name='Add' value='Add to bag'>ADD TO BAG</button>";
+            }
+            echo "<button id='add-to-bag' class='simple-button add-to-bag' name='Add' value='Add to bag''>ADD TO BAG</button>";
             echo "</div>";
             echo "</form>";
 
