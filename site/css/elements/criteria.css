@@ -14,12 +14,12 @@
 }
 
 .criteria-form {
-    margin-right: 20px;
+    margin-right: 53px;
 }
 
 .criterion {
     height: 80px;
-    width: 208px;
+    width: 182px;
     overflow-y: scroll !important;
     overflow-x: hidden !important;
     display: block;
@@ -33,7 +33,7 @@
 }
 
 .criterion-price-wrapper {
-    padding-top: 10px;
+    padding-top: 28px;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -57,7 +57,7 @@ div.ui-slider-range {
 
 div.ui-slider-horizontal {
     border-radius: 0;
-    height: 8px;
+    height: 4px;
     background: #d2d2d2;
     border: 1px #d2d2d2;
 }
@@ -67,8 +67,8 @@ div.ui-widget {
 }
 
 a.ui-slider-handle.ui-state-default {
-    width: 1em;
-    height: 1em;
+    width: 0.8em;
+    height: 0.8em;
     border-radius: 10px;
     outline: none;
     background: #0c202b;
@@ -95,4 +95,17 @@ a.ui-slider-handle.ui-state-default {
     text-align: center;
     right: -9px;
     position: relative;
+}
+
+#sorting-wrapper {
+    margin-top: 14px;
+    height: 32px;
+}
+
+#sorting-select {
+    float: right;
+}
+
+#criteria-price-form {
+    margin-right: 0;
 }
