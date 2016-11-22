@@ -3,8 +3,11 @@ session_start();
 if (!isset($_SESSION['count']))
     $_SESSION['count'] = 0;
 
-if (!isset($_SESSION['arr']))
-    $_SESSION['arr'] = array();
+if (!isset($_SESSION['item']))
+    $_SESSION['item'] = array();
+
+if (!isset($_SESSION['quant']))
+    $_SESSION['quant'] = array();
 
 function plus($bag,$quant)
 {
