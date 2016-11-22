@@ -180,12 +180,16 @@ function plus($bag)
             </div>
         </div>
         <!-- SORTING -->
-        <select name="sortOption" id="sortOption" class="simple-select" onchange="setSortOption(this.value)" title="Sort By">
-            <option value="" selected disabled style="display:none;">Sort By</option>
-            <option value="NEWEST">Newest</option>
-            <option value="ASC">Price: Low to High</option>
-            <option value="DESC">Price: High to Low</option>
-        </select>
+        <div id="sorting-wrapper">
+            <div id="sorting-select">
+                <select name="sortOption" id="sortOption" class="simple-select" onchange="setSortOption(this.value)" title="Sort By">
+                    <option value="" selected disabled style="display:none;">Sort By</option>
+                    <option value="NEWEST">Newest</option>
+                    <option value="ASC">Price: Low to High</option>
+                    <option value="DESC">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
         <script type="text/javascript">
             document.getElementById('sortOption').value = "<?php echo $_GET['sortOption'];?>";
         </script>
