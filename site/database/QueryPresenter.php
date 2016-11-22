@@ -22,6 +22,8 @@ interface QueryPresenter{
 
     public function drawSizes();
 
+    public function drawSubcategory();
+
     public function printItemInformation();
 
     public function getNameById($id);

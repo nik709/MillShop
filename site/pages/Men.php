@@ -146,7 +146,7 @@ function plus($bag)
                 <div class="criterion-header">Category</div>
                 <?php
                 echo "<div id='criterion-subcategories' class='criterion'>";
-                //$db->drawColors();
+                $db->drawSubcategory();
                 echo "</div>";
                 ?>
             </div>

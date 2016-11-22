@@ -24,6 +24,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         parent::__destruct();
     }
 
+    //-------------------GETTERS-------------------
     public function getItemById($id){
         $query = "SELECT ID, name, image, price, color, discount, description FROM items WHERE id = '$id'";
         parent::setQuery($query);
@@ -109,18 +110,16 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     }
 
     public function getMinPrice(){
-        $query = "(SELECT MIN(price) AS MIN, discount FROM ITEMS WHERE discount = 0)
+        $query = "(SELECT MIN(price) MIN FROM ITEMS WHERE discount = 0)
                     UNION
-                    (SELECT MIN(PRICE) AS MIN, discount FROM items WHERE discount > 0);";
+                    (SELECT MIN(price - items.price*items.discount) MIN FROM items WHERE discount > 0);";
         parent::setQuery($query);
         parent::executeQuery('min');
         $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
         $min = $line['MIN'];
         $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
-        if ($line != null) {
+        if ($line['MIN'] != null) {
             $price = $line['MIN'];
-            $discount = $line['discount'];
-            $price -= $price * $discount;
             if ($min > $price)
                 $min = $price;
         }
@@ -128,14 +127,37 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         return $min;
     }
 
+    public function getNameById($id){
+        $query = "SELECT name FROM items WHERE ID = $id";
+        parent::setQuery($query);
+        parent::executeQuery("Get name by ID");
+        $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
+        return $line['name'];
+    }
+
+    private function getSizesById($id){
+        $query = "SELECT sizes.name AS NAME
+                    FROM items, items_sizes, sizes
+                    WHERE items.id = items_sizes.item_id
+                    AND items_sizes.size_id = sizes.id
+                    AND items.id = $id";
+
+        parent::setQuery($query);
+        parent::executeQuery("Get sizes by ID");
+        $result = array();
+        $i = 0;
+        while ($line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC)){
+            $result[$i] = $line['NAME'];
+            $i++;
+        }
+
+        return $result;
+    }
+
+    //-------------------DRAW-------------------
     public function drawItemHolders()
     {
         parent::showResult();
-    }
-
-    public function setSortOption($sortOption)
-    {
-        $this->sortOption = $sortOption;
     }
 
     public function drawColors()
@@ -176,36 +198,29 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         }
     }
 
+    public function drawSubcategory()
+    {
+        $query = "SELECT DISTINCT subcategory.name AS NAME
+                  FROM subcategory, items
+                  WHERE subcategory.id = items.subcategory;";
+        parent::setQuery($query);
+        parent::executeQuery("existing subcategories");
+        $i = 0;
+        while ($line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC)){
+            $sub = $line['NAME'];
+            echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='Sub-$i' name=\"Sub-$i\" value=\"$sub\" 
+                                    ";
+            if (isset($_GET["Sub-$i"])) {
+                echo "checked='checked'";
+            }
+            echo "/><label for='Sub-$i'>$sub</label></div><Br>";
+            $i++;
+        }
+    }
+
     public function printItemInformation()
     {
         parent::printItemInformation();
-    }
-
-    public function getNameById($id){
-        $query = "SELECT name FROM items WHERE ID = $id";
-        parent::setQuery($query);
-        parent::executeQuery("Get name by ID");
-        $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
-        return $line['name'];
-    }
-
-    private function getSizesById($id){
-        $query = "SELECT sizes.name AS NAME
-                    FROM items, items_sizes, sizes
-                    WHERE items.id = items_sizes.item_id
-                    AND items_sizes.size_id = sizes.id
-                    AND items.id = $id";
-
-        parent::setQuery($query);
-        parent::executeQuery("Get sizes by ID");
-        $result = array();
-        $i = 0;
-        while ($line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC)){
-            $result[$i] = $line['NAME'];
-            $i++;
-        }
-
-        return $result;
     }
 
     public function drawSizeSelector($id){
@@ -222,4 +237,9 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         //echo "</select>";
     }
 
+    //-------------------SETTER-------------------
+    public function setSortOption($sortOption)
+    {
+        $this->sortOption = $sortOption;
+    }
 }
