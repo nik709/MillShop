@@ -27,6 +27,33 @@ function plus($bag)
     <script>
         var criteriaAndSorting = null;
 
+        function setSubcategory(id, category, isChecked) {
+            if(isChecked) {
+                if (criteriaAndSorting != null && criteriaAndSorting != "") {
+                    criteriaAndSorting += "&" + id + "=" + category;
+                }
+                else {
+                    criteriaAndSorting = id + "=" + category;
+                }
+            }
+            else {
+                if (criteriaAndSorting.indexOf(id) != -1) {
+                    var string = id + "=" + category;
+                    var preIndex = criteriaAndSorting.indexOf(string);
+                    var startIndex = preIndex - 1;
+                    if(startIndex != -1) {
+                        var oldCategory = criteriaAndSorting.substring(startIndex);
+                        if (oldCategory.indexOf("&") != -1) {
+                            string = "&" + string;
+                        }
+                    }
+                    criteriaAndSorting = criteriaAndSorting.replace(string, "");
+                }
+            }
+            //document.getElementById("page-title").innerHTML = criteriaAndSorting;
+            process(criteriaAndSorting);
+        }
+
         function setSize(id, size, isChecked) {
             if(isChecked) {
                 if (criteriaAndSorting != null && criteriaAndSorting != "") {
@@ -145,7 +172,7 @@ function plus($bag)
             <div id="criteria-subcategory-form" class="criteria-form">
                 <div class="criterion-header">Category</div>
                 <?php
-                echo "<div id='criterion-subcategories' class='criterion'>";
+                echo "<div id='criterion-subcategories' class='criterion' style='width: 216px'>";
                 $db->drawSubcategory();
                 echo "</div>";
                 ?>
@@ -153,7 +180,7 @@ function plus($bag)
             <div id="criteria-size-form" class="criteria-form">
                 <div class="criterion-header">Size</div>
                 <?php
-                echo "<div id='criterion-sizes' class='criterion'>";
+                echo "<div id='criterion-sizes' class='criterion' style='width: 162px'>";
                 $db->drawSizes();
                 echo "</div>";
                 ?>
@@ -161,7 +188,7 @@ function plus($bag)
             <div id="criteria-color-form" class="criteria-form">
                 <div class="criterion-header">Color</div>
                 <?php
-                echo "<div id='criterion-colors' class='criterion'>";
+                echo "<div id='criterion-colors' class='criterion' style='width: 168px'>";
                 $db->drawColors();
                 echo "</div>";
                 ?>
@@ -191,7 +218,12 @@ function plus($bag)
             </div>
         </div>
         <script type="text/javascript">
-            document.getElementById('sortOption').value = "<?php echo $_GET['sortOption'];?>";
+            <?php
+            $sortOpt = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
+                if($sortOpt != null) {
+                    echo "document . getElementById('sortOption') . value = \"$sortOpt\"";
+                }
+            ?>
         </script>
     </form>
 
