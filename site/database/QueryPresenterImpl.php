@@ -208,12 +208,12 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         $i = 0;
         while ($line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC)){
             $sub = $line['NAME'];
-            echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='Sub-$i' name=\"Sub-$i\" value=\"$sub\" 
-                                    ";
-            if (isset($_GET["Sub-$i"])) {
+            echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='Category-$i' name=\"Category-$i\" value=\"$sub\"
+                        onchange=\"setSubcategory(this.name, this.value, this.checked)\"";
+            if (isset($_GET["Category-$i"])) {
                 echo "checked='checked'";
             }
-            echo "/><label for='Sub-$i'>$sub</label></div><Br>";
+            echo "/><label for='Category-$i'>$sub</label></div><Br>";
             $i++;
         }
     }
