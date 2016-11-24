@@ -1,11 +1,12 @@
 <?php
 session_start();
 
-function plus($bag)
-{
-    $bag++;
-    $_SESSION['count'] = $bag;
-}
+if (!isset($_SESSION['item']))
+    $_SESSION['item'] = array();
+
+if (!isset($_SESSION['quant']))
+    $_SESSION['quant'] = array();
+
 ?>
 
 <!DOCTYPE html>
@@ -33,18 +34,23 @@ function plus($bag)
     <form method="post">
         <?php
         if(isset($_POST['button'])) {
-           plus($_SESSION['count']);
+          session_destroy();
            header("Location: Women.php") ;
         }
-        printf($_SESSION['count'].'<br />');
 
         if(isset($_SESSION['user-login']) && isset($_SESSION['user-pass'])) {
             echo(" User's login: " . $_SESSION['user-login'].'<br />');
             echo(" User's password: " . $_SESSION['user-pass'].'<br />');
         }
-        ?>
-        <button class="simple-button" name="button">Women</button>
 
+        foreach ($_SESSION['item'] as $value) {
+            printf($value.'<br/>');
+        }
+        foreach ($_SESSION['quant'] as $value) {
+            printf($value.'<br/>');
+        }
+        ?>
+        <button class="simple-button" name="button">LOG OUT</button>
     </form>
 
 

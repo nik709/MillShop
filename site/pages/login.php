@@ -30,7 +30,7 @@ include('menu.php');
                 if(isset($_POST['log-but'])){
                     $_SESSION['user-login']=$_POST['login'];
                     $_SESSION['user-pass']=$_POST['password'];
-
+                    session_start();
                 //Тут должна быть проверка правильности ввода через БД
                 }
                 ?>
@@ -49,11 +49,11 @@ include('menu.php');
                     <p><input id="password" name="reg-password" type="text" placeholder="Password"></p>
                     <?php
                     if(isset($_POST['reg-button'])){
-                        include_once("../database/DBConnection.php");
-                        $db = new DBConnection();
-                        $db->openConnection();
-                        $db->addUser($_POST['reg-login'],$_POST['reg-password'],$_POST['reg-name1'],$_POST['reg-name2']);
-                        $db->closeConnection();
+                        include_once ("../database/SessionControlImpl.php");
+                        $sessionControl = new SessionControlImpl();
+                        $test = $sessionControl->addNewUser($_POST['reg-login'],$_POST['reg-password'],$_POST['reg-name1'],$_POST['reg-name2']);
+                        $sessionControl = null;
+                        echo "$test";
                     }
                     ?>
                     <button class = "simple-button" name="reg-button">REGISTER</button>

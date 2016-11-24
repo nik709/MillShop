@@ -2,6 +2,17 @@
     MILL SHOP COMPANY, 2016
     CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  -->
+<script type="text/javascript">
+    function onSubmitSearch() {
+        var text = document.getElementById("search-textbox").value;
+        if(text != "") {
+            document.searchForm.action = "Search.php?search=" + text;
+            return true;
+        }
+        return false;
+    }
+</script>
+
 <div id="wrapping-block">
     <div id="menu-block">
         <div id="logo-block">
@@ -17,8 +28,8 @@
                     </div>
                     <div id="menu-bar-tools">
                         <div id="menu-bar-search">
-                            <form id="search-form" class="search-form" title="Search" method="get" action="Search.php">
-                                <input type="text" class="search-textbox" placeholder="I'm looking for..." name="search" value="" autocomplete="off">
+                            <form id="search-form" name="searchForm" class="search-form" title="Search" method="get" onsubmit="return onSubmitSearch();">
+                                <input type="text" class="search-textbox" placeholder="I'm looking for..." id="search-textbox" name="search" value="" autocomplete="off">
                                 <input type="submit" class="search-button" value="">
                                 <span class="search-icon"></span>
                             </form>
@@ -30,7 +41,7 @@
                             <div id="menu-bar-user" title="My profile"></div>
                         </a>
                         <a href="MillShop.php">
-                            <div id="menu-bar-bag" title="Your bag"><div id="menu-bag-items-count"><?php echo $_SESSION['count'];?></div></div>
+                            <div id="menu-bar-bag" title="My bag"><div id="menu-bag-items-count"><?php if(isset($_SESSION['count'])) echo $_SESSION['count']; else echo 0;?></div></div>
                         </a>
                     </div>
                 </div>

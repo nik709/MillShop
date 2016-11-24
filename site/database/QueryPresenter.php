@@ -8,8 +8,6 @@ interface QueryPresenter{
 
     public function getItemById($id);
 
-    public function getItemsBySizes($sizes);
-
     public function getItemsByColor($color);
 
     public function getItemsByCriteria($criteria);
@@ -23,6 +21,8 @@ interface QueryPresenter{
     public function drawColors();
 
     public function drawSizes();
+
+    public function drawSubcategory();
 
     public function printItemInformation();
 

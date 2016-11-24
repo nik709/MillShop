@@ -9,7 +9,7 @@
 /* Footer */
 #footer-block {
     position: relative;
-    margin-top: -92px;
+    margin-top: -122px;
     top: 100%;
     right: 0;
     bottom: 0;
@@ -18,7 +18,7 @@
     text-align: center;
     background-color: #152b3c;
     color: white;
-    height: 60px;
+    height: 90px;
 }
 
 #footer-inside {
@@ -53,4 +53,22 @@
     color: white;
     font-size: 0.9em;
     text-decoration: none;
+    transition: color 0.4s cubic-bezier(0.5, 1.000, 0.000, 0.57);
 }
+
+#footer-feedback a:hover {
+    color: #bcbfbe;
+}
+
+/*
+.contact-us-button {
+    margin-bottom: 0 !important;
+    margin-top: -5px !important;
+    width: 104px !important;
+    font-family: "Cyntho Medium", sans-serif !important;
+}
+
+.contact-us-button:hover {
+    background-color: white !important;
+    color: black !important;
+}*/

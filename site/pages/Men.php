@@ -22,10 +22,37 @@ function plus($bag)
     <link href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" rel="stylesheet" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
-    <!-- <script type="text/javascript" src="scripts/price-slider.js"></script> -->
+    <script type="text/javascript" src="scripts/price-slider.js"></script>
 
     <script>
         var criteriaAndSorting = null;
+
+        function setSubcategory(id, category, isChecked) {
+            if(isChecked) {
+                if (criteriaAndSorting != null && criteriaAndSorting != "") {
+                    criteriaAndSorting += "&" + id + "=" + category;
+                }
+                else {
+                    criteriaAndSorting = id + "=" + category;
+                }
+            }
+            else {
+                if (criteriaAndSorting.indexOf(id) != -1) {
+                    var string = id + "=" + category;
+                    var preIndex = criteriaAndSorting.indexOf(string);
+                    var startIndex = preIndex - 1;
+                    if(startIndex != -1) {
+                        var oldCategory = criteriaAndSorting.substring(startIndex);
+                        if (oldCategory.indexOf("&") != -1) {
+                            string = "&" + string;
+                        }
+                    }
+                    criteriaAndSorting = criteriaAndSorting.replace(string, "");
+                }
+            }
+            //document.getElementById("page-title").innerHTML = criteriaAndSorting;
+            process(criteriaAndSorting);
+        }
 
         function setSize(id, size, isChecked) {
             if(isChecked) {
@@ -145,15 +172,15 @@ function plus($bag)
             <div id="criteria-subcategory-form" class="criteria-form">
                 <div class="criterion-header">Category</div>
                 <?php
-                echo "<div id='criterion-subcategories' class='criterion'>";
-                //$db->drawColors();
+                echo "<div id='criterion-subcategories' class='criterion' style='width: 216px'>";
+                $db->drawSubcategory();
                 echo "</div>";
                 ?>
             </div>
             <div id="criteria-size-form" class="criteria-form">
                 <div class="criterion-header">Size</div>
                 <?php
-                echo "<div id='criterion-sizes' class='criterion'>";
+                echo "<div id='criterion-sizes' class='criterion' style='width: 162px'>";
                 $db->drawSizes();
                 echo "</div>";
                 ?>
@@ -161,21 +188,42 @@ function plus($bag)
             <div id="criteria-color-form" class="criteria-form">
                 <div class="criterion-header">Color</div>
                 <?php
-                echo "<div id='criterion-colors' class='criterion'>";
+                echo "<div id='criterion-colors' class='criterion' style='width: 168px'>";
                 $db->drawColors();
                 echo "</div>";
                 ?>
             </div>
+            <div id="criteria-price-form" class="criteria-form">
+                <div class="criterion-header">Price</div>
+                <div id="criterion-price" class="criterion-price">
+                    <div class="criterion-price-wrapper">
+                        <div id="criteria-slider-price"></div>
+                        <div class="criterion-min-max-price-wrapper">
+                            <div id="criteria-min-price"></div>
+                            <div id="criteria-max-price"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- SORTING -->
-        <select name="sortOption" id="sortOption" class="simple-select" onchange="setSortOption(this.value)" title="Sort By">
-            <option value="" selected disabled style="display:none;">Sort By</option>
-            <option value="NEWEST">Newest</option>
-            <option value="ASC">Price: Low to High</option>
-            <option value="DESC">Price: High to Low</option>
-        </select>
+        <div id="sorting-wrapper">
+            <div id="sorting-select">
+                <select name="sortOption" id="sortOption" class="simple-select" onchange="setSortOption(this.value)" title="Sort By">
+                    <option value="" selected disabled style="display:none;">Sort By</option>
+                    <option value="NEWEST">Newest</option>
+                    <option value="ASC">Price: Low to High</option>
+                    <option value="DESC">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
         <script type="text/javascript">
-            document.getElementById('sortOption').value = "<?php echo $_GET['sortOption'];?>";
+            <?php
+            $sortOpt = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
+                if($sortOpt != null) {
+                    echo "document . getElementById('sortOption') . value = \"$sortOpt\"";
+                }
+            ?>
         </script>
     </form>
 

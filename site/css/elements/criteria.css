@@ -14,15 +14,28 @@
 }
 
 .criteria-form {
-    margin-right: 20px;
+    margin-right: 53px;
 }
 
 .criterion {
     height: 80px;
-    width: 180px;
+    width: 182px;
     overflow-y: scroll !important;
     overflow-x: hidden !important;
     display: block;
+}
+
+.criterion-price {
+    height: 80px;
+    width: 240px;
+    display: block;
+    overflow: hidden;
+}
+
+.criterion-price-wrapper {
+    padding-top: 28px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .criterion::-webkit-scrollbar {
@@ -35,4 +48,64 @@
 
 .criterion::-webkit-scrollbar-thumb {
     background-color: #9b9b9b;
+}
+
+/* Price Slider */
+div.ui-slider-range {
+    background: #0c202b;
+}
+
+div.ui-slider-horizontal {
+    border-radius: 0;
+    height: 4px;
+    background: #d2d2d2;
+    border: 1px #d2d2d2;
+}
+
+div.ui-widget {
+    font-size: 1.2em;
+}
+
+a.ui-slider-handle.ui-state-default {
+    width: 0.8em;
+    height: 0.8em;
+    border-radius: 10px;
+    outline: none;
+    background: #0c202b;
+    border: 0;
+}
+
+.criterion-min-max-price-wrapper > div {
+    display: inline-block;
+}
+
+.criterion-min-max-price-wrapper {
+    font-family: "Cyntho Light", sans-serif;
+    margin-top: 13px;
+}
+
+#criteria-min-price {
+    position: relative;
+    left: -9px;
+    text-align: center;
+}
+
+#criteria-max-price {
+    float: right;
+    text-align: center;
+    right: -9px;
+    position: relative;
+}
+
+#sorting-wrapper {
+    margin-top: 14px;
+    height: 32px;
+}
+
+#sorting-select {
+    float: right;
+}
+
+#criteria-price-form {
+    margin-right: 0;
 }

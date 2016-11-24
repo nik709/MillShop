@@ -4,9 +4,8 @@
     CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
 
-require "../../database/QueryPresenterImpl.php";
-//$dataObj = new QueryPresenterImpl();
-//echo json_decode($dataObj->getMaxPrice());
-//echo json_decode($dataObj->getMaxPrice());
-echo "196";
+require_once "../../database/QueryPresenterImpl.php";
+$dataObj = new QueryPresenterImpl();
+echo json_decode(ceil($dataObj->getMaxPrice()));
+
 ?>

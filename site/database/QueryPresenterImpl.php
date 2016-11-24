@@ -10,8 +10,8 @@ function startsWith($haystack, $needle)
     return (substr($haystack, 0, $length) === $needle);
 }
 
-include_once ("../database/DBConnection.php");
-include_once("../database/QueryPresenter.php");
+include_once ("DBConnection.php");
+include_once("QueryPresenter.php");
 class QueryPresenterImpl extends DBConnection implements QueryPresenter
 {
     private $sortOption;
@@ -24,15 +24,11 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         parent::__destruct();
     }
 
+    //-------------------GETTERS-------------------
     public function getItemById($id){
         $query = "SELECT ID, name, image, price, color, discount, description FROM items WHERE id = '$id'";
         parent::setQuery($query);
         parent::executeQuery("Get item by ID");
-    }
-
-    public function getItemsBySizes($sizes)
-    {
-        // TODO: Implement getItemsBySizes() method.
     }
 
     public function getItemsByColor($color)
@@ -40,7 +36,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         $query = "SELECT name, image, price, color, discount FROM items WHERE color = '$color' ";
         parent::setQuery($query);
         parent::sorting($this->sortOption);
-        parent::executeQuery("Get items by ID");
+        parent::executeQuery("Get items by COLOR");
     }
 
     public function getItemsByCriteria($criteria)
@@ -114,18 +110,16 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     }
 
     public function getMinPrice(){
-        $query = "(SELECT MIN(price) AS MIN, discount FROM ITEMS WHERE discount = 0)
+        $query = "(SELECT MIN(price) MIN FROM ITEMS WHERE discount = 0)
                     UNION
-                    (SELECT MIN(PRICE) AS MIN, discount FROM items WHERE discount > 0);";
+                    (SELECT MIN(price - items.price*items.discount) MIN FROM items WHERE discount > 0);";
         parent::setQuery($query);
         parent::executeQuery('min');
         $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
         $min = $line['MIN'];
         $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
-        if ($line != null) {
+        if ($line['MIN'] != null) {
             $price = $line['MIN'];
-            $discount = $line['discount'];
-            $price -= $price * $discount;
             if ($min > $price)
                 $min = $price;
         }
@@ -133,14 +127,37 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         return $min;
     }
 
+    public function getNameById($id){
+        $query = "SELECT name FROM items WHERE ID = $id";
+        parent::setQuery($query);
+        parent::executeQuery("Get name by ID");
+        $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
+        return $line['name'];
+    }
+
+    private function getSizesById($id){
+        $query = "SELECT sizes.name AS NAME
+                    FROM items, items_sizes, sizes
+                    WHERE items.id = items_sizes.item_id
+                    AND items_sizes.size_id = sizes.id
+                    AND items.id = $id";
+
+        parent::setQuery($query);
+        parent::executeQuery("Get sizes by ID");
+        $result = array();
+        $i = 0;
+        while ($line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC)){
+            $result[$i] = $line['NAME'];
+            $i++;
+        }
+
+        return $result;
+    }
+
+    //-------------------DRAW-------------------
     public function drawItemHolders()
     {
         parent::showResult();
-    }
-
-    public function setSortOption($sortOption)
-    {
-        $this->sortOption = $sortOption;
     }
 
     public function drawColors()
@@ -181,47 +198,48 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         }
     }
 
+    public function drawSubcategory()
+    {
+        $query = "SELECT DISTINCT subcategory.name AS NAME
+                  FROM subcategory, items
+                  WHERE subcategory.id = items.subcategory;";
+        parent::setQuery($query);
+        parent::executeQuery("existing subcategories");
+        $i = 0;
+        while ($line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC)){
+            $sub = $line['NAME'];
+            echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='Category-$i' name=\"Category-$i\" value=\"$sub\"
+                        onchange=\"setSubcategory(this.name, this.value, this.checked)\"";
+            if (isset($_GET["Category-$i"])) {
+                echo "checked='checked'";
+            }
+            echo "/><label for='Category-$i'>$sub</label></div><Br>";
+            $i++;
+        }
+    }
+
     public function printItemInformation()
     {
         parent::printItemInformation();
     }
 
-    public function getNameById($id){
-        $query = "SELECT name FROM items WHERE ID = $id";
-        parent::setQuery($query);
-        parent::executeQuery("Get name by ID");
-        $line = mysqli_fetch_array(parent::getResult(), MYSQL_ASSOC);
-        return $line['name'];
-    }
-
-    private function getSizesById($id){
-        $query = "SELECT sizes.name AS NAME
-                    FROM items, items_sizes, sizes
-                    WHERE items.id = items_sizes.item_id
-                    AND items_sizes.size_id = sizes.id
-                    AND items.id = $id";
-
-        parent::setQuery($query);
-        parent::executeQuery("Get sizes by ID");
-        $result = array();
-        $i = 0;
-        while ($line = mysqli_fetch_array(parent::getResult(), MYSQL_ASSOC)){
-            $result[$i] = $line['NAME'];
-            $i++;
-        }
-
-        return $result;
-    }
-
     public function drawSizeSelector($id){
-        echo "<select name=\"sizeOfItem\" id=\"sizeOfItem\" class=\"simple-select\" onchange=\"\" title=\"Choose Size\">";
-        echo "    <option value=\"\" selected disabled style=\"display:none;\">Choose Size...</option>";
+        //echo "<select name=\"sizeOfItem\" id=\"sizeOfItem\" class=\"simple-select\" onchange=\"\" title=\"Choose Size\">";
+        //echo "    <option value=\"\" selected disabled style=\"display:none;\">Choose Size...</option>";
         $sizes = $this->getSizesById($id);
         foreach ($sizes as $size) {
-            echo "<option value=\"$size\">$size</option>\";";
+            //echo "<option value=\"$size\">$size</option>\";";
+            echo "<div class=\"simple-radio-wrapper\">";
+            echo "<input type=\"radio\" value=\"$size\" class=\"simple-radio\" name=\"sizeSelector\" id=\"$size\">";
+            echo "<label for=\"$size\">$size</label>";
+            echo "</div>";
         }
-        echo "</select>";
+        //echo "</select>";
     }
 
-
+    //-------------------SETTER-------------------
+    public function setSortOption($sortOption)
+    {
+        $this->sortOption = $sortOption;
+    }
 }
