@@ -133,6 +133,56 @@ function plus($bag)
             process(criteriaAndSorting);
         }
 
+        function setMinPrice(minPrice) {
+            if(criteriaAndSorting != null) {
+                if(criteriaAndSorting.indexOf("minPrice") != -1) {
+                    var preString = "minPrice=";
+                    var preIndex = criteriaAndSorting.indexOf(preString);
+                    var searchStartIndex = preIndex + criteriaAndSorting.substring(preIndex).indexOf("=") + 1;
+                    var oldMinPrice = criteriaAndSorting.substring(searchStartIndex);
+                    preIndex = criteriaAndSorting.indexOf(oldMinPrice);
+                    if(oldMinPrice.indexOf("&") != -1) {
+                        var searchEndIndex = preIndex + oldMinPrice.indexOf("&");
+                        oldMinPrice = criteriaAndSorting.substring(searchStartIndex, searchEndIndex);
+                    }
+                    criteriaAndSorting = criteriaAndSorting.replace(oldMinPrice, minPrice);
+                }
+                else {
+                    criteriaAndSorting += "&minPrice=" + minPrice;
+                }
+            }
+            else {
+                criteriaAndSorting = "minPrice=" + minPrice;
+            }
+            //document.getElementById("page-title").innerHTML = criteriaAndSorting;
+            process(criteriaAndSorting);
+        }
+
+        function setMaxPrice(maxPrice) {
+            if(criteriaAndSorting != null) {
+                if(criteriaAndSorting.indexOf("maxPrice") != -1) {
+                    var preString = "maxPrice=";
+                    var preIndex = criteriaAndSorting.indexOf(preString);
+                    var searchStartIndex = preIndex + criteriaAndSorting.substring(preIndex).indexOf("=") + 1;
+                    var oldMaxPrice = criteriaAndSorting.substring(searchStartIndex);
+                    preIndex = criteriaAndSorting.indexOf(oldMaxPrice);
+                    if(oldMaxPrice.indexOf("&") != -1) {
+                        var searchEndIndex = preIndex + oldMaxPrice.indexOf("&");
+                        oldMaxPrice = criteriaAndSorting.substring(searchStartIndex, searchEndIndex);
+                    }
+                    criteriaAndSorting = criteriaAndSorting.replace(oldMaxPrice, maxPrice);
+                }
+                else {
+                    criteriaAndSorting += "&maxPrice=" + maxPrice;
+                }
+            }
+            else {
+                criteriaAndSorting = "maxPrice=" + maxPrice;
+            }
+            //document.getElementById("page-title").innerHTML = criteriaAndSorting;
+            process(criteriaAndSorting);
+        }
+
         function process(str) {
             if (window.XMLHttpRequest) {
                 xmlhttp = new XMLHttpRequest();
@@ -145,7 +195,7 @@ function plus($bag)
                     document.getElementById("results-of-query").innerHTML = this.responseText;
                 }
             };
-            xmlhttp.open("GET", "SortingAJAX.php?" + str, true);
+            xmlhttp.open("GET", "LoadingItemsOnPageAJAX.php?" + str, true);
             xmlhttp.send();
         }
     </script>
@@ -231,7 +281,7 @@ function plus($bag)
 
     <?php
     echo "<div class='results-of-query' id='results-of-query'>";
-    include_once("SortingAJAX.php");
+    include_once("LoadingItemsOnPageAJAX.php");
     echo "</div>";
     ?>
 

@@ -227,7 +227,7 @@ class DBConnection
 
             echo "<form method='post'>";
             echo "Quantity: ";
-            echo "<input type='text' class='simple-textbox' id='item-presenter-quantity-textbox' value='' name='itemQuantity'>";
+            echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='1' min='1' max='10'>";
 
             echo "<div class='item-presenter-buttons'>";
             if(isset($_POST['Add'])) {

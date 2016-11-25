@@ -29,6 +29,15 @@ for($i = 0; $i < 30; $i++) {
     }
 }
 
+$minPrice = isset($_GET['minPrice']) ? $_GET['minPrice'] : null;
+if($minPrice != null) {
+    $criteria[$k] = "minPrice = $minPrice";
+}
+$maxPrice = isset($_GET['maxPrice']) ? $_GET['maxPrice'] : null;
+if($minPrice != null) {
+    $criteria[$k + 1] = "maxPrice = $maxPrice";
+}
+
 $db->setSortOption($sortOption);
 $db->getItemsByCriteria($criteria);
 $db->drawItemHolders();
