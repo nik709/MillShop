@@ -21,7 +21,8 @@ $(document).ready(function()
             }
         },
         stop: function( event, ui ) {
-            //var nr_total = getMinPriceNumber();
+            setMinPrice(ui.values[0]);
+            setMaxPrice(ui.values[1]);
         },
     });
     $("#criteria-min-price").text( $("#criteria-slider-price").slider("values", 0) + "$");
@@ -40,7 +41,7 @@ function getMinPriceNumber()
             minPrice = data;
         },
         error: function() {
-            alert("JQuery request failed!");
+            window.location.href = "500.php?message=\"Getting minPrice is failed.\"";
         }
     });
     return minPrice;
@@ -57,7 +58,7 @@ function getMaxPriceNumber()
             maxPrice = data;
         },
         error: function() {
-            alert("JQuery request failed!");
+            window.location.href = "500.php?message=\"Getting maxPrice is failed.\"";
         }
     });
     return maxPrice;

@@ -44,8 +44,10 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         $query = "SELECT DISTINCT ID, name, price, discount, image FROM items, items_sizes WHERE items.ID = items_sizes.item_id ";
         $colors = array();
         $sizes = array();
+        $subs = array();
         $quantityOfColors = 0;
         $quantityOfSizes = 0;
+        $quantityOfSubs = 0;
         for ($i=0; $i<count($criteria); $i++){
             if (startsWith($criteria[$i], "color")){
                 $nameOfColor = substr($criteria[$i],8, strlen($criteria[$i]));
@@ -58,6 +60,12 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
                 $nameOfSize = substr($criteria[$i],7, strlen($criteria[$i]));
                 $sizes[$quantityOfSizes] = " size_id = (SELECT ID FROM sizes WHERE name = '$nameOfSize')";
                 $quantityOfSizes++;
+            }
+
+            if (startsWith($criteria[$i], "category")){
+                $idOfSub = substr($criteria[$i], 10, strlen($criteria[$i]));
+                $subs[$quantityOfSubs] = " subcategory = $idOfSub";
+                $quantityOfSubs++;
             }
         }
         for ($i=0; $i<$quantityOfColors; $i++) {
@@ -83,7 +91,18 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
             else
                 $query .= ")";
         }
-        //echo "$query";
+
+        for ($i=0; $i<$quantityOfSubs; $i++){
+            if ($i==0)
+                $query .= "AND (";
+            $query .= $subs[$i];
+            if ($i != $quantityOfSubs-1)
+                $query .= " OR";
+            else
+                $query .= ")";
+            //echo "<br> $query";
+        }
+
         parent::setQuery($query);
         parent::sorting($this->sortOption);
         parent::executeQuery("$query");
@@ -200,15 +219,16 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
 
     public function drawSubcategory()
     {
-        $query = "SELECT DISTINCT subcategory.name AS NAME
+        $query = "SELECT DISTINCT subcategory.name AS NAME, subcategory.ID AS ID
                   FROM subcategory, items
                   WHERE subcategory.id = items.subcategory;";
         parent::setQuery($query);
-        parent::executeQuery("existing subcategories");
+        parent::executeQuery("$query");
         $i = 0;
         while ($line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC)){
             $sub = $line['NAME'];
-            echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='Category-$i' name=\"Category-$i\" value=\"$sub\"
+            $id = $line['ID'];
+            echo "<div class='simple-checkbox-wrapper'><input type=\"checkbox\" class='simple-checkbox' id='Category-$i' name=\"Category-$i\" value=\"$id\"
                         onchange=\"setSubcategory(this.name, this.value, this.checked)\"";
             if (isset($_GET["Category-$i"])) {
                 echo "checked='checked'";
