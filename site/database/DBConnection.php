@@ -222,7 +222,7 @@ class DBConnection
             echo "</div>";
             echo "</div>";
 
-            echo "<form method='post'>";
+            echo "<form method='post' action=''>";
             echo "<div class='item-presenter-size-header'>";
             echo "Size: ";
             echo "</div>";
@@ -254,7 +254,6 @@ class DBConnection
                         array_push($_SESSION['size'], $_POST['sizeSelector']);
                         plus($_SESSION['count'], $_POST['itemQuantity']);
                     }
-
             }
             echo "<button id='add-to-bag' class='simple-button add-to-bag' name='Add' value='Add to bag''>ADD TO BAG</button>";
             echo "</div>";

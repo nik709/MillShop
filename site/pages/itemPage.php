@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if (!empty($_POST["Add"])) {
+    header("Location: ".$_SERVER["REQUEST_URI"]);
+}
+
 if (!isset($_SESSION['count']))
     $_SESSION['count'] = 0;
 
@@ -17,7 +22,6 @@ function plus($bag,$quant)
     $bag+=$quant;
     $_SESSION['count'] = $bag;
 }
-
 
 include_once ('../database/QueryPresenterImpl.php');
 $db = new QueryPresenterImpl();
@@ -52,6 +56,9 @@ include('menu.php');
 <?php
 $db->getItemById($id);
 $db->printItemInformation();
+if (!empty($_POST["Add"])) {
+    exit();
+}
 ?>
 
 <script type="text/javascript">
