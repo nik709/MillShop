@@ -83,74 +83,80 @@ class DBConnection
 
     protected function showResult(){
         $divCounter = 0;
-        while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
-            $k = false;
-            $divCounter++;
-            if($divCounter == 4) {
-                echo "<div class=\"item-holder\" style='margin-right: 0'>";
-                $divCounter = 0;
-            }
-            else {
-                echo "<div class=\"item-holder\">";
-            }
-            foreach ($line as $col_value) {
-                if ($col_value == $line['ID']){
-                    $ID = $col_value;
+        $line = mysqli_fetch_array($this->result, MYSQLI_ASSOC);
+        if ($line == null) {
+            echo "<div class='items-not-found'>";
+            echo "No Items Found";
+            echo "</div>";
+        }
+        else {
+            do {
+                $k = false;
+                $divCounter++;
+                if ($divCounter == 4) {
+                    echo "<div class=\"item-holder\" style='margin-right: 0'>";
+                    $divCounter = 0;
+                } else {
+                    echo "<div class=\"item-holder\">";
                 }
-                if ($col_value == $line['image']) {
-                    echo "<a href='../pages/itemPage.php?ID=$ID'>"; // TODO: input item's id here
-                    echo "<div class='item-holder-image'>";
-                    $this->showImage($col_value, 215);
+                foreach ($line as $col_value) {
+                    if ($col_value == $line['ID']) {
+                        $ID = $col_value;
+                    }
+                    if ($col_value == $line['image']) {
+                        echo "<a href='../pages/itemPage.php?ID=$ID'>"; // TODO: input item's id here
+                        echo "<div class='item-holder-image'>";
+                        $this->showImage($col_value, 215);
+                        echo "</div>";
+                        echo "</a>";
+                    }
+                    if ($col_value == $line['name']) {
+                        $name = $col_value;
+                    }
+                    if ($col_value == $line['price']) {
+                        $price = $col_value;
+                    }
+                    if ($col_value == $line['discount']) {
+                        $discount = $col_value;
+                    }
+                }
+                if (!$k) {
+                    echo "<a href='../pages/itemPage.php?ID=$ID' style='text-decoration: none; color: black'>"; // TODO: input item's id here
+                    echo "<div class='item-holder-name'>";
+                    echo "$name";
                     echo "</div>";
                     echo "</a>";
+                    if ($discount == 0) {
+                        echo "<div class='item-holder-price-holder'>";
+                        $price = number_format($price, 2, '.', '');
+                        echo "<div class='item-holder-price'>";
+                        echo "\$$price";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "<div class='item-holder-new-price'>";
+                        echo "&nbsp;";
+                        echo "</div>";
+                    } else {
+                        $price = number_format($price, 2, '.', '');
+                        echo "<div class='item-holder-old-price'>";
+                        echo "\$$price";
+                        echo "</div>";
+                        echo "<div class='item-holder-price-holder'>";
+                        $discount *= 100;
+                        $newPrice = $price - $price * $discount / 100;
+                        $newPrice = number_format($newPrice, 2, '.', '');
+                        echo "<div class='item-holder-new-price'>";
+                        echo "\$$newPrice &nbsp;";
+                        echo "</div>";
+                        echo "<div class='item-holder-discount'>";
+                        echo " $discount% OFF";
+                        echo "</div>";
+                        echo "</div>";
+                    }
+                    $k = true;
                 }
-                if ($col_value == $line['name']) {
-                    $name = $col_value;
-                }
-                if ($col_value == $line['price']) {
-                    $price = $col_value;
-                }
-                if ($col_value == $line['discount']) {
-                    $discount = $col_value;
-                }
-            }
-            if (!$k){
-                echo "<a href='../pages/itemPage.php?ID=$ID' style='text-decoration: none; color: black'>"; // TODO: input item's id here
-                echo "<div class='item-holder-name'>";
-                echo "$name";
                 echo "</div>";
-                echo "</a>";
-                if ($discount==0) {
-                    echo "<div class='item-holder-price-holder'>";
-                    $price = number_format($price, 2, '.', '');
-                    echo "<div class='item-holder-price'>";
-                    echo "\$$price";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "<div class='item-holder-new-price'>";
-                    echo "&nbsp;";
-                    echo "</div>";
-                }
-                else {
-                    $price = number_format($price, 2, '.', '');
-                    echo "<div class='item-holder-old-price'>";
-                    echo "\$$price";
-                    echo "</div>";
-                    echo "<div class='item-holder-price-holder'>";
-                    $discount *= 100;
-                    $newPrice = $price - $price*$discount/100;
-                    $newPrice = number_format($newPrice, 2, '.', '');
-                    echo "<div class='item-holder-new-price'>";
-                    echo "\$$newPrice &nbsp;";
-                    echo "</div>";
-                    echo "<div class='item-holder-discount'>";
-                    echo " $discount% OFF";
-                    echo "</div>";
-                    echo "</div>";
-                }
-                $k = true;
-            }
-            echo "</div>";
+            } while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC));
         }
     }
 
@@ -216,7 +222,7 @@ class DBConnection
             echo "</div>";
             echo "</div>";
 
-            echo "<form method='post'>";
+            echo "<form method='post' action=''>";
             echo "<div class='item-presenter-size-header'>";
             echo "Size: ";
             echo "</div>";
@@ -248,7 +254,6 @@ class DBConnection
                         array_push($_SESSION['size'], $_POST['sizeSelector']);
                         plus($_SESSION['count'], $_POST['itemQuantity']);
                     }
-
             }
             echo "<button id='add-to-bag' class='simple-button add-to-bag' name='Add' value='Add to bag''>ADD TO BAG</button>";
             echo "</div>";
