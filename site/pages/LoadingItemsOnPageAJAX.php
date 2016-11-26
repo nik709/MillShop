@@ -39,6 +39,7 @@ if($minPrice != null) {
 }
 
 $db->setSortOption($sortOption);
+$db->setGlobalCategory("301");
 $db->getItemsByCriteria($criteria);
 $db->drawItemHolders();
 $db = null;

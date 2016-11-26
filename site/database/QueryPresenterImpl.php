@@ -15,9 +15,11 @@ include_once("QueryPresenter.php");
 class QueryPresenterImpl extends DBConnection implements QueryPresenter
 {
     private $sortOption;
+    private $globalCategory;
 
     function __construct(){
        parent::__construct();
+        $this->globalCategory = null;
     }
     
     function __destruct(){
@@ -33,7 +35,9 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
 
     public function getItemsByColor($color)
     {
-        $query = "SELECT name, image, price, color, discount FROM items WHERE color = '$color' ";
+        $query = "SELECT ID, name, image, price, color, discount FROM items WHERE color = '$color' ";
+        if ($this->globalCategory != null)
+            $query .= " AND globcategory = $this->globalCategory";
         parent::setQuery($query);
         parent::sorting($this->sortOption);
         parent::executeQuery("Get items by COLOR");
@@ -102,6 +106,9 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
                 $query .= ")";
             //echo "<br> $query";
         }
+
+        if ($this->globalCategory != null)
+            $query .= " AND globcategory = $this->globalCategory";
 
         parent::setQuery($query);
         parent::sorting($this->sortOption);
@@ -262,4 +269,11 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     {
         $this->sortOption = $sortOption;
     }
+
+    public function setGlobalCategory($globalCategory)
+    {
+        $this->globalCategory = $globalCategory;
+    }
+
+
 }

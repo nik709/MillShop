@@ -1,10 +1,10 @@
+DROP TABLE IF EXISTS `millshop`.`items_sizes`;
 DROP TABLE IF EXISTS `millshop`.`items`;
 DROP TABLE IF EXISTS `millshop`.`sizes`;
 DROP TABLE IF EXISTS `millshop`.`colors`;
 DROP TABLE IF EXISTS `millshop`.`subcategory`;
 DROP TABLE IF EXISTS `millshop`.`globcategory`;
 DROP TABLE IF EXISTS `millshop`.`users`;
-DROP TABLE IF EXISTS `millshop`.`items_sizes`;
 
 CREATE TABLE `millshop`.`users`(
 	`LOGIN` VARCHAR(45) NOT NULL,
