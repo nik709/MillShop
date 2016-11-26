@@ -9,6 +9,9 @@ if (!isset($_SESSION['item']))
 if (!isset($_SESSION['quant']))
     $_SESSION['quant'] = array();
 
+if (!isset($_SESSION['size']))
+    $_SESSION['size'] = array();
+
 function plus($bag,$quant)
 {
     $bag+=$quant;

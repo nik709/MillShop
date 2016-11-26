@@ -1,11 +1,17 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['count']))
+    $_SESSION['count'] = 0;
+
 if (!isset($_SESSION['item']))
     $_SESSION['item'] = array();
 
 if (!isset($_SESSION['quant']))
     $_SESSION['quant'] = array();
+
+if (!isset($_SESSION['size']))
+    $_SESSION['size'] = array();
 
 ?>
 
@@ -47,6 +53,9 @@ if (!isset($_SESSION['quant']))
             printf($value.'<br/>');
         }
         foreach ($_SESSION['quant'] as $value) {
+            printf($value.'<br/>');
+        }
+        foreach ($_SESSION['size'] as $value) {
             printf($value.'<br/>');
         }
         ?>
