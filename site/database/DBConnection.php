@@ -229,7 +229,6 @@ class DBConnection
             echo "<div id='item-presenter-size-selection' class='item-presenter-size-selection'>";
             echo "</div>";
 
-
             echo "Quantity: ";
             echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='1' min='1' max='10'>";
 
@@ -243,9 +242,14 @@ class DBConnection
                     array_push($_SESSION['size'],$_POST['sizeSelector']);
                     plus($_SESSION['count'], $_POST['itemQuantity']);
                 }
-                else
-                    if ($_POST['sizeSelector'] == $_SESSION['size'][array_search($id, $_SESSION['item'])]) {
-                        $key = array_search($id, $_SESSION['item']);
+                else {
+                    $mas=array_keys($_SESSION['item'],$id);
+                    foreach ($mas as $value)
+                    {
+                        if($_POST['sizeSelector']==$_SESSION['size'][$value])
+                            $key=$value;
+                    }
+                    if (isset($key)) {
                         $_SESSION['quant'][$key] += $_POST['itemQuantity'];
                         plus($_SESSION['count'], $_POST['itemQuantity']);
                     } else {
@@ -254,6 +258,7 @@ class DBConnection
                         array_push($_SESSION['size'], $_POST['sizeSelector']);
                         plus($_SESSION['count'], $_POST['itemQuantity']);
                     }
+                }
             }
             echo "<button id='add-to-bag' class='simple-button add-to-bag' name='Add' value='Add to bag''>ADD TO BAG</button>";
             echo "</div>";
