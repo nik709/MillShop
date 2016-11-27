@@ -162,6 +162,14 @@ class DBConnection
 
     protected function printItemInformation(){
         while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
+            $glob = $line['GLOB'];
+            $sub = $line['SUB'];
+            echo "<div id='item-page-header-wrapper'>";
+            echo "<div class='item-page-header'>$glob</div>";
+            echo "<div class='item-page-header-divider'>></div>";
+            echo "<div class='item-page-header'>$sub</div>";
+            echo "</div>";
+            echo "<hr class='delimiter'>";
             echo "<div class=\"item-presenter\">";
             echo "<div class='item-presenter-wrapper'>";
             foreach ($line as $col_value) {

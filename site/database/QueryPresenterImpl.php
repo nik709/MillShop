@@ -28,7 +28,11 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
 
     //-------------------GETTERS-------------------
     public function getItemById($id){
-        $query = "SELECT ID, name, image, price, color, discount, description FROM items WHERE id = '$id'";
+        $query = "SELECT items.ID, items.name, image, price, color, discount, description, globcategory.name AS GLOB, subcategory.name AS SUB
+                  FROM items, globcategory, subcategory
+                  WHERE items.subcategory = subcategory.id 
+                  AND items.globcategory = globcategory.id
+                  AND items.ID = $id";
         parent::setQuery($query);
         parent::executeQuery("Get item by ID");
     }
@@ -113,7 +117,6 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         parent::setQuery($query);
         parent::sorting($this->sortOption);
         parent::executeQuery("$query");
-        echo "$query";
     }
 
     public function getMaxPrice(){

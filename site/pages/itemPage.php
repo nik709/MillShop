@@ -45,14 +45,6 @@ include('menu.php');
 ?>
 
 <!-- MAIN BLOCK START -->
-
-<div id="item-page-header-wrapper">
-    <div class="item-page-header">Global Category</div>
-    <div class="item-page-header-divider">></div>
-    <div class="item-page-header">Subcategory</div>
-</div>
-<hr class="delimiter">
-
 <?php
 $db->getItemById($id);
 $db->printItemInformation();
