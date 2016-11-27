@@ -23,14 +23,15 @@ class DBConnection
 
     //--------------------CONNECTION--------------------
     private function openConnection(){
-        $this->link = mysqli_connect('localhost:3306', 'root', 'root', 'millshop');
+        //$this->link = mysqli_connect('localhost:3306', 'root', 'root', 'millshop');
+        $this->link = mysqli_connect('db4free.net:3306', 'millshopcompany', 'tp5360kmj9t5', 'millshop');
         if (!$this->link) {
             echo '<script type="text/javascript">';
             echo 'window.location.href = "../pages/500.php"';
             echo '</script>';
         }
         //echo 'Соединение успешно установлено';
-        $selected = mysqli_select_db($this->link, 'MillShop');
+        $selected = mysqli_select_db($this->link, 'millshop');
         if (!$selected){
             echo '<script type="text/javascript">';
             echo 'window.location.href = "../pages/500.php"';
