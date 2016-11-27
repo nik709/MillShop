@@ -16,6 +16,7 @@ session_start();
 <body>
 <?php
 include('menu.php');
+include_once ("../database/SessionControlImpl.php");
 ?>
 
 <!-- MAIN BLOCK START -->
@@ -30,8 +31,11 @@ include('menu.php');
                 if(isset($_POST['log-but'])){
                     $_SESSION['user-login']=$_POST['login'];
                     $_SESSION['user-pass']=$_POST['password'];
-                    session_start();
+                    //session_start();
                 //Тут должна быть проверка правильности ввода через БД
+                    $session = new SessionControlImpl();
+                    $check = $session->checkUser($_POST['login'], $_POST['password']);
+                    echo "<br> $check <br>";
                 }
                 ?>
                 <button class = "simple-button" name="log-but">LOG IN</button>
@@ -49,7 +53,6 @@ include('menu.php');
                     <p><input id="password" name="reg-password" type="text" placeholder="Password"></p>
                     <?php
                     if(isset($_POST['reg-button'])){
-                        include_once ("../database/SessionControlImpl.php");
                         $sessionControl = new SessionControlImpl();
                         $test = $sessionControl->addNewUser($_POST['reg-login'],$_POST['reg-password'],$_POST['reg-name1'],$_POST['reg-name2']);
                         $sessionControl = null;

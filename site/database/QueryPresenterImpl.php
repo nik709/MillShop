@@ -189,6 +189,8 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     public function drawColors()
     {
         $query = "SELECT DISTINCT COLORS.NAME FROM ITEMS, COLORS WHERE ITEMS.COLOR = COLORS.ID";
+        if ($this->globalCategory != null)
+            $query .= " AND globcategory = $this->globalCategory";
         parent::setQuery($query);
         parent::executeQuery("existing colors");
         $i = 0;
