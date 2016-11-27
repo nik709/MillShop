@@ -28,11 +28,12 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
 
     //-------------------GETTERS-------------------
     public function getItemById($id){
-        $query = "SELECT items.ID, items.name, image, price, color, discount, description, globcategory.name AS GLOB, subcategory.name AS SUB
-                  FROM items, globcategory, subcategory
+        $query = "SELECT items.ID, items.name, image, price, colors.name AS COLOR, discount, description, globcategory.name AS GLOB, subcategory.name AS SUB
+                  FROM items, globcategory, subcategory, colors
                   WHERE items.subcategory = subcategory.id 
-                  AND items.globcategory = globcategory.id
-                  AND items.ID = $id";
+                    AND items.globcategory = globcategory.id 
+                    AND items.color = colors.id
+                    AND items.ID = $id";
         parent::setQuery($query);
         parent::executeQuery("Get item by ID");
     }
@@ -234,7 +235,9 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     {
         $query = "SELECT DISTINCT subcategory.name AS NAME, subcategory.ID AS ID
                   FROM subcategory, items
-                  WHERE subcategory.id = items.subcategory;";
+                  WHERE subcategory.id = items.subcategory";
+        if ($this->globalCategory != null)
+            $query .= " AND items.globcategory = $this->globalCategory";
         parent::setQuery($query);
         parent::executeQuery("$query");
         $i = 0;

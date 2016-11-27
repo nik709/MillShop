@@ -1,3 +1,8 @@
+<?php
+$s = session_status();
+if ($s == 1)
+    session_start();
+?>
 <!--
     MILL SHOP COMPANY, 2016
     CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
@@ -10,6 +15,7 @@
             <div class="criterion-header">Category</div>
             <?php
             echo "<div id='criterion-subcategories' class='criterion' style='width: 216px'>";
+            $db->setGlobalCategory($_SESSION['GLOB']);
             $db->drawSubcategory();
             echo "</div>";
             ?>

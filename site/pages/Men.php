@@ -36,7 +36,7 @@ function plus($bag)
     <?php
     include_once("../database/QueryPresenterImpl.php");
     $db = new QueryPresenterImpl();
-    $db->setGlobalCategory(301);
+    $_SESSION['GLOB'] = 301;
     ?>
 
     <!-- PAGE TILTE -->
@@ -51,7 +51,7 @@ function plus($bag)
     <!-- ITEMS -->
     <?php
     echo "<div class='results-of-query' id='results-of-query'>";
-    include_once("LoadingItemsOnPageAJAX.php");
+    include ("LoadingItemsOnPageAJAX.php");
     echo "</div>";
     ?>
 

@@ -68,9 +68,9 @@ class DBConnection
      */
     protected function sorting($criteria){
         if ($criteria == "ASC")
-            $this->query .= " ORDER BY price ASC";
+            $this->query .= " ORDER BY (price - price*items.discount) ASC";
         if ($criteria == "DESC")
-            $this->query .= " ORDER BY price DESC";
+            $this->query .= " ORDER BY (price - price*items.discount) DESC";
         if ($criteria == "NEWEST")
             $this->query .= " ORDER BY id DESC";
     }
@@ -226,7 +226,8 @@ class DBConnection
             echo "Color: ";
             echo "</div>";
             echo "<div class='item-presenter-color-value'>";
-            echo "Name of color goes here";
+            $color = $line['COLOR'];
+            echo "$color";
             echo "</div>";
             echo "</div>";
 

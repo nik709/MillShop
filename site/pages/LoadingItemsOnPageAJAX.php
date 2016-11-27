@@ -1,11 +1,14 @@
 <?php
+$s = session_status();
+if ($s == 1)
+    session_start();
 /**
     MILL SHOP COMPANY, 2016
     CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
 
 include_once("../database/QueryPresenterImpl.php");
-//$db = new QueryPresenterImpl();
+$db = new QueryPresenterImpl();
 
 $sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
 
@@ -38,9 +41,9 @@ if($minPrice != null) {
     $criteria[$k + 1] = "maxPrice = $maxPrice";
 }
 
+$db->setGlobalCategory($_SESSION['GLOB']);
 $db->setSortOption($sortOption);
 $db->getItemsByCriteria($criteria);
 $db->drawItemHolders();
-$db = null;
 
 ?>
