@@ -1,23 +1,27 @@
 <?php
 session_start();
-if (!isset($_SESSION['count']))
+
+if (!empty($_POST["Add"])) {
+    header("Location: ".$_SERVER["REQUEST_URI"]);
+}
+if (!isset($_SESSION['count'])) {
     $_SESSION['count'] = 0;
-
-if (!isset($_SESSION['item']))
+}
+if (!isset($_SESSION['item'])){
     $_SESSION['item'] = array();
-
-if (!isset($_SESSION['quant']))
+}
+if (!isset($_SESSION['quant'])) {
     $_SESSION['quant'] = array();
-
-if (!isset($_SESSION['size']))
+}
+if (!isset($_SESSION['size'])) {
     $_SESSION['size'] = array();
+}
 
 function plus($bag,$quant)
 {
     $bag+=$quant;
     $_SESSION['count'] = $bag;
 }
-
 
 include_once ('../database/QueryPresenterImpl.php');
 $db = new QueryPresenterImpl();
@@ -52,6 +56,9 @@ include('menu.php');
 <?php
 $db->getItemById($id);
 $db->printItemInformation();
+if (!empty($_POST["Add"])) {
+    exit();
+}
 ?>
 
 <script type="text/javascript">

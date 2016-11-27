@@ -72,3 +72,12 @@
     background-color: rgba(255, 255, 255, 0.8);
     opacity: 1;
 }*/
+
+.items-not-found {
+    font-family: "Cyntho Medium", sans-serif;
+    font-size: 2em;
+    height: 190px;
+    width: 100%;
+    text-align: center;
+    padding-top: 70px;
+}

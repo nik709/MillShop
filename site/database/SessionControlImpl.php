@@ -1,11 +1,9 @@
 <?php
-
 /**
- * Created by PhpStorm.
- * User: Никита
- * Date: 20.11.2016
- * Time: 19:27
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
+
 include_once ("SessionControl.php");
 include_once ("DBConnection.php");
 class SessionControlImpl extends DBConnection  implements SessionControl
