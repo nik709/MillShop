@@ -5,7 +5,7 @@
  */
 
 include_once("../database/QueryPresenterImpl.php");
-$db = new QueryPresenterImpl();
+//$db = new QueryPresenterImpl();
 
 $sortOption = isset($_GET['sortOption']) ? $_GET['sortOption'] : null;
 

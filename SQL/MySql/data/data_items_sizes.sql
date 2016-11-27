@@ -113,3 +113,6 @@ INSERT INTO millshop.items_sizes (item_id, size_id) VALUES (1000024, 102);
 INSERT INTO millshop.items_sizes (item_id, size_id) VALUES (1000024, 103);
 INSERT INTO millshop.items_sizes (item_id, size_id) VALUES (1000024, 104);
 INSERT INTO millshop.items_sizes (item_id, size_id) VALUES (1000024, 105);
+INSERT INTO millshop.items_sizes (item_id, size_id) VALUES (1000401, 105);
+INSERT INTO millshop.items_sizes (item_id, size_id) VALUES (1000401, 102);
+INSERT INTO millshop.items_sizes (item_id, size_id) VALUES (1000401, 104);

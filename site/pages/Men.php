@@ -36,7 +36,7 @@ function plus($bag)
     <?php
     include_once("../database/QueryPresenterImpl.php");
     $db = new QueryPresenterImpl();
-    $db->setGlobalCategory("301");
+    $db->setGlobalCategory(301);
     ?>
 
     <!-- PAGE TILTE -->

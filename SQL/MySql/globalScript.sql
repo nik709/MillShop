@@ -58,6 +58,8 @@ INSERT INTO millshop.subcategory (id, name) VALUES (406, 'Jeans');
 INSERT INTO millshop.subcategory (id, name) VALUES (407, 'Shorts');
 INSERT INTO millshop.subcategory (id, name) VALUES (408, 'Jackets & Outwear');
 INSERT INTO millshop.subcategory (id, name) VALUES (409, 'Accessories');
+INSERT INTO millshop.subcategory (id, name) VALUES (410, 'Dress');
+INSERT INTO millshop.subcategory (id, name) VALUES (411, 'Skirt');
 
 CREATE  TABLE `millshop`.`globcategory` (
   `id` INT NOT NULL ,

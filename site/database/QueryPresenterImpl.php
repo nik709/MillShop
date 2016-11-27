@@ -113,6 +113,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         parent::setQuery($query);
         parent::sorting($this->sortOption);
         parent::executeQuery("$query");
+        echo "$query";
     }
 
     public function getMaxPrice(){
