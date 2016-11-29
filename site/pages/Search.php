@@ -23,6 +23,10 @@ include('menu.php');
 
 <!-- MAIN BLOCK START -->
 
+<div class="search-results-header">
+    Search results for
+</div>
+
 <?php
 
 $search = isset($_GET['search']) ? $_GET['search'] : null;

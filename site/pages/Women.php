@@ -1,18 +1,11 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['count']))
-    $_SESSION['count'] = 0;
-
-if (!isset($_SESSION['item']))
-    $_SESSION['item'] = array();
-
-if (!isset($_SESSION['quant']))
-    $_SESSION['quant'] = array();
-
-if (!isset($_SESSION['size']))
-    $_SESSION['size'] = array();
-
+function plus($bag)
+{
+    $bag++;
+    $_SESSION['count'] = $bag;
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,32 +29,27 @@ if (!isset($_SESSION['size']))
 
     <!-- MAIN BLOCK START -->
 
-    <h1>Clothes for WOMEN</h1>
-    <form method="post">
-        <?php
-        if(isset($_POST['button'])) {
-          session_destroy();
-           header("Location: Women.php") ;
-        }
+    <?php
+    include_once("../database/QueryPresenterImpl.php");
+    $db = new QueryPresenterImpl();
+    $_SESSION['GLOB'] = 302;
+    ?>
 
-        if(isset($_SESSION['user-login']) && isset($_SESSION['user-pass'])) {
-            echo(" User's login: " . $_SESSION['user-login'].'<br />');
-            echo(" User's password: " . $_SESSION['user-pass'].'<br />');
-        }
+    <!-- PAGE TILTE -->
+    <div class="page-title" id="page-title">Women</div>
+    <hr class="delimiter">
 
-        foreach ($_SESSION['item'] as $value) {
-            printf($value.'<br/>');
-        }
-        foreach ($_SESSION['quant'] as $value) {
-            printf($value.'<br/>');
-        }
-        foreach ($_SESSION['size'] as $value) {
-            printf($value.'<br/>');
-        }
-        ?>
-        <button class="simple-button" name="button">LOG OUT</button>
-    </form>
+    <!-- CRITERIA AND SORTING FORM -->
+    <?php
+    include ('CriteriaAndSortingForm.php');
+    ?>
 
+    <!-- ITEMS -->
+    <?php
+    echo "<div class='results-of-query' id='results-of-query'>";
+    include ("LoadingItemsOnPageAJAX.php");
+    echo "</div>";
+    ?>
 
     <!-- MAIN BLOCK END -->
 

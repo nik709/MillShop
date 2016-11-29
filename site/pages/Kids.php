@@ -18,12 +18,27 @@
 
     <!-- MAIN BLOCK START -->
 
-    <h1>Clothes for KIDS</h1>
+    <?php
+    include_once("../database/QueryPresenterImpl.php");
+    $db = new QueryPresenterImpl();
+    $_SESSION['GLOB'] = 303;
+    ?>
 
-    <form name="ggg">
-        <input type="number" class="simple-textbox simple-spinner" name="yyy" value="1" min="1" max="10">
-        <input type="submit" class="simple-button">
-    </form>
+    <!-- PAGE TILTE -->
+    <div class="page-title" id="page-title">Kids</div>
+    <hr class="delimiter">
+
+    <!-- CRITERIA AND SORTING FORM -->
+    <?php
+    include ('CriteriaAndSortingForm.php');
+    ?>
+
+    <!-- ITEMS -->
+    <?php
+    echo "<div class='results-of-query' id='results-of-query'>";
+    include ("LoadingItemsOnPageAJAX.php");
+    echo "</div>";
+    ?>
 
     <!-- MAIN BLOCK END -->
 
