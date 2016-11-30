@@ -11,7 +11,6 @@
     <link rel="icon" href="../resources/images/icon.ico">
     <link rel="stylesheet" href="../css/MillShop.css">
     <link rel="stylesheet" href="../css/Feedback.css">
-
 </head>
 <body>
     <?php
@@ -21,20 +20,27 @@
 
     <!-- MAIN BLOCK START -->
 
-    <h2>FEEDBACK FORM</h2>
-    <form action="contact_form.php" method="post">
-        <p>
-            <input type="text" class="simple-textbox" name="name" placeholder="Enter Your name" required />
-        </p>
-        <p>
-            <input type="email" class="simple-textbox" name="email" placeholder="Enter Your e-mail" required />
-            <span class="form_hint">Correct format "name@something.com"</span>
-        </p>
-        <p>
-            <textarea type="text" class="simple-textbox" name="message"  placeholder="Message" cols="40" rows="6" ></textarea>
-        </p>
-        <button class="simple-button">SEND</button>
-    </form>
+    <div class="page-title-wrapper">
+        <div class="page-title">Contact us</div>
+    </div>
+
+    <div id="contact-form-wrapper">
+        <div id="contact-us">
+            <form action="contact_form.php" method="post" class="contact-form">
+                <input type="text" class="simple-textbox contact-form-textbox" name="name" placeholder="Your Name" required />
+                <input type="email" class="simple-textbox contact-form-textbox" name="email" placeholder="Your e-Mail" required />
+                <span class="form-hint">Incorrect format</span>
+                <textarea type="text" class="simple-textbox contact-form-textbox contact-form-textarea" name="message" placeholder="Your Message" cols="40" rows="6"></textarea>
+                <button class="simple-button contact-form-button">SEND</button>
+            </form>
+        </div>
+
+        <div id="contact-us-banner">
+            <img src="../resources/images/banners/banner_40005.jpg">
+            <div id="contact-us-banner-text">Shop More with Mill Shop!</div>
+        </div>
+    </div>
+
     <!-- MAIN BLOCK END -->
 
     <?php
