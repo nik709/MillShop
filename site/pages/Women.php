@@ -34,8 +34,6 @@ function plus($bag)
     include_once("../database/QueryPresenterImpl.php");
     $db = new QueryPresenterImpl();
     $_SESSION['GLOB'] = 302;
-    $test = $db->getMinPrice();
-    echo "$test";
     ?>
 
     <!-- PAGE TILTE -->
