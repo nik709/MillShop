@@ -38,7 +38,7 @@ include_once ("../database/SessionControlImpl.php");
                     echo "<br> $check <br>";
                 }
                 ?>
-                <button class = "simple-button" name="log-but">LOG IN</button>
+                <button class="simple-button login-button" name="log-but">LOG IN</button>
                 </form>
             </fieldset>
         </div>
@@ -59,7 +59,7 @@ include_once ("../database/SessionControlImpl.php");
                         echo "$test";
                     }
                     ?>
-                    <button class = "simple-button" name="reg-button">REGISTER</button>
+                    <button class="simple-button register-button" name="reg-button">REGISTER</button>
                 </form>
             </fieldset>
         </div>
