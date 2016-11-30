@@ -141,9 +141,9 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     }
 
     public function getMinPrice(){
-        $query = "(SELECT MIN(price) MIN FROM items WHERE discount = 0)
+        $query = "(SELECT MIN(price) MIN FROM items WHERE discount = 0 and globcategory = 302)
                     UNION
-                    (SELECT MIN(price - items.price*items.discount) MIN FROM items WHERE discount > 0);";
+                    (SELECT MIN(price - items.price*items.discount) MIN FROM items WHERE discount > 0 and globcategory = 302);";
         parent::setQuery($query);
         parent::executeQuery('min');
         $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
