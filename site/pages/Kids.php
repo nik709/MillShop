@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+function plus($bag)
+{
+    $bag++;
+    $_SESSION['count'] = $bag;
+}
+?>
 <!DOCTYPE html>
 <!--
     MILL SHOP COMPANY, 2016
@@ -9,10 +18,11 @@
     <title>Mill Shop - Kids</title>
     <link rel="icon" href="../resources/images/icon.ico">
     <link rel="stylesheet" href="../css/MillShop.css">
+
+    <link href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" rel="stylesheet" />
 </head>
 <body>
     <?php
-    session_start();
     include('menu.php');
     ?>
 
@@ -45,5 +55,11 @@
     <?php
     include('footer.html');
     ?>
+
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="scripts/price-slider.js"></script>
+    <script type="text/javascript" src="scripts/CriteriaAndSorting.js"></script>
 </body>
 </html>
