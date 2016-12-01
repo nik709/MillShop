@@ -29,7 +29,6 @@ include_once ("../database/SessionControlImpl.php");
                 <p><input id="password" name="password" type="password" placeholder="Password"></p>
                 <?php
                 if(isset($_POST['log-but'])){
-                //Тут должна быть проверка правильности ввода через БД
                     $session = new SessionControlImpl();
                     $check = $session->checkUser($_POST['login'], md5($_POST['password']));
                     echo "<br> $check <br>";
@@ -66,13 +65,6 @@ include_once ("../database/SessionControlImpl.php");
             </fieldset>
         </div>
     </div>
-
-
-
-      <!--  <input type="submit" id="submit" value="ВОЙТИ">-->
-
-
-
 
 <!-- MAIN BLOCK END -->
 
