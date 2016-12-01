@@ -24,13 +24,14 @@ class DBConnection
     //--------------------CONNECTION--------------------
     private function openConnection(){
         $this->link = mysqli_connect('localhost:3306', 'root', 'root', 'millshop');
+        //$this->link = mysqli_connect('db4free.net:3306', 'millshopcompany', 'tp5360kmj9t5', 'millshop');
         if (!$this->link) {
             echo '<script type="text/javascript">';
             echo 'window.location.href = "../pages/500.php"';
             echo '</script>';
         }
         //echo 'Соединение успешно установлено';
-        $selected = mysqli_select_db($this->link, 'MillShop');
+        $selected = mysqli_select_db($this->link, 'millshop');
         if (!$selected){
             echo '<script type="text/javascript">';
             echo 'window.location.href = "../pages/500.php"';
@@ -161,7 +162,8 @@ class DBConnection
     }
 
     protected function printItemInformation(){
-        while ($line = mysqli_fetch_array($this->result, MYSQLI_ASSOC)) {
+        $line = mysqli_fetch_array($this->result, MYSQLI_ASSOC);
+        if($line != null) {
             $glob = $line['GLOB'];
             $sub = $line['SUB'];
             echo "<div id='item-page-header-wrapper'>";
@@ -232,14 +234,20 @@ class DBConnection
             echo "</div>";
 
             echo "<form method='post' action=''>";
+            echo "<div class='item-presenter-size-container'>";
             echo "<div class='item-presenter-size-header'>";
             echo "Size: ";
             echo "</div>";
             echo "<div id='item-presenter-size-selection' class='item-presenter-size-selection'>";
             echo "</div>";
+            echo "</div>";
 
+            echo "<div class='item-presenter-quantity-container'>";
+            echo "<div class='item-presenter-quantity-header'>";
             echo "Quantity: ";
+            echo "</div>";
             echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='1' min='1' max='10'>";
+            echo "</div>";
 
             echo "<div class='item-presenter-buttons'>";
             if(isset($_POST['Add']) && isset($_POST['sizeSelector'])) {
@@ -288,6 +296,11 @@ class DBConnection
             echo "</div>";
 
             echo "</div>";
+        }
+        else {
+            echo '<script type="text/javascript">';
+            echo "window.location.href = \"../pages/404.php\"";
+            echo '</script>';
         }
     }
 

@@ -121,9 +121,9 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     }
 
     public function getMaxPrice(){
-        $query = "(SELECT MAX(price) AS MAX, discount FROM ITEMS WHERE discount = 0)
+        $query = "(SELECT MAX(price) AS MAX, discount FROM items WHERE discount = 0 and globcategory = $this->globalCategory)
                     UNION
-                  (SELECT MAX(PRICE) AS MAX, discount FROM items WHERE discount > 0);";
+                  (SELECT MAX(PRICE) AS MAX, discount FROM items WHERE discount > 0 and globcategory = $this->globalCategory);";
         parent::setQuery($query);
         parent::executeQuery('max');
         $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
@@ -141,11 +141,11 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     }
 
     public function getMinPrice(){
-        $query = "(SELECT MIN(price) MIN FROM ITEMS WHERE discount = 0)
+        $query = "(SELECT MIN(price) MIN FROM items WHERE discount = 0 and globcategory = $this->globalCategory)
                     UNION
-                    (SELECT MIN(price - items.price*items.discount) MIN FROM items WHERE discount > 0);";
+                    (SELECT MIN(price - items.price*items.discount) MIN FROM items WHERE discount > 0 and globcategory = $this->globalCategory);";
         parent::setQuery($query);
-        parent::executeQuery('min');
+        parent::executeQuery($query);
         $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
         $min = $line['MIN'];
         $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
@@ -193,7 +193,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
 
     public function drawColors()
     {
-        $query = "SELECT DISTINCT COLORS.NAME FROM ITEMS, COLORS WHERE ITEMS.COLOR = COLORS.ID";
+        $query = "SELECT DISTINCT colors.NAME FROM items, colors WHERE items.COLOR = colors.ID";
         if ($this->globalCategory != null)
             $query .= " AND globcategory = $this->globalCategory";
         parent::setQuery($query);

@@ -18,13 +18,7 @@ function plus($bag)
     <title>Mill Shop - Men</title>
     <link rel="icon" href="../resources/images/icon.ico">
     <link rel="stylesheet" href="../css/MillShop.css">
-
     <link href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" rel="stylesheet" />
-
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="scripts/price-slider.js"></script>
-    <script type="text/javascript" src="scripts/CriteriaAndSorting.js"></script>
 </head>
 <body>
     <?php
@@ -60,5 +54,11 @@ function plus($bag)
     <?php
     include('footer.html');
     ?>
+
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="scripts/price-slider.js"></script>
+    <script type="text/javascript" src="scripts/CriteriaAndSorting.js"></script>
 </body>
 </html>

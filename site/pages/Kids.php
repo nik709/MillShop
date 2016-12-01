@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+function plus($bag)
+{
+    $bag++;
+    $_SESSION['count'] = $bag;
+}
+?>
 <!DOCTYPE html>
 <!--
     MILL SHOP COMPANY, 2016
@@ -9,26 +18,48 @@
     <title>Mill Shop - Kids</title>
     <link rel="icon" href="../resources/images/icon.ico">
     <link rel="stylesheet" href="../css/MillShop.css">
+
+    <link href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" rel="stylesheet" />
 </head>
 <body>
     <?php
-    session_start();
     include('menu.php');
     ?>
 
     <!-- MAIN BLOCK START -->
 
-    <h1>Clothes for KIDS</h1>
+    <?php
+    include_once("../database/QueryPresenterImpl.php");
+    $db = new QueryPresenterImpl();
+    $_SESSION['GLOB'] = 303;
+    ?>
 
-    <form name="ggg">
-        <input type="number" class="simple-textbox simple-spinner" name="yyy" value="1" min="1" max="10">
-        <input type="submit" class="simple-button">
-    </form>
+    <!-- PAGE TILTE -->
+    <div class="page-title" id="page-title">Kids</div>
+    <hr class="delimiter">
+
+    <!-- CRITERIA AND SORTING FORM -->
+    <?php
+    include ('CriteriaAndSortingForm.php');
+    ?>
+
+    <!-- ITEMS -->
+    <?php
+    echo "<div class='results-of-query' id='results-of-query'>";
+    include ("LoadingItemsOnPageAJAX.php");
+    echo "</div>";
+    ?>
 
     <!-- MAIN BLOCK END -->
 
     <?php
     include('footer.html');
     ?>
+
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="scripts/price-slider.js"></script>
+    <script type="text/javascript" src="scripts/CriteriaAndSorting.js"></script>
 </body>
 </html>

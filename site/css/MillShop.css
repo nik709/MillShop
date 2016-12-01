@@ -15,6 +15,7 @@
 @import "elements/simple-textbox-select.css";
 @import "elements/item-presenter.css";
 @import "elements/simple-spinner.css";
+@import "Search.css";
 
 /* Body */
 body {
