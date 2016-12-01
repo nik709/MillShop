@@ -3,9 +3,10 @@
     MILL SHOP COMPANY, 2016
     CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
  */
+session_start();
 
-require_once "../../database/QueryPresenterImpl.php";
+include_once "../../database/QueryPresenterImpl.php";
 $dataObj = new QueryPresenterImpl();
-echo json_decode(ceil($dataObj->getMaxPrice()));
-
+$dataObj->setGlobalCategory($_SESSION['GLOB']);
+echo json_encode(ceil($dataObj->getMaxPrice()));
 ?>

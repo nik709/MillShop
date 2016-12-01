@@ -136,11 +136,11 @@ fieldset {
 
 #inputs input:focus {
     background-color: #fff;
-    border-color: #e8c291;
+    border-color: #ddc9bc;
     outline: none;
-    -moz-box-shadow: 0 0 0 1px #e8c291 inset;
-    -webkit-box-shadow: 0 0 0 1px #e8c291 inset;
-    box-shadow: 0 0 0 1px #e8c291 inset;
+    -moz-box-shadow: 0 0 0 1px #ddc9bc inset;
+    -webkit-box-shadow: 0 0 0 1px #ddc9bc inset;
+    box-shadow: 0 0 0 1px #ddc9bc inset;
 }
 
 /*--------------------*/
