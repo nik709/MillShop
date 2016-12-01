@@ -29,13 +29,14 @@ include_once ("../database/SessionControlImpl.php");
                 <p><input id="password" name="password" type="password" placeholder="Password"></p>
                 <?php
                 if(isset($_POST['log-but'])){
-                    $_SESSION['user-login']=$_POST['login'];
-                    $_SESSION['user-pass']=$_POST['password'];
-                    //session_start();
-                //Тут должна быть проверка правильности ввода через БД
                     $session = new SessionControlImpl();
-                    $check = $session->checkUser($_POST['login'], $_POST['password']);
+                    $check = $session->checkUser($_POST['login'], md5($_POST['password']));
                     echo "<br> $check <br>";
+
+                    if($check==true){
+                        $_SESSION['user-login']=$_POST['login'];
+                        $_SESSION['user-pass']=md5($_POST['password']);
+                    }
                 }
                 ?>
                 <button class="simple-button login-button" name="log-but">LOG IN</button>
@@ -50,11 +51,11 @@ include_once ("../database/SessionControlImpl.php");
                     <p><input id="username" name="reg-name1" type="text" placeholder="First Name"></p>
                     <p><input id="username" name="reg-name2" type="text" placeholder="Last Name"></p>
                     <p><input id="username" name="reg-login" type="text" placeholder="Login"></p>
-                    <p><input id="password" name="reg-password" type="text" placeholder="Password"></p>
+                    <p><input id="password" name="reg-password" type="password" placeholder="Password"></p>
                     <?php
                     if(isset($_POST['reg-button'])){
                         $sessionControl = new SessionControlImpl();
-                        $test = $sessionControl->addNewUser($_POST['reg-login'],$_POST['reg-password'],$_POST['reg-name1'],$_POST['reg-name2']);
+                        $test = $sessionControl->addNewUser($_POST['reg-login'],md5($_POST['reg-password']),$_POST['reg-name1'],$_POST['reg-name2']);
                         $sessionControl = null;
                         echo "$test";
                     }
@@ -64,13 +65,6 @@ include_once ("../database/SessionControlImpl.php");
             </fieldset>
         </div>
     </div>
-
-
-
-      <!--  <input type="submit" id="submit" value="ВОЙТИ">-->
-
-
-
 
 <!-- MAIN BLOCK END -->
 
