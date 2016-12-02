@@ -30,9 +30,12 @@ include('menu.php');
 <?php
 
 $search = isset($_GET['search']) ? $_GET['search'] : null;
-if (($search)!=null){
-    echo "$search";
+if (($search)==null){
+    echo "something went wrong";
 }
+include_once ("../database/QueryPresenterImpl.php");
+$db = new QueryPresenterImpl();
+$db->getSearchResult($search);
 
 ?>
 

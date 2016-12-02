@@ -166,6 +166,24 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         return $line['name'];
     }
 
+    public function getSearchResult($searchString)
+    {
+        $query = "SELECT * FROM items WHERE ";
+
+        $words = explode(' ',$searchString);
+        foreach ($words as $word){
+            if (strpos($word, ' ') == false) {
+                $query .= "UPPER(name) LIKE UPPER('%$word%')
+                            OR color = 
+                                (SELECT id FROM colors WHERE colors.name LIKE UPPER('%$word%'))
+                            OR subcategory = 
+                                (SELECT id FROM subcategory WHERE subcategory.name LIKE UPPER('%$word%'))
+                            OR globcategory = 
+                                (SELECT id FROM globcategory WHERE UPPER(globcategory.name) = UPPER('$word'))";
+            }
+        }
+    }
+
     private function getSizesById($id){
         $query = "SELECT sizes.name AS NAME
                     FROM items, items_sizes, sizes
