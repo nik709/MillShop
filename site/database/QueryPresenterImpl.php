@@ -171,17 +171,24 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         $query = "SELECT * FROM items WHERE ";
 
         $words = explode(' ',$searchString);
+        $position = 0;
         foreach ($words as $word){
+            $position++;
             if (strpos($word, ' ') == false) {
                 $query .= "UPPER(name) LIKE UPPER('%$word%')
-                            OR color = 
+                            OR color in 
                                 (SELECT id FROM colors WHERE colors.name LIKE UPPER('%$word%'))
-                            OR subcategory = 
+                            OR subcategory in 
                                 (SELECT id FROM subcategory WHERE subcategory.name LIKE UPPER('%$word%'))
-                            OR globcategory = 
+                            OR globcategory in 
                                 (SELECT id FROM globcategory WHERE UPPER(globcategory.name) = UPPER('$word'))";
             }
+            if ($position!=0 and $position!= count($words))
+                $query .= " OR ";
         }
+        //echo "$query";
+        parent::setQuery($query);
+        parent::executeQuery($query);
     }
 
     private function getSizesById($id){

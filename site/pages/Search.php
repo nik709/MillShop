@@ -19,23 +19,25 @@ if (!isset($_SESSION['count']))
 <body>
 <?php
 include('menu.php');
+$search = isset($_GET['search']) ? $_GET['search'] : null;
 ?>
 
 <!-- MAIN BLOCK START -->
 
 <div class="search-results-header">
-    Search results for
+    Search results for <?php echo "$search"?>
 </div>
 
 <?php
 
-$search = isset($_GET['search']) ? $_GET['search'] : null;
+
 if (($search)==null){
     echo "something went wrong";
 }
 include_once ("../database/QueryPresenterImpl.php");
 $db = new QueryPresenterImpl();
 $db->getSearchResult($search);
+$db->drawItemHolders();
 
 ?>
 
