@@ -23,7 +23,7 @@ if (!isset($_SESSION['size']))
     <meta charset="UTF-8">
     <title>My Bag - Mill Shop</title>
     <link rel="icon" href="../resources/images/icon.ico">
-    <link rel="stylesheet" href="../css/MillShop.css">
+    <link rel="stylesheet" href="../css/Bag.css">
 </head>
 <body>
 <?php
@@ -32,32 +32,55 @@ include('menu.php');
 
 <!-- MAIN BLOCK START -->
 
-Bag is under construction.
-Please wait...
-
 <form method="post">
+<!-- PAGE TILTE -->
+    <div id="bag-header-wrapper">
+        <div class="page-title" id="page-title">My bag</div>
+        <div id="clear-bag-button-wrapper">
+            <button class="clear-bag-button" name="clearBag">Clear Bag</button>
+        </div>
+    </div>
+    <hr class="delimiter">
+
     <?php
-    if(isset($_POST['button'])) {
+    if(isset($_POST['clearBag'])) {
         session_destroy();
         header("Location: bag.php") ;
     }
 
-    if(isset($_SESSION['user-login']) && isset($_SESSION['user-pass'])) {
-        echo(" User's login: " . $_SESSION['user-login'].'<br />');
-        echo(" User's password: " . $_SESSION['user-pass'].'<br />');
-    }
-
+    include_once ("../database/QueryPresenterImpl.php");
+    $db = new QueryPresenterImpl();
     foreach ($_SESSION['item'] as $value) {
-        printf($value.'<br/>');
-    }
-    foreach ($_SESSION['quant'] as $value) {
-        printf($value.'<br/>');
-    }
-    foreach ($_SESSION['size'] as $value) {
-        printf($value.'<br/>');
+        $db->getItemById($value);
     }
     ?>
-    <button class="simple-button" name="button">LOG OUT</button>
+
+    <div class="bag-table-wrapper">
+        <table id="bag-table">
+            <tr class="table-header">
+                <td class="table-cell-header">№</td>
+                <td class="table-cell-header">Image</td>
+                <td class="table-cell-header">Name</td>
+                <td class="table-cell-header">Size</td>
+                <td class="table-cell-header">Color</td>
+                <td class="table-cell-header">Quantity</td>
+                <td class="table-cell-header"><!--Remove--></td>
+            </tr>
+            <tr>
+                <td class="table-cell">1</td>
+                <td class="table-cell">IMAGE GOES HERE</td>
+                <td class="table-cell">Tempest Short</td>
+                <td class="table-cell">M</td>
+                <td class="table-cell">Blue</td>
+                <td class="table-cell">
+                    <input type="number" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='1' min='1' max='10'>
+                </td>
+                <td class="table-cell">Remove</td>
+            </tr>
+        </table>
+    </div>
+
+    <button class="simple-button checkout-button" name="checkoutButton">CHECKOUT</button>
 </form>
 
 <!-- MAIN BLOCK END -->
