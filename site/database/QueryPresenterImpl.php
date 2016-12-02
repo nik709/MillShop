@@ -196,7 +196,8 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
                     FROM items, items_sizes, sizes
                     WHERE items.id = items_sizes.item_id
                     AND items_sizes.size_id = sizes.id
-                    AND items.id = $id";
+                    AND items.id = $id
+                    ORDER BY sizes.id";
 
         parent::setQuery($query);
         parent::executeQuery("Get sizes by ID");
