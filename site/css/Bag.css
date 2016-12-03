@@ -1,0 +1,70 @@
+/*
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
+*/
+
+@import "MillShop.css";
+
+#bag-header-wrapper {
+    margin-top: 20px;
+}
+
+#bag-header-wrapper > div {
+    display: inline-block;
+}
+
+#clear-bag-button-wrapper {
+    float: right;
+    margin-top: 23px;
+}
+
+.bag-table-wrapper {
+    width: 100%;
+}
+
+#bag-table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+.table-header {
+    background-color: #152b3c;
+    color: white;
+    font-family: "Cyntho Medium", sans-serif;
+    font-size: 1em;
+}
+
+.table-cell,
+.table-cell-header {
+    padding: 5px 2px 5px 11px;
+    border-bottom: solid 2px #152b3c;
+    /*border-left: solid 1px lightgray;
+    border-right: solid 1px lightgray;*/
+
+}
+
+.table-cell {
+    vertical-align: text-top;
+}
+
+.checkout-button {
+    width: 120px;
+    float: right;
+    margin-top: 18px;
+}
+
+.clear-bag-button {
+    display: flex;
+    color: black;
+    border: none;
+    background-color: white;
+    padding: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    outline: 0;
+    font-family: "Cyntho Medium", sans-serif;
+}
+
+.clear-bag-button:hover {
+    color: #3a5b5b;
+}

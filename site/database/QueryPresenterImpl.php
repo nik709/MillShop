@@ -166,12 +166,38 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         return $line['name'];
     }
 
+    public function getSearchResult($searchString)
+    {
+        $query = "SELECT * FROM items WHERE ";
+
+        $words = explode(' ',$searchString);
+        $position = 0;
+        foreach ($words as $word){
+            $position++;
+            if (strpos($word, ' ') == false) {
+                $query .= "UPPER(name) LIKE UPPER('%$word%')
+                            OR color in 
+                                (SELECT id FROM colors WHERE colors.name LIKE UPPER('%$word%'))
+                            OR subcategory in 
+                                (SELECT id FROM subcategory WHERE subcategory.name LIKE UPPER('%$word%'))
+                            OR globcategory in 
+                                (SELECT id FROM globcategory WHERE UPPER(globcategory.name) = UPPER('$word'))";
+            }
+            if ($position!=0 and $position!= count($words))
+                $query .= " OR ";
+        }
+        //echo "$query";
+        parent::setQuery($query);
+        parent::executeQuery($query);
+    }
+
     private function getSizesById($id){
         $query = "SELECT sizes.name AS NAME
                     FROM items, items_sizes, sizes
                     WHERE items.id = items_sizes.item_id
                     AND items_sizes.size_id = sizes.id
-                    AND items.id = $id";
+                    AND items.id = $id
+                    ORDER BY sizes.id";
 
         parent::setQuery($query);
         parent::executeQuery("Get sizes by ID");
