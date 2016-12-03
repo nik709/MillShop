@@ -31,11 +31,10 @@ include_once ("../database/SessionControlImpl.php");
                 if(isset($_POST['log-but'])){
                     $session = new SessionControlImpl();
                     $check = $session->checkUser($_POST['login'], md5($_POST['password']));
-                    echo "<br> $check <br>";
 
                     if($check==true){
                         $_SESSION['user-login']=$_POST['login'];
-                        $_SESSION['user-pass']=md5($_POST['password']);
+                        //$_SESSION['user-pass']=md5($_POST['password']);
                     }
                 }
                 ?>
@@ -50,14 +49,15 @@ include_once ("../database/SessionControlImpl.php");
                 <form method="post">
                     <p><input id="username" name="reg-name1" type="text" placeholder="First Name"></p>
                     <p><input id="username" name="reg-name2" type="text" placeholder="Last Name"></p>
+                    <p><input id="username" name="email" type="text" placeholder="E-mail"></p>
                     <p><input id="username" name="reg-login" type="text" placeholder="Login"></p>
                     <p><input id="password" name="reg-password" type="password" placeholder="Password"></p>
+
                     <?php
                     if(isset($_POST['reg-button'])){
                         $sessionControl = new SessionControlImpl();
-                        $test = $sessionControl->addNewUser($_POST['reg-login'],md5($_POST['reg-password']),$_POST['reg-name1'],$_POST['reg-name2']);
+                        $test = $sessionControl->addNewUser($_POST['reg-login'],md5($_POST['reg-password']),$_POST['reg-name1'],$_POST['reg-name2'], $_POST['email']);
                         $sessionControl = null;
-                        echo "$test";
                     }
                     ?>
                     <button class="simple-button register-button" name="reg-button">REGISTER</button>
