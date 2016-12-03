@@ -15,7 +15,7 @@ CREATE TABLE `millshop`.`users`(
 );
 
 ALTER TABLE millshop.users 
-    ADD E-MAIL VARCHAR(30) NULL;
+    ADD EMAIL VARCHAR(30) NULL;
 
 CREATE TABLE `millshop`.`colors` (
   `ID` INT NOT NULL ,
