@@ -3,8 +3,19 @@
     CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
 */
 
-.search-results-header {
+.search-header-wrapper {
     margin-top: 30px;
-    font-family: "Cyntho Bold", sans-serif;
+    margin-bottom: 6px;
     font-size: 2em;
+}
+
+.search-results-header {
+    font-family: "Cyntho Bold", sans-serif;
+    display: inline-block;
+}
+
+.search-string {
+    display: inline-block;
+    font-family: "Cyntho Light", sans-serif;
+    margin-left: 9px;
 }
