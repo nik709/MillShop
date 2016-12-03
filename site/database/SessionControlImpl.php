@@ -16,9 +16,13 @@ class SessionControlImpl extends DBConnection  implements SessionControl
         parent::__destruct();
     }
 
-    public function addNewUser($login, $password, $firstName, $lastName)
+
+    /*
+     * TODO: mask for email
+     */
+    public function addNewUser($login, $password, $firstName, $lastName, $email)
     {
-        $query = "INSERT INTO users (LOGIN, PASSWORD, FIRSTNAME, LASTNAME) VALUES ('$login', '$password', '$firstName', '$lastName')";
+        $query = "INSERT INTO users (LOGIN, PASSWORD, FIRSTNAME, LASTNAME, EMAIL) VALUES ('$login', '$password', '$firstName', '$lastName', '$email')";
         parent::setQuery($query);
         parent::executeQuery("ADD NEW USER");
     }
@@ -48,5 +52,23 @@ class SessionControlImpl extends DBConnection  implements SessionControl
         return $chech;
     }
 
-
+    public function getUserInfo($login){
+        $query = "select FIRSTNAME, LASTNAME, EMAIL
+                  FROM users
+                  where  login = '$login'";
+        parent::setQuery($query);
+        parent::executeQuery("get info about user by login");
+        $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
+        $user = array();
+        $user[0] = $line['FIRSTNAME'];
+        $user[1] = $line['LASTNAME'];
+        $user[2] = $line['EMAIL'];
+        $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
+        if ($line['FIRSTNAME'] != null){
+            for ($i=0; $i<count($user); $i++){
+                $user[$i] = null;
+            }
+        }
+        return $user;
+    }
 }

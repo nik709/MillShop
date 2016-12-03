@@ -14,6 +14,9 @@ CREATE TABLE `millshop`.`users`(
 	PRIMARY KEY (`LOGIN`) 
 );
 
+ALTER TABLE millshop.users 
+    ADD E-MAIL VARCHAR(30) NULL;
+
 CREATE TABLE `millshop`.`colors` (
   `ID` INT NOT NULL ,
   `name` VARCHAR(45) NULL ,
@@ -60,6 +63,7 @@ INSERT INTO millshop.subcategory (id, name) VALUES (408, 'Jackets & Outwear');
 INSERT INTO millshop.subcategory (id, name) VALUES (409, 'Accessories');
 INSERT INTO millshop.subcategory (id, name) VALUES (410, 'Dress');
 INSERT INTO millshop.subcategory (id, name) VALUES (411, 'Skirt');
+INSERT INTO millshop.subcategory (id, name) VALUES (412, 'Swimsuit');
 
 CREATE  TABLE `millshop`.`globcategory` (
   `id` INT NOT NULL ,

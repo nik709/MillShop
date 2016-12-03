@@ -6,7 +6,7 @@
 
 interface SessionControl
 {
-    public function addNewUser($login, $password, $firstName, $lastName);
+    public function addNewUser($login, $password, $firstName, $lastName, $email);
 
     public function checkUser($login, $password);
 

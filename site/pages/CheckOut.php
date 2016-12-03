@@ -17,6 +17,9 @@ session_start();
 <?php
 include('menu.php');
 include_once ("../database/SessionControlImpl.php");
+
+$sessionControl = new SessionControlImpl();
+$test = $sessionControl->getUserInfo("admin");
 ?>
 
 <!-- MAIN BLOCK START -->
@@ -27,9 +30,9 @@ include_once ("../database/SessionControlImpl.php");
         <div style="font-size: 30px; margin-bottom: 15px; ">CHECKOUT</div>
         <div style="font-size: 18px; margin-bottom: 15px;">PERSONAL DATA</div>
         <fieldset id="inputs">
-                <p><input id="username" name="first-name" type="text" placeholder="First Name"></p>
-                <p><input id="password" name="last-name" type="text" placeholder="Last Name"></p>
-                <p><input id="E-mail" name="e-mail" type="text" placeholder="E-mail"></p>
+                <p><input id="username" name="first-name" type="text"  value ="<?php echo $test[0] ?>"></p>
+                <p><input id="password" name="last-name" type="text" value ="<?php echo $test[1] ?>"></p>
+                <p><input id="E-mail" name="e-mail" type="text" value ="<?php echo $test[2] ?>"></p>
                 <p><input id="Phone" name="phone" type="text" placeholder="Phone"></p>
 
         </fieldset>
