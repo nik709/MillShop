@@ -26,25 +26,19 @@ class DBConnection
         $this->link = mysqli_connect('localhost:3306', 'root', 'root', 'millshop');
         //$this->link = mysqli_connect('db4free.net:3306', 'millshopcompany', 'tp5360kmj9t5', 'millshop');
         if (!$this->link) {
-            echo '<script type="text/javascript">';
-            echo 'window.location.href = "../pages/500.php"';
-            echo '</script>';
+            $this->onFailed("");
         }
         //echo 'Соединение успешно установлено';
         $selected = mysqli_select_db($this->link, 'millshop');
         if (!$selected){
-            echo '<script type="text/javascript">';
-            echo 'window.location.href = "../pages/500.php"';
-            echo '</script>';
+            $this->onFailed("");
         }
     }
 
     private function closeConnection(){
         $isClose = mysqli_close($this->link);
         if (!$isClose){
-            echo '<script type="text/javascript">';
-            echo 'window.location.href = "../pages/500.php"';
-            echo '</script>';
+            $this->onFailed("");
         }
     }
 
@@ -52,9 +46,7 @@ class DBConnection
     protected function executeQuery($reasonOfError){
         $this->result = mysqli_query($this->link, $this->query);
         if ($this->result == false){
-            echo '<script type="text/javascript">';
-            echo "window.location.href = \"../pages/500.php?message=$reasonOfError\"";
-            echo '</script>';
+            $this->onFailed($reasonOfError);
         }
 }
 
@@ -310,5 +302,10 @@ class DBConnection
         return $this->result;
     }
 
+    public function onFailed($errorMessage) {
+        echo '<script type="text/javascript">';
+        echo "window.location.href = \"../pages/500.php?message=$errorMessage\"";
+        echo '</script>';
+    }
 }
 ?>

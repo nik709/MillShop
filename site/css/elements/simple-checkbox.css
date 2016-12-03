@@ -17,6 +17,7 @@
 
 .simple-checkbox + label {
     cursor: pointer;
+    vertical-align: top;
 }
 
 .simple-checkbox:not(checked) {
@@ -41,6 +42,7 @@
     left: 0;
     width: 13px;
     height: 13px;
+    margin-top: 1px;
 }
 
 .simple-checkbox:not(checked) + label:after,
