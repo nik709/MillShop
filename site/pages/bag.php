@@ -43,8 +43,14 @@ include('menu.php');
     <hr class="delimiter">
 
     <?php
-    if(isset($_POST['clearBag'])) {
-        session_destroy();
+    if(isset($_POST['clearBag']) && isset($_SESSION['item'])
+        && isset($_SESSION['item']) && isset($_SESSION['item'])) {
+            unset($_SESSION['item']);
+            unset($_SESSION['quant']);
+            unset($_SESSION['size']);
+            $_SESSION['count'] = 0;
+        //session_destroy();
+
         header("Location: bag.php") ;
     }
 
@@ -54,7 +60,9 @@ include('menu.php');
         $db->getItemById($value);
     }
     ?>
+</form>
 
+<form method="post" action="CheckOut.php">
     <div class="bag-table-wrapper">
         <table id="bag-table">
             <tr class="table-header">
@@ -80,7 +88,7 @@ include('menu.php');
         </table>
     </div>
 
-    <button class="simple-button checkout-button" name="checkoutButton">CHECKOUT</button>
+   <button class="simple-button checkout-button" name="checkoutButton">CHECKOUT</button>
 </form>
 
 <!-- MAIN BLOCK END -->
