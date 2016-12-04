@@ -18,43 +18,41 @@ session_start();
 include('menu.php');
 include_once ("../database/SessionControlImpl.php");
 
-$sessionControl = new SessionControlImpl();
-$test = $sessionControl->getUserInfo("admin");
+if(isset($_SESSION['user-login'])) {
+    $sessionControl = new SessionControlImpl();
+    $test = $sessionControl->getUserInfo($_SESSION['user-login']);
+}
 ?>
 
 <!-- MAIN BLOCK START -->
 
 <div id="log-block">
-    <form method="post">
+    <form method="post" action="checkout_mess.php" >
     <div>
         <div style="font-size: 30px; margin-bottom: 15px; ">CHECKOUT</div>
         <div style="font-size: 18px; margin-bottom: 15px;">PERSONAL DATA</div>
         <fieldset id="inputs">
-                <p><input id="username" name="first-name" type="text"  value ="<?php echo $test[0] ?>"></p>
-                <p><input id="password" name="last-name" type="text" value ="<?php echo $test[1] ?>"></p>
-                <p><input id="E-mail" name="e-mail" type="text" value ="<?php echo $test[2] ?>"></p>
-                <p><input id="Phone" name="phone" type="text" placeholder="Phone"></p>
+                <p><input name="first-name" type="text"  value ="<?php if(isset($_SESSION['user-login']))echo $test[0];?>" placeholder="First Name"></p>
+                <p><input name="last-name" type="text" value ="<?php if(isset($_SESSION['user-login'])) echo $test[1];?>" placeholder="Last Name"></p>
+                <p><input name="e-mail" type="text" value ="<?php if(isset($_SESSION['user-login'])) echo $test[2];?>" placeholder="E-mail"></p>
+                <p><input name="phone" type="text" placeholder="Phone"></p>
 
         </fieldset>
     </div>
 
     <div>
         <fieldset id="inputs">
-
                 <div  style="font-size: 30px; margin-bottom: 15px; color: white"> Empty Line </div>
                 <div style="font-size: 18px; margin-bottom: 15px;">ADDRESS</div>
-                <p><input id="username" name="Country" type="text" placeholder="Country"></p>
-                <p><input id="password" name="City" type="password" placeholder="City"></p>
-                <p><input id="E-mail" name="Index" type="text" placeholder="Index"></p>
-                <p><input id="Phone" name="Street" type="password" placeholder="Street"></p>
+                <p><input name="Country" type="text" placeholder="Country"></p>
+                <p><input name="City" type="text" placeholder="City"></p>
+                <p><input name="Street" type="text" placeholder="Street"></p>
+                <p>
+                    <input class="post-code" name="Apt-Bidg" type="text" placeholder="Apt/Bidg">
+                    <input class="post-code" name="Postal Code" type="text" placeholder="Postal Code">
+                </p>
 
-                <?php
-                if(isset($_POST['order-but'])){
-
-                }
-                ?>
-                <button class="simple-button login-button" name="log-but">Order</button>
-
+                <button class="simple-button login-button" name="confirm-but" >CONFIRM</button>
         </fieldset>
     </div>
 

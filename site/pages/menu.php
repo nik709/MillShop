@@ -34,12 +34,16 @@
                                 <span class="search-icon"></span>
                             </form>
                         </div>
-                        <!-- <a href="MillShop.php" style="text-decoration: none">
-                            <div id="menu-bar-currency" title="Currency"></div>
-                        </a> -->
-                        <a href="login.php" style="text-decoration: none">
-                            <div id="menu-bar-user" title="My profile"></div>
-                        </a>
+                        <?php
+                        if(!isset($_SESSION['user-login']))
+                            echo "<a href='login.php' style='text-decoration: none'>
+                                <div id='menu-bar-user' title='My profile''></div>
+                            </a>";
+                        else
+                            echo "<a href='login.php' style='text-decoration: none'>
+                                  <div id='menu-bar-user' title='Log Out'></div>
+                            </a>";
+                        ?>
                         <a href="bag.php">
                             <div id="menu-bar-bag" title="My bag"><div id="menu-bag-items-count"><?php if(isset($_SESSION['count'])) echo $_SESSION['count']; else echo 0;?></div></div>
                         </a>

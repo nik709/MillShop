@@ -85,7 +85,22 @@ fieldset {
     background: #f1f1f1  no-repeat;
     padding: 10px 10px 10px 20px;
     margin: 0 120px 5px 0;
-    width: 300px; /* 353 + 2 + 45 = 400 */
+    width: 300px;
+    border: 1px solid #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+
+}
+
+#inputs input.post-code {
+    background: #f1f1f1  no-repeat;
+    padding: 10px 10px 10px 20px;
+    margin: 0 25px 5px 0;
+    width: 120px;
     border: 1px solid #ccc;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -101,7 +116,7 @@ fieldset {
     background: #f1f1f1  no-repeat;
     padding: 10px 10px 10px 20px;
     margin: 0 0px 5px 366px;
-    width: 300px; /* 353 + 2 + 45 = 400 */
+    width: 300px;
     border: 1px solid #ccc;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -112,10 +127,10 @@ fieldset {
 }
 
 #inputs-right2 input {
-    background: #f1f1f1 url(http://www.red-team-design.com/wp-content/uploads/2011/09/login-sprite.png) no-repeat;
+    background: #f1f1f1 no-repeat;
     padding: 10px 10px 10px 20px;
     margin: 0 0px 5px 456px;
-    width: 300px; /* 353 + 2 + 45 = 400 */
+    width: 300px;
     border: 1px solid #ccc;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -164,4 +179,9 @@ fieldset {
 .register-button {
     width: 140px;
     margin-top: 15px;
+}
+
+.post-code
+{
+    width: 100px;
 }

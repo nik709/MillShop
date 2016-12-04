@@ -26,7 +26,7 @@
 
     <div id="contact-form-wrapper">
         <div id="contact-us">
-            <form action="contact_form.php" method="post" class="contact-form">
+            <form method="post" action="contact_form.php" class="contact-form">
                 <input type="text" class="simple-textbox contact-form-textbox" name="name" placeholder="Your Name" required />
                 <input type="email" class="simple-textbox contact-form-textbox" name="email" placeholder="Your e-Mail" required />
                 <span class="form-hint">Incorrect format</span>

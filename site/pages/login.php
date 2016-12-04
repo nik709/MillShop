@@ -19,6 +19,7 @@ include('menu.php');
 include_once ("../database/SessionControlImpl.php");
 ?>
 
+
 <!-- MAIN BLOCK START -->
     <div id="log-block">
         <div>
@@ -36,6 +37,8 @@ include_once ("../database/SessionControlImpl.php");
                         $_SESSION['user-login']=$_POST['login'];
                         //$_SESSION['user-pass']=md5($_POST['password']);
                     }
+                    else
+                        echo "<div style='font-size: small; color:red'>Login or password is incorrect!</div>";
                 }
                 ?>
                 <button class="simple-button login-button" name="log-but">LOG IN</button>
@@ -60,6 +63,7 @@ include_once ("../database/SessionControlImpl.php");
                         $sessionControl = null;
                     }
                     ?>
+
                     <button class="simple-button register-button" name="reg-button">REGISTER</button>
                 </form>
             </fieldset>
