@@ -32,10 +32,8 @@ include_once ("../database/SessionControlImpl.php");
                 if(isset($_POST['log-but'])){
                     $session = new SessionControlImpl();
                     $check = $session->checkUser($_POST['login'], md5($_POST['password']));
-
                     if($check==true){
                         $_SESSION['user-login']=$_POST['login'];
-                        //$_SESSION['user-pass']=md5($_POST['password']);
                     }
                     else
                         echo "<div style='font-size: small; color:red'>Login or password is incorrect!</div>";
