@@ -1,4 +1,4 @@
-﻿F<?php
+﻿<?php
 session_start();
 include ('SessionInit.php');
 function showImg($image) {
@@ -30,6 +30,7 @@ include_once ("../database/SessionControlImpl.php");
 if(isset($_SESSION['item'])) {
     $sessionControl = new SessionControlImpl();
 }
+
 ?>
 
 <form method="post">
@@ -51,10 +52,6 @@ if(isset($_SESSION['item'])) {
         header("Location: bag.php") ;
     }
     include_once ("../database/QueryPresenterImpl.php");
-    $db = new QueryPresenterImpl();
-    foreach ($_SESSION['item'] as $value) {
-        $db->getItemById($value);
-    }
     ?>
 </form>
 
@@ -62,7 +59,7 @@ if(isset($_SESSION['item'])) {
     <div class="bag-table-wrapper">
         <table id="bag-table">
             <tr class="table-header">
-                <td class="table-cell-header">�</td>
+                <td class="table-cell-header">№</td>
                 <td class="table-cell-header">Image</td>
                 <td class="table-cell-header">Name</td>
                 <td class="table-cell-header">Size</td>

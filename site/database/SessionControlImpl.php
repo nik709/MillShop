@@ -77,7 +77,7 @@ class SessionControlImpl extends DBConnection  implements SessionControl
     //Это нужно бы проверить
 
     public function getItemInfo($id){
-        $query = "select name , color, image
+        $query = "select name , color, image, price
                   FROM items
                   where  ID = '$id'";
         parent::setQuery($query);
@@ -88,14 +88,17 @@ class SessionControlImpl extends DBConnection  implements SessionControl
         	$user[0] = $line['image'];
         	$user[1] = $line['name'];
         	$user[2] = $line['color'];
+            $user[3] = $line['price'];
 	}
 	else{
 		$user[0] = null;
 		$user[1] = null;
 		$user[2] = null;
+        $user[3] = null;
 	}
         return $user;
     }
+
 
     public function getColor($id){
         $query = "select name
