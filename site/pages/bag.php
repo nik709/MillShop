@@ -1,4 +1,4 @@
-<?php
+﻿F<?php
 session_start();
 include ('SessionInit.php');
 function showImg($image) {
