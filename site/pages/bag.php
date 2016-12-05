@@ -1,16 +1,12 @@
 <?php
 session_start();
-if (!isset($_SESSION['count']))
-    $_SESSION['count'] = 0;
+include ('SessionInit.php');
 
-if (!isset($_SESSION['item']))
-    $_SESSION['item'] = array();
 
-if (!isset($_SESSION['quant']))
-    $_SESSION['quant'] = array();
-
-if (!isset($_SESSION['size']))
-    $_SESSION['size'] = array();
+function showImg($image) {
+    echo "<img src=\"data:image/jpeg;base64," . base64_encode($image) .
+"\" width=\"" . 40 . "\" height=\"auto\" />";
+}
 
 ?>
 <!DOCTYPE html>
@@ -28,9 +24,18 @@ if (!isset($_SESSION['size']))
 <body>
 <?php
 include('menu.php');
+include_once ("../database/SessionControlImpl.php");
 ?>
 
 <!-- MAIN BLOCK START -->
+
+<?php
+if(isset($_SESSION['item'])) {
+    $sessionControl = new SessionControlImpl();
+    $db=new DBConnection();
+}
+
+?>
 
 <form method="post">
 <!-- PAGE TILTE -->
@@ -43,15 +48,14 @@ include('menu.php');
     <hr class="delimiter">
 
     <?php
-    if(isset($_POST['clearBag']) && isset($_SESSION['item'])
-        && isset($_SESSION['item']) && isset($_SESSION['item'])) {
+    if(isset($_POST['clearBag']) && isset($_SESSION['item'])) {
             unset($_SESSION['item']);
             unset($_SESSION['quant']);
             unset($_SESSION['size']);
             $_SESSION['count'] = 0;
-        //session_destroy();
 
         header("Location: bag.php") ;
+
     }
 
     include_once ("../database/QueryPresenterImpl.php");
@@ -74,17 +78,27 @@ include('menu.php');
                 <td class="table-cell-header">Quantity</td>
                 <td class="table-cell-header"><!--Remove--></td>
             </tr>
-            <tr>
-                <td class="table-cell">1</td>
-                <td class="table-cell">IMAGE GOES HERE</td>
-                <td class="table-cell">Tempest Short</td>
-                <td class="table-cell">M</td>
-                <td class="table-cell">Blue</td>
-                <td class="table-cell">
-                    <input type="number" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='1' min='1' max='10'>
-                </td>
-                <td class="table-cell">Remove</td>
-            </tr>
+
+            <?php
+            $num=1;
+            foreach ($_SESSION['item'] as $value) {
+                $quant=$_SESSION['quant'][$num-1];
+                $test = $sessionControl->getItemInfo($value);
+                echo "<tr>";
+                echo "<td class=\"table-cell\">";  echo $num;                                   echo"</td>";
+                echo "<td class=\"table-cell\">";  echo showImg($test[0]);                      echo"</td>";
+                echo "<td class=\"table-cell\">";  echo $test[1];                               echo"</td>";
+                echo "<td class=\"table-cell\">";  echo $_SESSION['size'][$num-1];              echo"</td>";
+                echo "<td class=\"table-cell\">";  echo $sessionControl->getColor($test[2]);    echo"</td>";
+                echo "<td class=\"table-cell\">";
+                echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quant' min='1' max='10'>";
+                echo "</td>";
+                echo "<td class=\"table-cell\">Remove</td>";
+                echo "</tr>";
+                $num+=1;
+            }
+            ?>
+
         </table>
     </div>
 

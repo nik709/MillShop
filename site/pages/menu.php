@@ -34,16 +34,9 @@
                                 <span class="search-icon"></span>
                             </form>
                         </div>
-                        <?php
-                        if(!isset($_SESSION['user-login']))
-                            echo "<a href='login.php' style='text-decoration: none'>
-                                <div id='menu-bar-user' title='My profile''></div>
-                            </a>";
-                        else
-                            echo "<a href='login.php' style='text-decoration: none'>
-                                  <div id='menu-bar-user' title='Log Out'></div>
-                            </a>";
-                        ?>
+                        <a href='login.php' style='text-decoration: none'>
+                            <div id='menu-bar-user' class='menu-bar-user-in' title='My profile'></div>
+                        </a>
                         <a href="bag.php">
                             <div id="menu-bar-bag" title="My bag"><div id="menu-bag-items-count"><?php if(isset($_SESSION['count'])) echo $_SESSION['count']; else echo 0;?></div></div>
                         </a>
