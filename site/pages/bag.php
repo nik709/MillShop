@@ -1,4 +1,4 @@
-﻿<?php
+﻿F<?php
 session_start();
 include ('SessionInit.php');
 
@@ -32,7 +32,6 @@ include_once ("../database/SessionControlImpl.php");
 <?php
 if(isset($_SESSION['item'])) {
     $sessionControl = new SessionControlImpl();
-    $db=new DBConnection();
 }
 
 ?>

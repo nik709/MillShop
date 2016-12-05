@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
     MILL SHOP COMPANY, 2016
     CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
@@ -84,15 +84,16 @@ class SessionControlImpl extends DBConnection  implements SessionControl
         parent::executeQuery("get info about item by ID");
         $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
         $user = array();
-        $user[0] = $line['image'];
-        $user[1] = $line['name'];
-        $user[2] = $line['color'];
-        $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
-        if ($line['color'] != null){
-            for ($i=0; $i<count($user); $i++){
-                $user[$i] = null;
-            }
-        }
+	if ($line!=null){
+        	$user[0] = $line['image'];
+        	$user[1] = $line['name'];
+        	$user[2] = $line['color'];
+	}
+	else{
+		$user[0] = null;
+		$user[1] = null;
+		$user[2] = null;
+	}
         return $user;
     }
 
@@ -103,8 +104,8 @@ class SessionControlImpl extends DBConnection  implements SessionControl
         parent::setQuery($query);
         parent::executeQuery("get info about color by ID");
         $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
-        $user = $line['name'];
+        $color = $line['name'];
 
-        return $user;
+        return $color;
     }
 }
