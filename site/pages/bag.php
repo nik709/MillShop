@@ -1,13 +1,10 @@
 <?php
 session_start();
 include ('SessionInit.php');
-
-
 function showImg($image) {
     echo "<img src=\"data:image/jpeg;base64," . base64_encode($image) .
 "\" width=\"" . 40 . "\" height=\"auto\" />";
 }
-
 ?>
 <!DOCTYPE html>
 <!--
@@ -32,9 +29,7 @@ include_once ("../database/SessionControlImpl.php");
 <?php
 if(isset($_SESSION['item'])) {
     $sessionControl = new SessionControlImpl();
-    $db=new DBConnection();
 }
-
 ?>
 
 <form method="post">
@@ -53,11 +48,8 @@ if(isset($_SESSION['item'])) {
             unset($_SESSION['quant']);
             unset($_SESSION['size']);
             $_SESSION['count'] = 0;
-
         header("Location: bag.php") ;
-
     }
-
     include_once ("../database/QueryPresenterImpl.php");
     $db = new QueryPresenterImpl();
     foreach ($_SESSION['item'] as $value) {
@@ -70,7 +62,7 @@ if(isset($_SESSION['item'])) {
     <div class="bag-table-wrapper">
         <table id="bag-table">
             <tr class="table-header">
-                <td class="table-cell-header">â„–</td>
+                <td class="table-cell-header">¹</td>
                 <td class="table-cell-header">Image</td>
                 <td class="table-cell-header">Name</td>
                 <td class="table-cell-header">Size</td>
