@@ -1,9 +1,10 @@
 ﻿<?php
 session_start();
 include ('SessionInit.php');
-function showImg($image) {
+
+function drawImage($image) {
     echo "<img src=\"data:image/jpeg;base64," . base64_encode($image) .
-"\" width=\"" . 40 . "\" height=\"auto\" />";
+"\" width=\"" . 160 . "\" height=\"auto\" />";
 }
 ?>
 <!DOCTYPE html>
@@ -53,9 +54,11 @@ if(isset($_SESSION['item'])) {
     }
     ?>
 </form>
+
+<div class="bag-content">
 <?php
 if(isset($_SESSION['user-login']))
-   echo"<form method=\"post\" action=\"CheckOut.php\">";
+   echo"<form method=\"post\" action=\"checkout.php\">";
 else
     echo"<form method=\"post\" action=\"login.php\">";
 ?>
@@ -72,34 +75,37 @@ else
             </tr>
 
             <?php
-            $num=1;
+            $num = 1;
             foreach ($_SESSION['item'] as $value) {
-                $quant=$_SESSION['quant'][$num-1];
-                $test = $sessionControl->getItemInfo($value);
+                $quantity=$_SESSION['quant'][$num-1];
+                $queryResult = $sessionControl->getItemInfo($value);
                 echo "<tr>";
-                echo "<td class=\"table-cell\">";  echo $num;                                   echo"</td>";
-                echo "<td class=\"table-cell\">";  echo showImg($test[0]);                      echo"</td>";
-                echo "<td class=\"table-cell\">";  echo $test[1];                               echo"</td>";
-                echo "<td class=\"table-cell\">";  echo $_SESSION['size'][$num-1];              echo"</td>";
-                echo "<td class=\"table-cell\">";  echo $sessionControl->getColor($test[2]);    echo"</td>";
-                echo "<td class=\"table-cell\">";
-                echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quant' min='1' max='10'>";
+                echo "<td class=\"table-cell\">$num</td>";
+                echo "<td class=\"table-cell-image\">";
+                    drawImage($queryResult[0]);
+                echo "</td>";
+                echo "<td class=\"table-cell\">" . $queryResult[1] . "</td>";
+                echo "<td class=\"table-cell\">" . $_SESSION['size'][$num-1] . "</td>";
+                echo "<td class=\"table-cell\">" . $sessionControl->getColor($queryResult[2]) . "</td>";
+                echo "<td class=\"table-cell-quantity\">";
+                echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quantity' min='1' max='10'>";
                 echo "</td>";
                 echo "<td class=\"table-cell\">Remove</td>";
                 echo "</tr>";
-                $num+=1;
+                $num++;
             }
             ?>
 
         </table>
     </div>
     <?php
-        if(count($_SESSION['item'])>0)
-            echo "<button class=\"simple-button checkout-button\" name=\"checkoutButton\" onclick='this.disabled=false'>CHECKOUT</button>";
-        else
-            echo "<button class=\"simple-button-dis checkout-button\" name=\"checkoutButton\" onclick='this.disabled=true'>CHECKOUT</button>";
+    echo "<button class=\"simple-button checkout-button\" name=\"checkoutButton\" ";
+        if(count($_SESSION['item']) == 0)
+            echo "disabled";
+        echo ">CHECKOUT</button>";
     ?>
 </form>
+</div>
 <!-- MAIN BLOCK END -->
 
 <?php

@@ -9,7 +9,7 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mill Shop</title>
+    <title>Checkout - Mill Shop</title>
     <link rel="icon" href="../resources/images/icon.ico">
     <link rel="stylesheet" href="../css/Login.css">
 </head>
@@ -20,45 +20,40 @@ include_once ("../database/SessionControlImpl.php");
 
 if(isset($_SESSION['user-login'])) {
     $sessionControl = new SessionControlImpl();
-    $test = $sessionControl->getUserInfo($_SESSION['user-login']);
+    $data = $sessionControl->getUserInfo($_SESSION['user-login']);
 }
 ?>
 
 <!-- MAIN BLOCK START -->
 
+<!-- PAGE TILTE -->
+<div class="page-title" id="page-title">Shipping Information</div>
+<hr class="delimiter">
+
+<form method="post" action="checkout_mess.php">
 <div id="log-block">
-    <form method="post" action="checkout_mess.php")>
     <div>
-        <div style="font-size: 30px; margin-bottom: 15px; ">CHECKOUT</div>
-        <div style="font-size: 18px; margin-bottom: 15px;">PERSONAL DATA</div>
-        <fieldset id="inputs">
-                <p><input name="first-name" type="text"  value ="<?php if(isset($_SESSION['user-login']))echo $test[0];?>" placeholder="First Name" required></p>
-                <p><input name="last-name" type="text" value ="<?php if(isset($_SESSION['user-login'])) echo $test[1];?>" placeholder="Last Name" required></p>
-                <p><input name="e-mail" type="email" value ="<?php if(isset($_SESSION['user-login'])) echo $test[2];?>" placeholder="E-mail" required></p>
-                <p><input name="phone" type="text" placeholder="Phone" required></p>
-
-        </fieldset>
+        <div class="checkout-header">Contact Information</div>
+        <div class="inputs">
+            <input name="first-name" type="text" value ="<?php if(isset($_SESSION['user-login']))echo $data[0];?>" placeholder="First Name" title="First Name" required>
+            <input name="last-name" type="text" value ="<?php if(isset($_SESSION['user-login'])) echo $data[1];?>" placeholder="Last Name" title="Last Name" required>
+            <input name="e-mail" type="email" value ="<?php if(isset($_SESSION['user-login'])) echo $data[2];?>" placeholder="E-mail" title="E-mail" required>
+            <input name="phone" type="text" placeholder="Phone" title="Phone" required>
+        </div>
     </div>
-
     <div>
-        <fieldset id="inputs">
-                <div  style="font-size: 30px; margin-bottom: 15px; color: white">Empty Line </div>
-                <div style="font-size: 18px; margin-bottom: 15px;">ADDRESS</div>
-                <p><input name="Country" type="text" placeholder="Country" required></p>
-                <p><input name="City" type="text" placeholder="City" required></p>
-                <p><input name="Street" type="text" placeholder="Street" required></p>
-                <p>
-                    <input class="post-code" name="Apt-Bidg" type="text" placeholder="Apt/Bidg" required>
-                    <input class="post-code" name="Postal Code" type="text" placeholder="Postal Code" required>
-                </p>
-
-                <button class="simple-button login-button" name="confirm-but" >CONFIRM</button>
-        </fieldset>
+        <div class="checkout-header">Shipping Address</div>
+        <div class="inputs">
+            <input name="Country" type="text" placeholder="Country" title="Country" required>
+            <input name="City" type="text" placeholder="City" title="City" required>
+            <input name="Street" type="text" placeholder="Street" title="Street" required>
+            <input class="post-code" name="Apt-Bidg" type="text" placeholder="Apt / Bidg" title="Apt / Bldg" required>
+            <input class="post-code" name="Postal Code" type="text" placeholder="Postal Code" title="Postal Code" required>
+        </div>
     </div>
-
-    </form>
+    <button class="simple-button place-my-order-button" name="confirm-but">PLACE MY ORDER!</button>
 </div>
-
+</form>
 
 
 <!--  <input type="submit" id="submit" value="ВОЙТИ">-->

@@ -24,7 +24,7 @@ include_once ("../database/SessionControlImpl.php");
     <div id="log-block">
         <div>
             <div style="font-size: 30px; margin-bottom: 15px;">SIGN IN</div>
-            <fieldset id="inputs">
+            <fieldset class="inputs">
                 <form method="post">
                 <p><input id="username" name="login" type="text" placeholder="Login" required></p>
                 <p><input id="password" name="password" type="password" placeholder="Password" required></p>
@@ -46,7 +46,7 @@ include_once ("../database/SessionControlImpl.php");
 
         <div>
             <div style="font-size: 30px; margin-bottom: 15px;">REGISTER</div>
-            <fieldset id="inputs">
+            <fieldset class="inputs">
                 <form method="post">
                     <p><input id="username" name="reg-name1" type="text" placeholder="First Name" required></p>
                     <p><input id="username" name="reg-name2" type="text" placeholder="Last Name" required></p>
