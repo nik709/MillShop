@@ -1,13 +1,10 @@
-﻿F<?php
+﻿<?php
 session_start();
 include ('SessionInit.php');
-
-
 function showImg($image) {
     echo "<img src=\"data:image/jpeg;base64," . base64_encode($image) .
 "\" width=\"" . 40 . "\" height=\"auto\" />";
 }
-
 ?>
 <!DOCTYPE html>
 <!--
@@ -35,9 +32,9 @@ if(isset($_SESSION['item'])) {
 }
 
 ?>
+<!-- PAGE TILTE -->
 
 <form method="post">
-<!-- PAGE TILTE -->
     <div id="bag-header-wrapper">
         <div class="page-title" id="page-title">My bag</div>
         <div id="clear-bag-button-wrapper">
@@ -52,20 +49,16 @@ if(isset($_SESSION['item'])) {
             unset($_SESSION['quant']);
             unset($_SESSION['size']);
             $_SESSION['count'] = 0;
-
         header("Location: bag.php") ;
-
-    }
-
-    include_once ("../database/QueryPresenterImpl.php");
-    $db = new QueryPresenterImpl();
-    foreach ($_SESSION['item'] as $value) {
-        $db->getItemById($value);
     }
     ?>
 </form>
-
-<form method="post" action="CheckOut.php">
+<?php
+if(isset($_SESSION['user-login']))
+   echo"<form method=\"post\" action=\"CheckOut.php\">";
+else
+    echo"<form method=\"post\" action=\"login.php\">";
+?>
     <div class="bag-table-wrapper">
         <table id="bag-table">
             <tr class="table-header">
@@ -100,10 +93,13 @@ if(isset($_SESSION['item'])) {
 
         </table>
     </div>
-
-   <button class="simple-button checkout-button" name="checkoutButton">CHECKOUT</button>
+    <?php
+        if(count($_SESSION['item'])>0)
+            echo "<button class=\"simple-button checkout-button\" name=\"checkoutButton\" onclick='this.disabled=false'>CHECKOUT</button>";
+        else
+            echo "<button class=\"simple-button-dis checkout-button\" name=\"checkoutButton\" onclick='this.disabled=true'>CHECKOUT</button>";
+    ?>
 </form>
-
 <!-- MAIN BLOCK END -->
 
 <?php

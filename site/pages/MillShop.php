@@ -20,7 +20,6 @@ include ('SessionInit.php');
     ?>
 
     <!-- MAIN BLOCK START -->
-
     <div id="banners-block">
         <div id="main-banner"><img src="../resources/images/banners/banner_40001.jpg"></div>
         <div id="shop-banners-block">
