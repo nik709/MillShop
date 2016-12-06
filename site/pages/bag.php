@@ -95,10 +95,11 @@ else
     </div>
     <?php
         if(count($_SESSION['item'])>0)
-            echo "<button class=\"simple-button checkout-button\" name=\"checkoutButton\">CHECKOUT</button>";
+            echo "<button class=\"simple-button checkout-button\" name=\"checkoutButton\" onclick='this.disabled=false'>CHECKOUT</button>";
+        else
+            echo "<button class=\"simple-button-dis checkout-button\" name=\"checkoutButton\" onclick='this.disabled=true'>CHECKOUT</button>";
     ?>
 </form>
-
 <!-- MAIN BLOCK END -->
 
 <?php
