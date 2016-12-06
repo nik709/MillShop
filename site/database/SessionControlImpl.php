@@ -77,26 +77,28 @@ class SessionControlImpl extends DBConnection  implements SessionControl
     //Это нужно бы проверить
 
     public function getItemInfo($id){
-        $query = "select name , color, image, price
+        $query = "select name , color, image, price, discount
                   FROM items
                   where  ID = '$id'";
         parent::setQuery($query);
         parent::executeQuery("get info about item by ID");
         $line = mysqli_fetch_array(parent::getResult(), MYSQLI_ASSOC);
-        $user = array();
+        $item = array();
 	if ($line!=null){
-        	$user[0] = $line['image'];
-        	$user[1] = $line['name'];
-        	$user[2] = $line['color'];
-            $user[3] = $line['price'];
+        $item[0] = $line['image'];
+        $item[1] = $line['name'];
+        $item[2] = $line['color'];
+        $item[3] = $line['price'];
+        $item[4] = $line['discount'];
 	}
 	else{
-		$user[0] = null;
-		$user[1] = null;
-		$user[2] = null;
-        $user[3] = null;
+        $item[0] = null;
+        $item[1] = null;
+        $item[2] = null;
+        $item[3] = null;
+        $item[4] = null;
 	}
-        return $user;
+        return $item;
     }
 
 

@@ -32,9 +32,9 @@ if(isset($_SESSION['item'])) {
 }
 
 ?>
+<!-- PAGE TILTE -->
 
 <form method="post">
-<!-- PAGE TILTE -->
     <div id="bag-header-wrapper">
         <div class="page-title" id="page-title">My bag</div>
         <div id="clear-bag-button-wrapper">
@@ -51,11 +51,14 @@ if(isset($_SESSION['item'])) {
             $_SESSION['count'] = 0;
         header("Location: bag.php") ;
     }
-    include_once ("../database/QueryPresenterImpl.php");
     ?>
 </form>
-
-<form method="post" action="CheckOut.php">
+<?php
+if(isset($_SESSION['user-login']))
+   echo"<form method=\"post\" action=\"CheckOut.php\">";
+else
+    echo"<form method=\"post\" action=\"login.php\">";
+?>
     <div class="bag-table-wrapper">
         <table id="bag-table">
             <tr class="table-header">
@@ -90,8 +93,10 @@ if(isset($_SESSION['item'])) {
 
         </table>
     </div>
-
-   <button class="simple-button checkout-button" name="checkoutButton">CHECKOUT</button>
+    <?php
+        if(count($_SESSION['item'])>0)
+            echo "<button class=\"simple-button checkout-button\" name=\"checkoutButton\">CHECKOUT</button>";
+    ?>
 </form>
 
 <!-- MAIN BLOCK END -->

@@ -27,29 +27,29 @@ if(isset($_SESSION['user-login'])) {
 <!-- MAIN BLOCK START -->
 
 <div id="log-block">
-    <form method="post" action="checkout_mess.php" >
+    <form method="post" action="checkout_mess.php")>
     <div>
         <div style="font-size: 30px; margin-bottom: 15px; ">CHECKOUT</div>
         <div style="font-size: 18px; margin-bottom: 15px;">PERSONAL DATA</div>
         <fieldset id="inputs">
-                <p><input name="first-name" type="text"  value ="<?php if(isset($_SESSION['user-login']))echo $test[0];?>" placeholder="First Name"></p>
-                <p><input name="last-name" type="text" value ="<?php if(isset($_SESSION['user-login'])) echo $test[1];?>" placeholder="Last Name"></p>
-                <p><input name="e-mail" type="text" value ="<?php if(isset($_SESSION['user-login'])) echo $test[2];?>" placeholder="E-mail"></p>
-                <p><input name="phone" type="text" placeholder="Phone"></p>
+                <p><input name="first-name" type="text"  value ="<?php if(isset($_SESSION['user-login']))echo $test[0];?>" placeholder="First Name" required></p>
+                <p><input name="last-name" type="text" value ="<?php if(isset($_SESSION['user-login'])) echo $test[1];?>" placeholder="Last Name" required></p>
+                <p><input name="e-mail" type="email" value ="<?php if(isset($_SESSION['user-login'])) echo $test[2];?>" placeholder="E-mail" required></p>
+                <p><input name="phone" type="text" placeholder="Phone" required></p>
 
         </fieldset>
     </div>
 
     <div>
         <fieldset id="inputs">
-                <div  style="font-size: 30px; margin-bottom: 15px; color: white"> Empty Line </div>
+                <div  style="font-size: 30px; margin-bottom: 15px; color: white">Empty Line </div>
                 <div style="font-size: 18px; margin-bottom: 15px;">ADDRESS</div>
-                <p><input name="Country" type="text" placeholder="Country"></p>
-                <p><input name="City" type="text" placeholder="City"></p>
-                <p><input name="Street" type="text" placeholder="Street"></p>
+                <p><input name="Country" type="text" placeholder="Country" required></p>
+                <p><input name="City" type="text" placeholder="City" required></p>
+                <p><input name="Street" type="text" placeholder="Street" required></p>
                 <p>
-                    <input class="post-code" name="Apt-Bidg" type="text" placeholder="Apt/Bidg">
-                    <input class="post-code" name="Postal Code" type="text" placeholder="Postal Code">
+                    <input class="post-code" name="Apt-Bidg" type="text" placeholder="Apt/Bidg" required>
+                    <input class="post-code" name="Postal Code" type="text" placeholder="Postal Code" required>
                 </p>
 
                 <button class="simple-button login-button" name="confirm-but" >CONFIRM</button>

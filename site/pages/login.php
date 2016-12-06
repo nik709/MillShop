@@ -26,8 +26,8 @@ include_once ("../database/SessionControlImpl.php");
             <div style="font-size: 30px; margin-bottom: 15px;">SIGN IN</div>
             <fieldset id="inputs">
                 <form method="post">
-                <p><input id="username" name="login" type="text" placeholder="Login"></p>
-                <p><input id="password" name="password" type="password" placeholder="Password"></p>
+                <p><input id="username" name="login" type="text" placeholder="Login" required></p>
+                <p><input id="password" name="password" type="password" placeholder="Password" required></p>
                 <?php
                 if(isset($_POST['log-but'])){
                     $session = new SessionControlImpl();
@@ -48,11 +48,11 @@ include_once ("../database/SessionControlImpl.php");
             <div style="font-size: 30px; margin-bottom: 15px;">REGISTER</div>
             <fieldset id="inputs">
                 <form method="post">
-                    <p><input id="username" name="reg-name1" type="text" placeholder="First Name"></p>
-                    <p><input id="username" name="reg-name2" type="text" placeholder="Last Name"></p>
-                    <p><input id="username" name="email" type="text" placeholder="E-mail"></p>
-                    <p><input id="username" name="reg-login" type="text" placeholder="Login"></p>
-                    <p><input id="password" name="reg-password" type="password" placeholder="Password"></p>
+                    <p><input id="username" name="reg-name1" type="text" placeholder="First Name" required></p>
+                    <p><input id="username" name="reg-name2" type="text" placeholder="Last Name" required></p>
+                    <p><input id="username" name="email" type="email" placeholder="E-mail" required></p>
+                    <p><input id="username" name="reg-login" type="text" placeholder="Login" required></p>
+                    <p><input id="password" name="reg-password" type="password" placeholder="Password" required></p>
 
                     <?php
                     if(isset($_POST['reg-button'])){
