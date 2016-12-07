@@ -11,7 +11,7 @@ session_start();
     <meta charset="UTF-8">
     <title>Checkout - Mill Shop</title>
     <link rel="icon" href="../resources/images/icon.ico">
-    <link rel="stylesheet" href="../css/Login.css">
+    <link rel="stylesheet" href="../css/Checkout.css">
 </head>
 <body>
 <?php
