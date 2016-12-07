@@ -17,22 +17,28 @@ $LastName = $_POST['last-name'];
 $country = $_POST['Country'];
 $city = $_POST['City'];
 $street = $_POST['Street'];
-$PostalCode = $_POST['Postal Code'];
+$PostalCode = $_POST['PostalCode'];
 $Apt = $_POST['Apt-Bidg'];
 
-$sub = "Checkout";
+$sub = "Thank you for your order!";
+
+$path = '../resources/images/logo_horizontal.png';
+$type = pathinfo($path, PATHINFO_EXTENSION);
+$data = file_get_contents($path);
+$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
 $mes="
-<p>$FirstName $LastName,</p>
-<p>Your order was successfully issued!</p>
-<p>You have ordered:</p>
+<a href='http://millshop.com/site/pages/MillShop.php'><img src='$base64'></a>
+<p>Hi, $FirstName!</p>
+<p>Your order was successfully placed!</p>
+<p>ITEM DESCRIPTION</p>
 <html>
 <body>
   <table cellSpacing=0 cellPadding=0 width=500 border=1>
     <tr>
         <td width=200>ITEM</td>
         <td width=100>SIZE</td>
-        <td width=100>COUNT</td>
+        <td width=100>QUANTITY</td>
         <td width=100>PRICE</td>
     </tr>
 </table>
@@ -53,7 +59,7 @@ foreach ($_SESSION['item'] as $value){
                 <td width=200>$test[1]</td>
                 <td width=100>$size</td>
                 <td width=100>$quant</td>
-                <td width=100>$price $</td>
+                <td width=100>$$price</td>
             </tr>
         </table>
         </body>
@@ -65,8 +71,8 @@ foreach ($_SESSION['item'] as $value){
 
 $mes_last_part="
 <p>Your order will be sent to the following address:</p>
-<p>$Apt,$street Street</p>
-<p>$city,$PostalCode</p>
+<p>$Apt, $street Street</p>
+<p>$city, $PostalCode</p>
 <p>$country</p>
 ";
 
