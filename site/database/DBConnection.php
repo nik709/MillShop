@@ -238,7 +238,7 @@ class DBConnection
             echo "<div class='item-presenter-quantity-header'>";
             echo "Quantity: ";
             echo "</div>";
-            echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='1' min='1' max='10'>";
+            echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='1' min='1' max='10' autocomplete='off'>";
             echo "</div>";
 
             echo "<div class='item-presenter-buttons'>";
