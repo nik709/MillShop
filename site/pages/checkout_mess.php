@@ -28,52 +28,45 @@ $data = file_get_contents($path);
 $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
 $mes="
+<html>
+<body>
 <a href='http://millshop.com/site/pages/MillShop.php'><img src='$base64'></a>
 <p>Hi, $FirstName!</p>
 <p>Your order was successfully placed!</p>
 <p>ITEM DESCRIPTION</p>
-<html>
-<body>
   <table cellSpacing=0 cellPadding=0 width=500 border=1>
     <tr>
         <td width=200>ITEM</td>
         <td width=100>SIZE</td>
         <td width=100>QUANTITY</td>
         <td width=100>PRICE</td>
-    </tr>
-</table>
-</body>
-</html>";
+    </tr>";
 
-$num=1;
+$num = 0;
 foreach ($_SESSION['item'] as $value){
-    $quant = $_SESSION['quant'][$num - 1];
+    $quant = $_SESSION['quant'][$num];
     $test = $sessionControl->getItemInfo($value);
-    $size=$_SESSION['size'][$num-1];
-    $price=round($test[3]*(1-$test[4]),2);
-    $mes_table="
-        <html>
-        <body>
-          <table cellSpacing=0 cellPadding=0 width=500 border=1>
+    $size = $_SESSION['size'][$num];
+    $price = round($test[3]*(1-$test[4]),2);
+    $mes_table = "
             <tr>
                 <td width=200>$test[1]</td>
                 <td width=100>$size</td>
                 <td width=100>$quant</td>
                 <td width=100>$$price</td>
-            </tr>
-        </table>
-        </body>
-        </html>";
-    $mes=$mes.$mes_table;
-    $num+=1;
+            </tr>";
+    $mes = $mes.$mes_table;
+    $num++;
 }
 
-
 $mes_last_part="
+</table>
 <p>Your order will be sent to the following address:</p>
 <p>$Apt, $street Street</p>
 <p>$city, $PostalCode</p>
 <p>$country</p>
+</body>
+</html>
 ";
 
 $mes=$mes.$mes_last_part;
