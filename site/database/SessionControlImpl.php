@@ -73,9 +73,6 @@ class SessionControlImpl extends DBConnection  implements SessionControl
     }
 
 
-
-    //Это нужно бы проверить
-
     public function getItemInfo($id){
         $query = "select name , color, image, price, discount
                   FROM items
