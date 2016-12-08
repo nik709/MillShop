@@ -1,5 +1,6 @@
 <?php
 session_start();
+include ('SessionInit.php');
 
 if (!empty($_POST["Add"])) {
     header("Location: ".$_SERVER["REQUEST_URI"]);

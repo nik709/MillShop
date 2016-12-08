@@ -4,7 +4,7 @@ include ('SessionInit.php');
 
 function drawImage($image) {
     echo "<img src=\"data:image/jpeg;base64," . base64_encode($image) .
-"\" width=\"" . 160 . "\" height=\"auto\" />";
+"\" width=\"" . 100 . "\" height=\"auto\" />";
 }
 ?>
 <!DOCTYPE html>
@@ -71,31 +71,34 @@ else
                 <td class="table-cell-header">Size</td>
                 <td class="table-cell-header">Color</td>
                 <td class="table-cell-header">Quantity</td>
+                <td class="table-cell-header">Price</td>
                 <td class="table-cell-header"><!--Remove--></td>
             </tr>
 
             <?php
             $num = 1;
             foreach ($_SESSION['item'] as $value) {
-                $quantity=$_SESSION['quant'][$num-1];
-                $queryResult = $sessionControl->getItemInfo($value);
+                $quant=$_SESSION['quant'][$num-1];
+                $bagElem = $sessionControl->getItemInfo($value);
+                $price=round($bagElem[3]*(1-$bagElem[4]),2);
+                $id=$_SESSION['item'][$num-1];
+                $path="http://localhost/MillShop/site/pages/itemPage.php?ID=$id";
+
                 echo "<tr>";
                 echo "<td class=\"table-cell\">$num</td>";
-                echo "<td class=\"table-cell-image\">";
-                    drawImage($queryResult[0]);
-                echo "</td>";
-                echo "<td class=\"table-cell\">" . $queryResult[1] . "</td>";
-                echo "<td class=\"table-cell\">" . $_SESSION['size'][$num-1] . "</td>";
-                echo "<td class=\"table-cell\">" . $sessionControl->getColor($queryResult[2]) . "</td>";
+                echo "<td class=\"table-cell-image\">"; echo"<a href=$path>";drawImage($bagElem[0]);  echo"</a></td>";
+                echo "<td class=\"table-cell\">";       echo $bagElem[1];                             echo "</td>";
+                echo "<td class=\"table-cell\">";       echo $_SESSION['size'][$num-1];               echo "</td>";
+                echo "<td class=\"table-cell\">";       echo $sessionControl->getColor($bagElem[2]);  echo "</td>";
                 echo "<td class=\"table-cell-quantity\">";
-                echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quantity' min='1' max='10'>";
+                echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quant' min='1' max='10'>";
                 echo "</td>";
+                echo "<td class=\"table-cell\">$$price</td>";
                 echo "<td class=\"table-cell\">Remove</td>";
                 echo "</tr>";
                 $num++;
             }
             ?>
-
         </table>
     </div>
     <?php
@@ -104,6 +107,7 @@ else
             echo "disabled";
         echo ">CHECKOUT</button>";
     ?>
+
 </form>
 </div>
 <!-- MAIN BLOCK END -->

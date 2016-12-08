@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include('SessionInit.php');
 function plus($bag)
 {
     $bag++;

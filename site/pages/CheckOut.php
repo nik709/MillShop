@@ -1,5 +1,6 @@
 <?php
 session_start();
+include ('SessionInit.php');
 ?>
 <!DOCTYPE html>
 <!--
@@ -51,7 +52,7 @@ if(isset($_SESSION['user-login'])) {
             <input class="post-code" name="Postal Code" type="text" placeholder="Postal Code" title="Postal Code" required>
         </div>
     </div>
-    <button class="simple-button place-my-order-button" name="confirm-but">PLACE MY ORDER!</button>
+    <button class="simple-button place-my-order-button" name="confirm-but">PLACE MY ORDER</button>
 </div>
 </form>
 

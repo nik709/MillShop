@@ -1,5 +1,6 @@
 <?php
 session_start();
+include ('SessionInit.php');
 ?>
 <!DOCTYPE html>
 <!--
@@ -31,19 +32,19 @@ include_once ("../database/SessionControlImpl.php");
                 <?php
                 if(isset($_POST['log-but'])){
                     $session = new SessionControlImpl();
-                    $check = $session->checkUser($_POST['login'], md5($_POST['password']));
+                    $check = $session->checkUser($_POST['login'], password_hash($_POST['password'],PASSWORD_BCRYPT));
                     if($check==true){
                         $_SESSION['user-login']=$_POST['login'];
                     }
                     else
                         echo "<div style='font-size: small; color:red'>Login or password is incorrect!</div>";
                 }
+                echo "<button class=\"simple-button login-button\" name=\"log-but\">LOG IN</button>";
                 ?>
-                <button class="simple-button login-button" name="log-but">LOG IN</button>
+
                 </form>
             </fieldset>
         </div>
-
         <div>
             <div style="font-size: 30px; margin-bottom: 15px;">REGISTER</div>
             <fieldset class="inputs">
@@ -57,7 +58,7 @@ include_once ("../database/SessionControlImpl.php");
                     <?php
                     if(isset($_POST['reg-button'])){
                         $sessionControl = new SessionControlImpl();
-                        $test = $sessionControl->addNewUser($_POST['reg-login'],md5($_POST['reg-password']),$_POST['reg-name1'],$_POST['reg-name2'], $_POST['email']);
+                        $test = $sessionControl->addNewUser($_POST['reg-login'],password_hash($_POST['reg-password'],PASSWORD_BCRYPT),$_POST['reg-name1'],$_POST['reg-name2'], $_POST['email']);
                         $sessionControl = null;
                     }
                     ?>

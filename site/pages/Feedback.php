@@ -15,6 +15,7 @@
 <body>
     <?php
     session_start();
+    include ('SessionInit.php');
     include('menu.php');
     ?>
 
