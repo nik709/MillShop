@@ -34,12 +34,13 @@ for($i = 0; $i < 30; $i++) {
 
 $minPrice = isset($_GET['minPrice']) ? $_GET['minPrice'] : null;
 if($minPrice != null) {
-    $criteria[$k] = "minPrice = $minPrice";
+    $criteria[$k] = "price > $minPrice";
 }
 $maxPrice = isset($_GET['maxPrice']) ? $_GET['maxPrice'] : null;
 if($minPrice != null) {
-    $criteria[$k + 1] = "maxPrice = $maxPrice";
+    $criteria[$k + 1] = "price < $maxPrice";
 }
+//echo "$minPrice <br> $maxPrice <br>";
 
 $db->setGlobalCategory($_SESSION['GLOB']);
 $db->setSortOption($sortOption);

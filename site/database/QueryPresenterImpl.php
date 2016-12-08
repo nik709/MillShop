@@ -79,12 +79,13 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
                 $quantityOfSubs++;
             }
             if (startsWith($criteria[$i], "price")){
-                $priceN = substr($criteria[$i], 9, strlen($criteria[$i]));
+                $priceN = substr($criteria[$i], 8, strlen($criteria[$i]));
+                //echo "$priceN<br>";
                 if ($p==0)
-                    $prices[$p] = " price > $priceN";
+                    $prices[$p] = " price > $priceN + price * discount";
                 else
                     if ($p<2)
-                        $prices[$p] = "price < $priceN";
+                        $prices[$p] = "price < $priceN - price * discount";
                 $p++;
             }
         }
@@ -123,13 +124,14 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
             //echo "<br> $query";
         }
 
-        if ($p<2) {
+        //echo "$p";
+        if ($p == 2) {
             for ($i = 0; $i < $p; $i++) {
                 if ($i == 0)
                     $query .= " AND (";
                 $query .= $prices[$i];
                 if ($i != $p-1)
-                    $query .= " OR";
+                    $query .= " AND ";
                 else
                     $query .= ")";
             }
@@ -141,7 +143,7 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         parent::setQuery($query);
         parent::sorting($this->sortOption);
         parent::executeQuery("$query");
-        echo "$query";
+        //echo "$query";
     }
 
     public function getMaxPrice(){
