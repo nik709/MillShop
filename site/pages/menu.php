@@ -34,6 +34,9 @@
                                 <span class="search-icon"></span>
                             </form>
                         </div>
+                        <!-- <a href="MillShop.php" style="text-decoration: none">
+ -                            <div id="menu-bar-currency" title="Currency"></div>
+                        </a> -->
                         <a href='login.php' style='text-decoration: none'>
                             <div id='menu-bar-user' class='menu-bar-user-in' title='My profile'></div>
                         </a>

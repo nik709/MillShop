@@ -77,5 +77,5 @@ $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 
 if (mail($email, $sub, $mes, $headers))
-    header('Location: CheckOut.php');
+    header('Location: checkout.php');
 ?>

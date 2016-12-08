@@ -22,6 +22,12 @@
     width: 100%;
 }
 
+.bag-content {
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 70px;
+}
+
 #bag-table {
     width: 100%;
     border-spacing: 0;
@@ -35,16 +41,27 @@
 }
 
 .table-cell,
-.table-cell-header {
+.table-cell-header,
+.table-cell-image,
+.table-cell-quantity {
     padding: 5px 2px 5px 11px;
     border-bottom: solid 2px #152b3c;
     /*border-left: solid 1px lightgray;
     border-right: solid 1px lightgray;*/
+}
 
+.table-cell,
+.table-cell-image,
+.table-cell-quantity {
+    vertical-align: top;
 }
 
 .table-cell {
-    vertical-align: text-top;
+    padding-top: 23px;
+}
+
+.table-cell-quantity {
+    padding-top: 15px;
 }
 
 .checkout-button {
@@ -52,7 +69,6 @@
     float: right;
     margin-top: 18px;
 }
-
 
 .clear-bag-button {
     display: flex;

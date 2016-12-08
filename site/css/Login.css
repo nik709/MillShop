@@ -81,7 +81,7 @@ fieldset {
 
 /*--------------------*/
 
-#inputs input {
+.inputs input {
     background: #f1f1f1  no-repeat;
     padding: 10px 10px 10px 20px;
     margin: 0 120px 5px 0;
@@ -96,7 +96,7 @@ fieldset {
 
 }
 
-#inputs input.post-code {
+.inputs input.post-code {
     background: #f1f1f1  no-repeat;
     padding: 10px 10px 10px 20px;
     margin: 0 25px 5px 0;
@@ -149,7 +149,7 @@ fieldset {
 }
 
 
-#inputs input:focus {
+.inputs input:focus {
     background-color: #fff;
     border-color: #ddc9bc;
     outline: none;
@@ -161,14 +161,6 @@ fieldset {
 /*--------------------*/
 #actions {
     margin: 25px 0 0 0;
-}
-
-#log-block div {
-    width: 450px;
-    margin-top: 10px;
-    font-size: 10px;
-    display: inline-table;
-    font-family: "Cyntho Bold", sans-serif;
 }
 
 .login-button {
@@ -184,4 +176,18 @@ fieldset {
 .post-code
 {
     width: 100px;
+}
+
+.place-my-order-button {
+    width: 200px;
+}
+
+.checkout-header {
+    font-size: 1.2em;
+}
+
+#log-block > div {
+    display: inline-block;
+    width: 400px;
+    vertical-align: top;
 }
