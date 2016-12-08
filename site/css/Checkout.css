@@ -1,0 +1,18 @@
+/*
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
+*/
+@import "Login.css";
+
+.post-code
+{
+    width: 100px;
+}
+
+.place-my-order-button {
+    width: 200px;
+}
+
+.checkout-header {
+    font-size: 1.2em;
+}

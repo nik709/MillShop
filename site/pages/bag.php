@@ -92,6 +92,7 @@ else
                 echo "<td class=\"table-cell\">";       echo $sessionControl->getColor($bagElem[2]);  echo "</td>";
                 echo "<td class=\"table-cell-quantity\">";
                 echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quant' min='1' max='10'>";
+                echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quantity' min='1' max='10' autocomplete='off'>";
                 echo "</td>";
                 echo "<td class=\"table-cell\">$$price</td>";
                 echo "<td class=\"table-cell\">Remove</td>";

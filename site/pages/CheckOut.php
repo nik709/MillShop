@@ -12,7 +12,7 @@ include ('SessionInit.php');
     <meta charset="UTF-8">
     <title>Checkout - Mill Shop</title>
     <link rel="icon" href="../resources/images/icon.ico">
-    <link rel="stylesheet" href="../css/Login.css">
+    <link rel="stylesheet" href="../css/Checkout.css">
 </head>
 <body>
 <?php
@@ -49,7 +49,7 @@ if(isset($_SESSION['user-login'])) {
             <input name="City" type="text" placeholder="City" title="City" required>
             <input name="Street" type="text" placeholder="Street" title="Street" required>
             <input class="post-code" name="Apt-Bidg" type="text" placeholder="Apt / Bidg" title="Apt / Bldg" required>
-            <input class="post-code" name="Postal Code" type="text" placeholder="Postal Code" title="Postal Code" required>
+            <input class="post-code" name="PostalCode" type="text" placeholder="Postal Code" title="Postal Code" required>
         </div>
     </div>
     <button class="simple-button place-my-order-button" name="confirm-but">PLACE MY ORDER</button>
