@@ -54,9 +54,11 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
         $colors = array();
         $sizes = array();
         $subs = array();
+        $prices = array();
         $quantityOfColors = 0;
         $quantityOfSizes = 0;
         $quantityOfSubs = 0;
+        $p = 0;
         for ($i=0; $i<count($criteria); $i++){
             if (startsWith($criteria[$i], "color")){
                 $nameOfColor = substr($criteria[$i],8, strlen($criteria[$i]));
@@ -75,6 +77,15 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
                 $idOfSub = substr($criteria[$i], 10, strlen($criteria[$i]));
                 $subs[$quantityOfSubs] = " subcategory = $idOfSub";
                 $quantityOfSubs++;
+            }
+            if (startsWith($criteria[$i], "price")){
+                $priceN = substr($criteria[$i], 9, strlen($criteria[$i]));
+                if ($p==0)
+                    $prices[$p] = " price > $priceN";
+                else
+                    if ($p<2)
+                        $prices[$p] = "price < $priceN";
+                $p++;
             }
         }
         for ($i=0; $i<$quantityOfColors; $i++) {
@@ -112,12 +123,25 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
             //echo "<br> $query";
         }
 
+        if ($p<2) {
+            for ($i = 0; $i < $p; $i++) {
+                if ($i == 0)
+                    $query .= " AND (";
+                $query .= $prices[$i];
+                if ($i != $p-1)
+                    $query .= " OR";
+                else
+                    $query .= ")";
+            }
+        }
+
         if ($this->globalCategory != null)
             $query .= " AND globcategory = $this->globalCategory";
 
         parent::setQuery($query);
         parent::sorting($this->sortOption);
         parent::executeQuery("$query");
+        echo "$query";
     }
 
     public function getMaxPrice(){
