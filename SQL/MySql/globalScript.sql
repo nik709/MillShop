@@ -14,6 +14,7 @@ CREATE TABLE `millshop`.`users`(
 	PRIMARY KEY (`LOGIN`) 
 );
 
+
 ALTER TABLE millshop.users 
     ADD EMAIL VARCHAR(30) NULL;
 
