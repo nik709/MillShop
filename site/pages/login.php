@@ -33,7 +33,7 @@ include_once ("../database/SessionControlImpl.php");
                 <?php
                 if(isset($_POST['log-but'])){
                     $session = new SessionControlImpl();
-                    $check = $session->checkUser($_POST['login'], password_hash($_POST['password'],PASSWORD_BCRYPT));
+                    $check = $session->checkUser($_POST['login'], md5($_POST['password']));
                     if($check==true){
                         $_SESSION['user-login']=$_POST['login'];
                     }
