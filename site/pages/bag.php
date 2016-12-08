@@ -88,7 +88,7 @@ else
                 echo "<td class=\"table-cell\">" . $_SESSION['size'][$num-1] . "</td>";
                 echo "<td class=\"table-cell\">" . $sessionControl->getColor($queryResult[2]) . "</td>";
                 echo "<td class=\"table-cell-quantity\">";
-                echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quantity' min='1' max='10'>";
+                echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quantity' min='1' max='10' autocomplete='off'>";
                 echo "</td>";
                 echo "<td class=\"table-cell\">Remove</td>";
                 echo "</tr>";

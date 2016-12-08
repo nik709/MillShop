@@ -4,6 +4,11 @@
 */
 @import "MillShop.css";
 
+.column-ms {
+    width: 332px !important;
+    margin-right: 102px;
+}
+
 #login {
     background-color: #fff;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
@@ -60,62 +65,14 @@
     box-shadow: 0 0 0 1px #fff;
 }
 
-/*--------------------*/
-
-h1 {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
-    text-transform: uppercase;
-    text-align: center;
-    color: #666;
-    margin: 0 0 30px 0;
-    letter-spacing: 4px;
-    font: normal 26px/1 Verdana, Helvetica;
-    position: relative;
+.inputs {
+    margin-top: 20px;
 }
-
-fieldset {
-    border: 0;
-    padding: 0;
-    margin: 0;
-}
-
-/*--------------------*/
 
 .inputs input {
     background: #f1f1f1  no-repeat;
     padding: 10px 10px 10px 20px;
-    margin: 0 120px 5px 0;
-    width: 300px;
-    border: 1px solid #ccc;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
-    -webkit-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
-    box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
-
-}
-
-.inputs input.post-code {
-    background: #f1f1f1  no-repeat;
-    padding: 10px 10px 10px 20px;
-    margin: 0 25px 5px 0;
-    width: 120px;
-    border: 1px solid #ccc;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
-    -webkit-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
-    box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
-
-}
-
-
-#inputs-right input {
-    background: #f1f1f1  no-repeat;
-    padding: 10px 10px 10px 20px;
-    margin: 0 0px 5px 366px;
+    margin-bottom: 10px;
     width: 300px;
     border: 1px solid #ccc;
     -moz-border-radius: 5px;
@@ -125,29 +82,6 @@ fieldset {
     -webkit-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
     box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
 }
-
-#inputs-right2 input {
-    background: #f1f1f1 no-repeat;
-    padding: 10px 10px 10px 20px;
-    margin: 0 0px 5px 456px;
-    width: 300px;
-    border: 1px solid #ccc;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
-    -webkit-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
-    box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
-}
-
-#username {
-    background-position: 5px -2px !important;
-}
-
-#password {
-    background-position: 5px -52px !important;
-}
-
 
 .inputs input:focus {
     background-color: #fff;
@@ -158,7 +92,6 @@ fieldset {
     box-shadow: 0 0 0 1px #ddc9bc inset;
 }
 
-/*--------------------*/
 #actions {
     margin: 25px 0 0 0;
 }
@@ -171,19 +104,6 @@ fieldset {
 .register-button {
     width: 140px;
     margin-top: 15px;
-}
-
-.post-code
-{
-    width: 100px;
-}
-
-.place-my-order-button {
-    width: 200px;
-}
-
-.checkout-header {
-    font-size: 1.2em;
 }
 
 #log-block > div {
