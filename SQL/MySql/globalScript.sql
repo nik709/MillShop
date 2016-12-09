@@ -18,6 +18,8 @@ CREATE TABLE `millshop`.`users`(
 ALTER TABLE millshop.users 
     ADD EMAIL VARCHAR(30) NULL;
 
+CREATE UNIQUE INDEX users_EMAIL_uindex ON millshop.users (EMAIL);
+
 CREATE TABLE `millshop`.`colors` (
   `ID` INT NOT NULL ,
   `name` VARCHAR(45) NULL ,

@@ -20,6 +20,7 @@
 
 .bag-table-wrapper {
     width: 100%;
+    margin-top: 18px;
 }
 
 .bag-content {
@@ -84,4 +85,25 @@
 
 .clear-bag-button:hover {
     color: #3a5b5b;
+}
+
+.remove-button {
+    font-size: 1em;
+    padding-top: 0;
+}
+
+.total-bag {
+    margin-top: 20px;
+    margin-left: 651px;
+}
+
+#total-bag-price {
+    display: inline-block;
+    width: 96px;
+    text-align: right;
+}
+
+#total-bag-name {
+    display: inline-block;
+    font-family: "Cyntho Bold", sans-serif;
 }

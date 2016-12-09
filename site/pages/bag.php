@@ -4,7 +4,7 @@ include ('SessionInit.php');
 
 function drawImage($image) {
     echo "<img src=\"data:image/jpeg;base64," . base64_encode($image) .
-"\" width=\"" . 100 . "\" height=\"auto\" />";
+"\" width=\"" . 130 . "\" height=\"auto\" />";
 }
 ?>
 <!DOCTYPE html>
@@ -18,6 +18,13 @@ function drawImage($image) {
     <title>My Bag - Mill Shop</title>
     <link rel="icon" href="../resources/images/icon.ico">
     <link rel="stylesheet" href="../css/Bag.css">
+    
+    <script type="text/javascript">
+        function removeItem(id) {
+
+            window.location.href = 'bag.php';
+        }
+    </script>
 </head>
 <body>
 <?php
@@ -56,12 +63,7 @@ if(isset($_SESSION['item'])) {
 </form>
 
 <div class="bag-content">
-<?php
-if(isset($_SESSION['user-login']))
-   echo"<form method=\"post\" action=\"checkout.php\">";
-else
-    echo"<form method=\"post\" action=\"login.php\">";
-?>
+<form method="post">
     <div class="bag-table-wrapper">
         <table id="bag-table">
             <tr class="table-header">
@@ -76,36 +78,48 @@ else
             </tr>
 
             <?php
+            $totalPrice = 0;
             $num = 1;
             foreach ($_SESSION['item'] as $value) {
                 $quant=$_SESSION['quant'][$num-1];
                 $bagElem = $sessionControl->getItemInfo($value);
                 $price=round($bagElem[3]*(1-$bagElem[4]),2);
                 $id=$_SESSION['item'][$num-1];
-                $path="http://localhost/MillShop/site/pages/itemPage.php?ID=$id";
+                $path="itemPage.php?ID=$id";
+                $totalPrice += $price;
 
                 echo "<tr>";
                 echo "<td class=\"table-cell\">$num</td>";
                 echo "<td class=\"table-cell-image\">"; echo"<a href=$path>";drawImage($bagElem[0]);  echo"</a></td>";
-                echo "<td class=\"table-cell\">";       echo $bagElem[1];                             echo "</td>";
+                echo "<td class=\"table-cell\">";       echo "<a href=$path class='no-dec-link'>"; echo $bagElem[1]; echo "</a></td>";
                 echo "<td class=\"table-cell\">";       echo $_SESSION['size'][$num-1];               echo "</td>";
                 echo "<td class=\"table-cell\">";       echo $sessionControl->getColor($bagElem[2]);  echo "</td>";
                 echo "<td class=\"table-cell-quantity\">";
-                echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quant' min='1' max='10'>";
+                echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quant' min='1' max='10' autocomplete='off'>";
                 echo "</td>";
                 echo "<td class=\"table-cell\">$$price</td>";
-                echo "<td class=\"table-cell\">Remove</td>";
+                echo "<td class=\"table-cell\"><input type='button' class='clear-bag-button remove-button' name='remove-button' value='Remove' onclick='removeItem(" . $num . ")' /></td>";
                 echo "</tr>";
                 $num++;
             }
             ?>
         </table>
     </div>
+    <div class="total-bag">
+        <div id="total-bag-name">TOTAL:</div>
+        <div id="total-bag-price"><?php echo "$" . $totalPrice; ?></div>
+    </div>
     <?php
-    echo "<button class=\"simple-button checkout-button\" name=\"checkoutButton\" ";
+    echo "<input type='button' class=\"simple-button checkout-button\" name=\"checkoutButton\" value='CHECKOUT' ";
         if(count($_SESSION['item']) == 0)
             echo "disabled";
-        echo ">CHECKOUT</button>";
+        if(isset($_SESSION['user-login'])) {
+            echo " onclick=\"location.href='\\checkout.php';\"";
+        }
+        else {
+            echo " onclick=\"location.href='\\login.php';\"";
+        }
+        echo "/>";
     ?>
 
 </form>
