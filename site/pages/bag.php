@@ -22,7 +22,7 @@ function drawImage($image) {
     <script type="text/javascript">
         function removeItem(id) {
 
-            window.location.href = '\login.php';
+            window.location.href = 'bag.php';
         }
     </script>
 </head>
