@@ -4,9 +4,8 @@
 */
 @import "Login.css";
 
-.post-code
-{
-    width: 100px;
+.post-code {
+    width: 129px !important;
 }
 
 .place-my-order-button {
@@ -14,5 +13,8 @@
 }
 
 .checkout-header {
-    font-size: 1.2em;
+    font-size: 1em;
+    font-family: "Cyntho Bold", sans-serif;
+    margin-top: 20px;
+    text-transform: uppercase;
 }
