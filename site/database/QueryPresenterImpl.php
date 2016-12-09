@@ -10,6 +10,11 @@ function startsWith($haystack, $needle)
     return (substr($haystack, 0, $length) === $needle);
 }
 
+function stringParser($str){
+    $str= preg_replace("/  +/"," ",$str);
+    return $str;
+}
+
 include_once ("DBConnection.php");
 include_once("QueryPresenter.php");
 class QueryPresenterImpl extends DBConnection implements QueryPresenter

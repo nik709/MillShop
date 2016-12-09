@@ -35,6 +35,10 @@ $db = new QueryPresenterImpl();
 if (($search) == null) {
     $db->onFailed("Search failed");
 }
+
+echo "test: <br> $search <br>";
+//$search = stringParser($search);
+//echo "$search";
 $db->getSearchResult($search);
 echo "<div class='results-of-query' id='results-of-query'>";
 $db->drawItemHolders();
