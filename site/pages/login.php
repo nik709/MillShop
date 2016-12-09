@@ -22,6 +22,7 @@ include_once ("../database/SessionControlImpl.php");
 
 <!-- MAIN BLOCK START -->
 
+
 <div id="log-block">
     <div id="left-column" class="column-ms">
         <div class="page-title">Sign In</div>
@@ -33,7 +34,7 @@ include_once ("../database/SessionControlImpl.php");
                 <?php
                 if(isset($_POST['log-but'])){
                     $session = new SessionControlImpl();
-                    $check = $session->checkUser($_POST['login'], md5($_POST['password']));
+                    $check = $session->checkUser($_POST['login'], sha1($_POST['password']));
                     if($check==true){
                         $_SESSION['user-login']=$_POST['login'];
                     }
@@ -58,7 +59,7 @@ include_once ("../database/SessionControlImpl.php");
                 <?php
                 if(isset($_POST['reg-button'])){
                     $sessionControl = new SessionControlImpl();
-                    $test = $sessionControl->addNewUser($_POST['reg-login'],md5($_POST['reg-password']),$_POST['reg-name1'],$_POST['reg-name2'], $_POST['email']);
+                    $test = $sessionControl->addNewUser($_POST['reg-login'],sha1($_POST['reg-password']),$_POST['reg-name1'],$_POST['reg-name2'], $_POST['email']);
                     $sessionControl = null;
                 }
                 ?>
