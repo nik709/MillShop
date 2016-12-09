@@ -11,7 +11,7 @@ function startsWith($haystack, $needle)
 }
 
 function stringParser($str){
-    $str= preg_replace("/  +/"," ",$str);
+    $str=preg_replace('/\s+/',' ',$str);
     return $str;
 }
 
@@ -200,12 +200,12 @@ class QueryPresenterImpl extends DBConnection implements QueryPresenter
     public function getSearchResult($searchString)
     {
         $query = "SELECT * FROM items WHERE ";
-
-        $words = explode(' ',$searchString);
+        $searchString = stringParser($searchString);
+        $words = explode(" ",$searchString);
         $position = 0;
         foreach ($words as $word){
             $position++;
-            if (strpos($word, ' ') == false) {
+            if (!startsWith($word, " ")) {
                 $query .= "UPPER(name) LIKE UPPER('%$word%')
                             OR color in 
                                 (SELECT id FROM colors WHERE colors.name LIKE UPPER('%$word%'))
