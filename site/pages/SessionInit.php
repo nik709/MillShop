@@ -1,4 +1,8 @@
 <?php
+/**
+    MILL SHOP COMPANY, 2016
+    CREATED BY NIKITA GRECHUKHIN, NIKOLAY KOMAROV AND VAGIK SIMONYAN
+ */
 if (!isset($_SESSION['count']))
     $_SESSION['count'] = 0;
 
