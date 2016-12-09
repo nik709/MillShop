@@ -32,8 +32,9 @@ $mes="
 <p>Hi, $FirstName!</p>
 <p>Your order was successfully placed!</p>
 <p>You have ordered:</p>
-  <table cellSpacing=0 cellPadding=0 width=500 border=1>
+  <table cellSpacing=0 cellPadding=0 width=530 border=1>
     <tr>
+        <td width=30>&#8470</td>
         <td width=200>ITEM</td>
         <td width=100>SIZE</td>
         <td width=100>QUANTITY</td>
@@ -41,15 +42,16 @@ $mes="
     </tr>
 </table>";
 
-$num=0;
+$num=1;
 foreach ($_SESSION['item'] as $value){
-    $quant = $_SESSION['quant'][$num];
+    $quant = $_SESSION['quant'][$num-1];
     $item = $sessionControl->getItemInfo($value);
-    $size=$_SESSION['size'][$num];
+    $size=$_SESSION['size'][$num-1];
     $price=round($item[3]*(1-$item[4]),2);
     $mes_table="
-    <table cellSpacing=0 cellPadding=0 width=500 border=1>
+    <table cellSpacing=0 cellPadding=0 width=530 border=1>
             <tr>
+                <td width=30>$num</td>
                 <td width=200>$item[1]</td>
                 <td width=100>$size</td>
                 <td width=100>$quant</td>
