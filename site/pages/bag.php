@@ -18,11 +18,14 @@ function drawImage($image) {
     <title>My Bag - Mill Shop</title>
     <link rel="icon" href="../resources/images/icon.ico">
     <link rel="stylesheet" href="../css/Bag.css">
-    
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
     <script type="text/javascript">
         function removeItem(id) {
-
-            window.location.href = 'bag.php';
+            $.get("scripts/RemoveItemFromBag.php?valueId=" + id);
+            location.reload();
+            return false;
         }
     </script>
 </head>
@@ -79,26 +82,26 @@ if(isset($_SESSION['item'])) {
 
             <?php
             $totalPrice = 0;
-            $num = 1;
+            $num = 0;
             foreach ($_SESSION['item'] as $value) {
-                $quant=$_SESSION['quant'][$num-1];
+                $quant=$_SESSION['quant'][array_search($value, $_SESSION['item'])];
                 $bagElem = $sessionControl->getItemInfo($value);
                 $price=round($bagElem[3]*(1-$bagElem[4]),2);
-                $id=$_SESSION['item'][$num-1];
+                $id=$_SESSION['item'][array_search($value, $_SESSION['item'])];
                 $path="itemPage.php?ID=$id";
                 $totalPrice += $price;
 
                 echo "<tr>";
-                echo "<td class=\"table-cell\">$num</td>";
+                echo "<td class=\"table-cell\">"; echo $num + 1; echo "</td>";
                 echo "<td class=\"table-cell-image\">"; echo"<a href=$path>";drawImage($bagElem[0]);  echo"</a></td>";
                 echo "<td class=\"table-cell\">";       echo "<a href=$path class='no-dec-link'>"; echo $bagElem[1]; echo "</a></td>";
-                echo "<td class=\"table-cell\">";       echo $_SESSION['size'][$num-1];               echo "</td>";
+                echo "<td class=\"table-cell\">";       echo $_SESSION['size'][array_search($value, $_SESSION['item'])];               echo "</td>";
                 echo "<td class=\"table-cell\">";       echo $sessionControl->getColor($bagElem[2]);  echo "</td>";
                 echo "<td class=\"table-cell-quantity\">";
                 echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quant' min='1' max='10' autocomplete='off'>";
                 echo "</td>";
                 echo "<td class=\"table-cell\">$$price</td>";
-                echo "<td class=\"table-cell\"><input type='button' class='clear-bag-button remove-button' name='remove-button' value='Remove' onclick='removeItem(" . $num . ")' /></td>";
+                echo "<td class=\"table-cell\"><input type='button' class='clear-bag-button remove-button' name='remove-button' value='Remove' onclick='removeItem(" . array_search($value, $_SESSION['item']) . ")' /></td>";
                 echo "</tr>";
                 $num++;
             }
