@@ -95,12 +95,6 @@ if(isset($_SESSION['item'])) {
                 echo "<td class=\"table-cell\">";       echo $_SESSION['size'][$num-1];               echo "</td>";
                 echo "<td class=\"table-cell\">";       echo $sessionControl->getColor($bagElem[2]);  echo "</td>";
                 echo "<td class=\"table-cell-quantity\">";
-
-                $QuantId=$_SESSION['item'][$num-1];
-                echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity-$QuantId' id='item-presenter-quantity-spinner' value='$quant' min='1' max='10'>";
-
-                echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quant' min='1' max='10' autocomplete='off'>";
-
                 echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quant' min='1' max='10' autocomplete='off'>";
                 echo "</td>";
                 echo "<td class=\"table-cell\">$$price</td>";
@@ -115,28 +109,20 @@ if(isset($_SESSION['item'])) {
         <div id="total-bag-name">TOTAL:</div>
         <div id="total-bag-price"><?php echo "$" . $totalPrice; ?></div>
     </div>
+
     <?php
     echo "<input type='button' class=\"simple-button checkout-button\" name=\"checkoutButton\" value='CHECKOUT' ";
         if(count($_SESSION['item']) == 0)
             echo "disabled";
-
-        echo ">CHECKOUT</button>";
-
-    if(isset($_POST['checkoutButton']))
-        for($i=0; $i<count($_SESSION['item']);$i++)
-        {
-            $QuantId=$_SESSION['item'][$i];
-            $_SESSION['size'][$i]=5;
-        }
-
         if(isset($_SESSION['user-login'])) {
             echo " onclick=\"location.href='\\checkout.php';\"";
         }
         else {
             echo " onclick=\"location.href='\\login.php';\"";
         }
-        echo "/>";
+    echo "/>";
     ?>
+
 
 </form>
 </div>

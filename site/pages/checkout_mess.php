@@ -40,16 +40,17 @@ $mes="
         <td width=100>QUANTITY</td>
         <td width=100>PRICE</td>
     </tr>
-</table>";
-
+";
+$total=0;
 $num=1;
 foreach ($_SESSION['item'] as $value){
     $quant = $_SESSION['quant'][$num-1];
     $item = $sessionControl->getItemInfo($value);
     $size=$_SESSION['size'][$num-1];
     $price=round($item[3]*(1-$item[4]),2);
+    $total+=$price;
     $mes_table="
-    <table cellSpacing=0 cellPadding=0 width=530 border=1>
+ 
             <tr>
                 <td width=30>$num</td>
                 <td width=200>$item[1]</td>
@@ -57,19 +58,27 @@ foreach ($_SESSION['item'] as $value){
                 <td width=100>$quant</td>
                 <td width=100>$$price</td>
             </tr>
-    </table>";
+    ";
     $mes=$mes.$mes_table;
     $num+=1;
 }
 
 
 $mes_last_part="
+<tr>
+    <td width=30> </td>
+    <td width=430><b>TOTAL</b></td>
+    <td width=100> </td>
+    <td width=100> </td>
+    <td width=100><b>$$total</b></td>
+</tr>
+</table>
+<p>Your order will be sent to the following address:</p>
+<p>$Apt, $street Street</p>
+<p>$city, $PostalCode</p>
+<p>$country</p>
     </body>
 </html>
-<p>Your order will be sent to the following address:</p>
-<p>$Apt,$street Street</p>
-<p>$city,$PostalCode</p>
-<p>$country</p>
 ";
 
 $mes=$mes.$mes_last_part;
