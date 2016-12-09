@@ -46,7 +46,11 @@ class DBConnection
     protected function executeQuery($reasonOfError){
         $this->result = mysqli_query($this->link, $this->query);
         if ($this->result == false){
-            $this->onFailed($reasonOfError);
+            if ($reasonOfError = "ADD NEW USER"){
+                echo "<div style='font-size: small; color:red'> User with this login or e-mail exists </div>";
+            }
+            else
+                $this->onFailed($reasonOfError);
         }
 }
 
