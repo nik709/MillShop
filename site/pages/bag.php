@@ -109,6 +109,7 @@ if(isset($_SESSION['item'])) {
         <div id="total-bag-name">TOTAL:</div>
         <div id="total-bag-price"><?php echo "$" . $totalPrice; ?></div>
     </div>
+
     <?php
     echo "<input type='button' class=\"simple-button checkout-button\" name=\"checkoutButton\" value='CHECKOUT' ";
         if(count($_SESSION['item']) == 0)
@@ -119,8 +120,9 @@ if(isset($_SESSION['item'])) {
         else {
             echo " onclick=\"location.href='\\login.php';\"";
         }
-        echo "/>";
+    echo "/>";
     ?>
+
 
 </form>
 </div>
