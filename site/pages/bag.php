@@ -101,6 +101,7 @@ if(isset($_SESSION['item'])) {
 
                 echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quant' min='1' max='10' autocomplete='off'>";
 
+                echo "<input type=\"number\" class='simple-textbox simple-spinner' name='itemQuantity' id='item-presenter-quantity-spinner' value='$quant' min='1' max='10' autocomplete='off'>";
                 echo "</td>";
                 echo "<td class=\"table-cell\">$$price</td>";
                 echo "<td class=\"table-cell\"><input type='button' class='clear-bag-button remove-button' name='remove-button' value='Remove' onclick='removeItem(" . $num . ")' /></td>";
@@ -135,7 +136,6 @@ if(isset($_SESSION['item'])) {
             echo " onclick=\"location.href='\\login.php';\"";
         }
         echo "/>";
-
     ?>
 
 </form>
