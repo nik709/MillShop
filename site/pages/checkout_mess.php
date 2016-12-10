@@ -48,6 +48,7 @@ foreach ($_SESSION['item'] as $value){
     $item = $sessionControl->getItemInfo($value);
     $size=$_SESSION['size'][$num-1];
     $price=round($item[3]*(1-$item[4]),2);
+    $price=$price*$quant;
     $total+=$price;
     $mes_table="
  
